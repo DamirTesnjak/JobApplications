@@ -1,0 +1,70 @@
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { DialogComponent } from '../dialog-component/dialog-component';
+import { Button } from '../button/button.component';
+import { DialogService } from '../dialog.service';
+import { SnackBarService } from '../snackBar.service';
+import { snackbarProps } from '../globalConstant';
+import { IButtonProps } from '../button/type';
+import { DATABASES } from '../../constants/constants';
+
+@Component({
+    selector: 'app-delete-email-template-button',
+    imports: [Button],
+    templateUrl: './delete-profile-button.html',
+    styleUrl: './delete-profile-button.scss'
+})
+export class DeleteEmailTemplateButtonComponent {
+    private dialogService = inject(DialogService);
+    private snackBarService = inject(SnackBarService);
+
+    constructor(private http: HttpClient) { }
+
+    snackbarProps = snackbarProps;
+
+    @Input() databaseName: string = "";
+
+    // Button props
+    id: IButtonProps["id"] = "deleteProfileButton";
+    text: IButtonProps["text"] = "Delete profile";
+    className: IButtonProps["className"] = 'textButton';
+    type: IButtonProps["type"] = 'submit';
+    database: string = DATABASES[this.databaseName]
+
+    @Output() onClick = new EventEmitter<void>();
+
+    handleDeleteEmailTemplate(event: Event): void {
+        const dialogProps = {
+            data: {
+                dialogTitle: "Warning!",
+                dialogText: "Are you sure you want to delete a profile? The action is inreversible!",
+                handleClickAction: () => this.deleteProfile(event),
+            }
+        }
+        this.dialogService.openDialog(DialogComponent, dialogProps);
+    };
+
+    deleteProfile(event: Event): void {
+        event.preventDefault();
+
+        const form = event.target as HTMLFormElement;
+        const formData = new FormData(form);
+
+        const bodyReq = {
+            formData: formData,
+        }
+
+        this.http.post('api/profile/delete', bodyReq).subscribe({
+            next: (res) => {
+                console.log('resprofileDelete', res);
+                this.snackBarService.openSnackBar({
+                    ...this.snackbarProps,
+                    message: res.successMessage,
+                    type: 'success',
+                });
+            },
+            error: (err) => this.snackBarService.openSnackBar({ ...this.snackbarProps, message: err.errorMessage, type: 'error' }),
+        });
+        this.onClick.emit();
+    }
+}

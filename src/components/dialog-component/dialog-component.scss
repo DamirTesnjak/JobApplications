@@ -1,0 +1,18 @@
+.dialog-container {
+    display: block;
+    border-radius: 0px;
+
+    h2 {
+      padding: 0px 10px;
+    }
+
+    mat-dialog-content {
+      padding: 0px 10px;
+    }
+
+    .button {
+      display: block;
+      width: 70px;
+      text-align: center;
+    }
+}

@@ -1,0 +1,85 @@
+@use "styles/global/globals.module.scss" as globals;
+
+.MuiButton-icon {
+  svg {
+    font-size: 1.5rem;
+  }
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  width: auto;
+  height: 40px;
+  padding: 10px 10px 10px 10px;
+  background-color: globals.$button-primary-background-color;
+  color: globals.$button-primary-font-color;
+  font-family: Roboto, serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+
+  &:hover {
+    background-color: globals.$button-primary-background-color-hover;
+  }
+
+  &:active {
+    background-color: globals.$button-primary-background-color-pressed;
+  }
+}
+
+.textButton {
+  @extend .button;
+  background-color: unset;
+  color: globals.$button-text-font-color;
+  &:hover {
+    background-color: globals.$button-text-background-color-hover;
+  }
+
+  span {
+    @extend .MuiButton-icon;
+  }
+}
+
+.primaryTextButton {
+  @extend .button;
+  background-color: unset;
+  color: globals.$primary-color;
+  &:hover {
+    background-color: globals.$button-text-background-color-hover;
+  }
+
+  span {
+    @extend .MuiButton-icon;
+  }
+}
+
+.submitButton {
+  @extend .button;
+  background-color: globals.$submit-button-background-color;
+  color: globals.$black;
+
+  &:hover {
+    background-color: globals.$submit-button-background-color-hover;
+  }
+
+  &:active {
+    background-color: globals.$submit-button-background-color-pressed;
+  }
+}
+
+.deleteButton {
+  @extend .button;
+  background-color: globals.$red;
+
+  &:hover {
+    background-color: globals.$delete-button-background-color-hover;
+  }
+
+  &:active {
+    background-color: globals.$delete-button-background-color-pressed;
+  }
+}

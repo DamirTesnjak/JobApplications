@@ -1,0 +1,11 @@
+<form
+    (ngSubmit)="handleDeleteEmailTemplate($event)"
+>
+    <input hidden="true" [name]="id" [defaultValue]="id" />
+    <app-button
+        [id]="id"
+        [text]="text"
+        [className]="className"
+        [type]="type"
+    />
+</form>

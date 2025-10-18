@@ -1,0 +1,11 @@
+<button
+    [id]="id"
+    [className]="className"
+    [type]="type"
+    (click)="onClick"
+>
+    @if (iconName && iconName.length > 0) {
+        <mat-icon>{{iconName}}</mat-icon>
+    }
+    {{ text }}
+</button>
