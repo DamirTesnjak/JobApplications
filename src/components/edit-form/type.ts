@@ -1,3 +1,5 @@
+import { initialStateCandidate, initialStateCompanyEmailConfigs, initialStateHrUser } from "../../app/state/reducers";
+
 export interface IEditFormProps {
     id?: string;
     serverAction?: (

@@ -1,0 +1,23 @@
+    <div [class]="CLASS_NAME[flow]">
+      <label
+        [for]="name + '-file'"
+        [class]="type === 'file' ? CLASS_NAME[className] : CLASS_NAME['label']"
+      >
+        {{ label }}
+      </label>
+      <input
+        [id]="name + '-file'"
+        [name]="name"
+        [class]="CLASS_NAME[className]"
+        [attr.role]="role"
+        [type]="type"
+        [value]="value"
+        [attr.defaultValue]="defaultValue"
+        [readOnly]="readOnly"
+        [required]="required"
+        [checked]="checked"
+      />
+      @if(errorMessage) {
+        <div class="errorMessage">{{ errorMessage }}</div>
+      }
+  </div>

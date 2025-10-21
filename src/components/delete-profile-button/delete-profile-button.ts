@@ -1,4 +1,8 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { updateCandidate, updateHrUser } from '../../app/state/actions';
+import { initialStateCandidate, initialStateHrUser } from '../../app/state/reducers';
+
 import { HttpClient } from '@angular/common/http';
 import { DialogComponent } from '../dialog-component/dialog-component';
 import { Button } from '../button/button.component';
@@ -17,6 +21,7 @@ import { DATABASES } from '../../constants/constants';
 export class DeleteEmailTemplateButtonComponent {
     private dialogService = inject(DialogService);
     private snackBarService = inject(SnackBarService);
+    private store = inject(Store);
 
     constructor(private http: HttpClient) { }
 
@@ -56,15 +61,23 @@ export class DeleteEmailTemplateButtonComponent {
 
         this.http.post('api/profile/delete', bodyReq).subscribe({
             next: (res) => {
-                console.log('resprofileDelete', res);
-                this.snackBarService.openSnackBar({
-                    ...this.snackbarProps,
-                    message: res.successMessage,
-                    type: 'success',
-                });
+                if (res.success) {
+                    console.log('resprofileDelete', res);
+                    this.snackBarService.openSnackBar({
+                        ...this.snackbarProps,
+                        message: res.successMessage,
+                        type: 'success',
+                    });
+                    if (DATABASES.candidates === this.database) {
+                        this.store.dispatch(updateCandidate({ candidate: initialStateCandidate }))
+                    }
+                    if (DATABASES.hrUsers === this.database) {
+                        this.store.dispatch(updateHrUser({ hrUser: initialStateHrUser }))
+                    }
+                }
             },
             error: (err) => this.snackBarService.openSnackBar({ ...this.snackbarProps, message: err.errorMessage, type: 'error' }),
         });
-        this.onClick.emit();
+        // this.onClick.emit();
     }
 }

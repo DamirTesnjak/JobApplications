@@ -9,6 +9,16 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { deleteEmailTemplate } from './serverEndpoints/deleteEmailTemplate';
+import { createCandidate } from './serverEndpoints/createCandidate';
+import { createCompanyEmailConfiguration } from './serverEndpoints/createCompanyEmailConfiguration';
+import { createEmailTemplate } from './serverEndpoints/createEmailTemplate';
+import { createHrUser } from './serverEndpoints/createHrUser';
+import { deleteProfileInfo } from './serverEndpoints/deleteProfileInfo';
+import { getCandidateProfile } from './serverEndpoints/getCandidateProfile';
+import { getCandidates } from './serverEndpoints/getCandidates';
+import { getEmailTemplate } from './serverEndpoints/getEmailTemplate';
+import { getEmailTemplates } from './serverEndpoints/getEmailTemplates';
+import { getHrUserProfile } from './serverEndpoints/getHrUserProfile';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
@@ -31,8 +41,48 @@ const angularApp = new AngularNodeAppEngine();
 app.use(express.json());
 
 // Deletes email template
-app.use('api/email_template/delete'), async (req: any, res: any) => {
+app.post('api/email_template/delete'), async (req: any, res: any) => {
   deleteEmailTemplate(req, res);
+};
+
+app.post('api/createCandidate'), async (req: any, res: any) => {
+  createCandidate(req, res);
+}
+
+app.post('api/createCompanyEmailConfiguration'), async (req: any, res: any) => {
+  createCompanyEmailConfiguration(req, res);
+}
+
+app.post('api/createEmailTemplate'), async (req: any, res: any) => {
+  createEmailTemplate(req, res);
+}
+
+app.post('api/createHrUser'), async (req: any, res: any) => {
+  createHrUser(req, res);
+}
+
+app.post('api/deleteProfileInfo'), async (req: any, res: any) => {
+  deleteProfileInfo(req, res);
+}
+
+app.post('api/getCandidateProfile'), async (req: any, res: any) => {
+  getCandidateProfile(req, res);
+}
+
+app.post('api/getCandidates'), async (req: any, res: any) => {
+  getCandidates(req, res);
+}
+
+app.post('api/getEmailTemplate'), async (req: any, res: any) => {
+  getEmailTemplate(req, res);
+}
+
+app.post('api/getEmailTemplates'), async (req: any, res: any) => {
+  getEmailTemplates(req, res);
+}
+
+app.post('api/getHrUserProfile'), async (req: any, res: any) => {
+  getHrUserProfile(req, res);
 }
 
 /**

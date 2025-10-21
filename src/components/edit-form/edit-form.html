@@ -1,0 +1,68 @@
+<form
+    (ngSubmit)="handleFormAction($event)"
+>
+    @if (id) {
+        <input name="id" type="text" [value]="id" readOnly hidden />
+    }
+
+    @for(stateModelKey of fieldsToDisplayKeys; track stateModelKey) {
+        @if(stateModelKey === 'archived' ||
+            stateModelKey === 'employed' ||
+            stateModelKey === 'rejected' ||
+            stateModelKey === 'fired') {
+            <div key="stateModelKey">
+                @if(!editable) {
+                    <app-status-display
+                        className="standard"
+                        flow="flowRow"
+                        [label]="translation(stateModelKey)"
+                        [icon]="flattenedObjects(stateModelKey) ? <TaskAltIcon /> : <RadioButtonUncheckedIcon />"
+                    />
+                }
+            </div>
+        }
+        @else {
+            <div [attr.key]="stateModelKey">
+                <app-input
+                  className="standard"
+                  flow="flowRow"
+                  [label]="translation(stateModelKey)"
+                  [name]="stateModelKey"
+                  [type]="stateModelKey === 'password' ? 'password' : 'text'"
+                  [readOnly]="!editable"
+                  [errorMessage]="actionResponse() && actionResponse().errorFieldValidation
+                      ? actionResponse().errorFieldValidation[stateModelKey]
+                      : null"
+                  [defaultValue]="displayDefaultValue(stateModelKey)!"
+                />
+              </div>
+        }
+    }
+    @if (editable) {
+        <div className="buttonsContainer">
+            @if(showUploadPictureButton) {
+                <app-input
+                    className="uploadButton"
+                    flow="flowRow"
+                    [label]="translation('profilePicture')"
+                    name="profilePicture"
+                    type="file"
+                />
+            }
+            @if(showUploadCVButton) {
+                <app-input
+                    className="uploadButton"
+                    flow="flowRow"
+                    [label]="translation('cvFile')"
+                    name="file"
+                    type="file"
+                />
+            }
+            <app-button
+              className="submitButton"
+              type="submit"
+              [text]="translation('saveChanges')"
+            />
+          </div>
+    }
+</form>

@@ -1,0 +1,98 @@
+@use "styles/global/globals.module.scss" as globals;
+@use "styles/global/include-media" as mediaQuery;
+@use "UI/Button/button.module.scss" as buttonsStyles;
+
+
+.standard {
+  width: 230px;
+  height: 40px;
+  margin: 5px 0 5px 0;
+  padding: 5px 5px 5px 5px;
+  border: 1px solid globals.$input-border;
+  background-color: globals.$input-background-color;
+}
+
+.uploadButton {
+  @extend .button;
+  cursor: pointer;
+}
+
+.checkbox {
+  margin: 11.5px 0 11.5px 0;
+  height: 24px;
+  width: 24px;
+}
+
+.label {
+  width: 250px;
+  font-size: 15px;
+
+  @include mediaQuery.media("<desktop") {
+   width: 100px
+  }
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: globals.$red;
+}
+
+.flowColumn {
+  display: flex;
+  flex-direction: column;
+  column-gap: 5px;
+
+  input[type="file"] {
+    visibility: hidden;
+  }
+
+  .label {
+    @extend .label;
+  }
+
+  .standard {
+    @extend .standard;
+  }
+
+  .uploadButton {
+    @extend .uploadButton;
+  }
+
+  .checkbox {
+    @extend .checkbox;
+  }
+}
+
+.flowRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  row-gap: 5px;
+  column-gap: 10px;
+
+  input[type="file"] {
+    display: none;
+  }
+
+  input {
+    &:-webkit-autofill {
+      background-color: globals.$background-color;
+    }
+  }
+
+  .label {
+    @extend .label;
+  }
+
+  .standard {
+    @extend .standard;
+  }
+
+  .uploadButton {
+    @extend .uploadButton;
+  }
+
+  .checkbox {
+    @extend .checkbox;
+  }
+}
