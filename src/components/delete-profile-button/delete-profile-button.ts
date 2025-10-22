@@ -1,8 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { updateCandidate, updateHrUser } from '../../app/state/actions';
-import { initialStateCandidate, initialStateHrUser } from '../../app/state/reducers';
-
 import { HttpClient } from '@angular/common/http';
 import { DialogComponent } from '../dialog-component/dialog-component';
 import { Button } from '../button/button.component';
@@ -11,6 +8,10 @@ import { SnackBarService } from '../snackBar.service';
 import { snackbarProps } from '../globalConstant';
 import { IButtonProps } from '../button/type';
 import { DATABASES } from '../../constants/constants';
+import { initialStateCandidate } from '../../app/state/candidate/candidate.reducer';
+import { initialStateHrUser } from '../../app/state/hrUser/hrUser.reducer';
+import { updateCandidate } from '../../app/state/candidate/candidate.actions';
+import { updateHrUser } from '../../app/state/hrUser/hrUser.actions';
 
 @Component({
     selector: 'app-delete-email-template-button',

@@ -2,10 +2,11 @@
     [id]="id"
     [class]="className"
     [type]="type"
-    (click)="onClick"
+    (click)="onClick()"
 >
     @if (iconName && iconName.length > 0) {
         <mat-icon>{{iconName}}</mat-icon>
     }
+    <ng-content select="[icon-left]"></ng-content>
     {{ text }}
 </button>

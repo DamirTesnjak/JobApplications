@@ -1,0 +1,42 @@
+<div class="profileAuthActions">
+    @if(username.length > 0) {
+        <div style="display: flex; justify-content: space-between;">
+          <a routerLink="/hrUserProfile">
+            <app-button
+                className="primaryTextButton"
+                type="button"
+                [text]="username"
+            >
+                <img
+                    icon-right
+                    [src]="getFileMethod(profilePicture.file)"
+                    width="25"
+                    height="25"
+                    alt="Profile picture"
+                    style="border-radius: 50%;"
+                />
+            </app-button>
+          </a>
+          <TutorialFeature />
+        </div>
+    }
+        @if(username.length === 0) {
+
+        <div class="profileNameDisplay">
+          <a routerLink="/register">
+            <app-button
+              [className]="'primaryTextButton'"
+              [type]="'button'"
+              [text]="translation('profileActionsRegister')"
+            />
+          </a>
+          <a routerLink="/login">
+            <app-button
+              [className]="'primaryTextButton'"
+              [type]="'button'"
+              [text]="translation('profileActionsLogin')"
+            />
+          </a>
+        </div>
+    }
+    </div>

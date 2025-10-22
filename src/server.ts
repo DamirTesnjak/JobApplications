@@ -19,6 +19,13 @@ import { getCandidates } from './serverEndpoints/getCandidates';
 import { getEmailTemplate } from './serverEndpoints/getEmailTemplate';
 import { getEmailTemplates } from './serverEndpoints/getEmailTemplates';
 import { getHrUserProfile } from './serverEndpoints/getHrUserProfile';
+import { loginHrUser } from './serverEndpoints/loginHrUser';
+import { logoutHrUser } from './serverEndpoints/logoutHrUser';
+import { mapEmailTemplates } from './serverEndpoints/mapEmailTemplates';
+import { updateCandidate } from './serverEndpoints/updateCandidate';
+import { updateEmailTemplate } from './serverEndpoints/updateEmailTemplate';
+import { updateHrUser } from './serverEndpoints/updateHrUser';
+import { verifyEmail } from './serverEndpoints/veritifyEmail';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
@@ -83,6 +90,34 @@ app.post('api/getEmailTemplates'), async (req: any, res: any) => {
 
 app.post('api/getHrUserProfile'), async (req: any, res: any) => {
   getHrUserProfile(req, res);
+}
+
+app.post('api/loginHrUser'), async (req: any, res: any) => {
+  loginHrUser(req, res);
+}
+
+app.post('api/logoutHrUser'), async (req: any, res: any) => {
+  logoutHrUser(req, res);
+}
+
+app.post('api/mapEmailTemplates'), async (req: any, res: any) => {
+  mapEmailTemplates(req, res);
+}
+
+app.post('api/updateCandidate'), async (req: any, res: any) => {
+  updateCandidate(req, res);
+}
+
+app.post('api/updateEmailTemplate'), async (req: any, res: any) => {
+  updateEmailTemplate(req, res);
+}
+
+app.post('api/updateHrUser'), async (req: any, res: any) => {
+  updateHrUser(req, res);
+}
+
+app.post('api/verifyEmail'), async (req: any, res: any) => {
+  verifyEmail(req, res);
 }
 
 /**

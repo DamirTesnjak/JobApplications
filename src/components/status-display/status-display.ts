@@ -12,7 +12,7 @@ export class StatusDisplay {
     @Input() label: IStatusDisplayProps["label"] | null = null;
     @Input() className: IStatusDisplayProps["className"] = "standard";
     @Input() flow: IStatusDisplayProps["flow"] = "flowRow";
-    @Input() icon!: any;
+    @Input() icon!: string;
 
     CLASS_NAME = {
         standard: 'standard',

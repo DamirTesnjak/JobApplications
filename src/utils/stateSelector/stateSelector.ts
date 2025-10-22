@@ -1,8 +1,14 @@
 import { Store } from '@ngrx/store';
 import { selectCandidate } from '../../app/state/candidate/candidate.selectors';
+import { selectHrUser } from '../../app/state/hrUser/hrUser.selectors';
 
-const selectors = {
-    selectCandidate: selectCandidate,
+type ISelectors = {
+    [x: string]: any
+}
+
+const selectors: ISelectors = {
+    candidate: selectCandidate,
+    hrUser: selectHrUser,
 }
 
 export function stateSelector(slice: string, store: Store<any>) {
