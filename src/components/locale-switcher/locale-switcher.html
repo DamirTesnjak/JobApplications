@@ -1,0 +1,18 @@
+<app-button
+    className='primaryTextButton'
+    type='button'
+    iconName="language-icon"
+>
+    <select class="selectSwitcher"
+        component
+        [attr.defaultValue]="defaultLocale()"
+        (change)="onSelectChange($event)"
+    >
+        @for(locale of locales; track locale) {
+            <option [attr.key]="locale" [value]="locale">
+                {{ JSONParse(translation("locales")).locale }}
+            </option>
+        }
+    </select>
+    </app-button>
+/>

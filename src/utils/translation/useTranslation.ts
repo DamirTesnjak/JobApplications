@@ -8,6 +8,10 @@ const locales: Record<string, any> = {
     hr: HR_locale,
 };
 
+export const routing = {
+    locales: ['en', 'sl', "hr"],
+}
+
 export function useTranslation(lang: string, mainKey: string) {
     const locale = locales[lang] || locales['en'];
     return (key: string): string => {

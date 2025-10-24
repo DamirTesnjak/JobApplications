@@ -17,8 +17,6 @@ export function getFile(file: {
             anchor.href,
         ].join(':');
         anchor.click();
-
-        // Remove URL.createObjectURL. The browser should not save the reference to the file.
         setTimeout(() => {
             // For Firefox it is necessary to delay revoking the ObjectURL
             URL.revokeObjectURL(anchor.href);

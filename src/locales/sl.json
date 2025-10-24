@@ -50,7 +50,6 @@
     "password": "Geslo",
     "profilePicture": "Naloži sliko profila",
     "saveChanges": "Shrani spremembe"
-
   },
   "settings": {
     "companyEmailConfiguration": "Konfiguracija e-pošte podjetja",
@@ -59,7 +58,6 @@
     "settings": "Nastavitve",
     "mapEmailTemplateMessages": "Preslikaj sporočila poštnih predlog",
     "settingsText": "Tukaj lahko nastavite nove konfiguracije nastavitev. Kliknite na zavihke!"
-
   },
   "companyEmailConfiguration": {
     "companyEmailConfiguration": "Konfiguracija e-pošte podjetja"
@@ -176,10 +174,10 @@
   },
   "localeSwitcher": {
     "changeLanguage": "Spremenite jezik",
-    "locale": "{locale, select, en {English} hr {Hrvatski} sl {Sloveščina} other {Ostalo}}"
+    "locale": "{en: English, hr: Hrvatski, sl: Sloveščina, other: Ostalo}"
   },
   "sidebar": {
-    "candidates":"Kandidati",
+    "candidates": "Kandidati",
     "settings": "Nastavitve",
     "help": "Pomoč"
   },

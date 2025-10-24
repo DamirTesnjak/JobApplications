@@ -1,0 +1,11 @@
+<div class="sidebar">
+    @for(sidebarLink of sidebarLinks; track sidebarLink) {
+        <div 
+            [id]="'sidebar-' + sidebarLink.text"
+            class="menuItem"
+            [attr.key]="sidebarLink.link"
+        >
+            <a [routerLink]="sidebarLink.link">{{ translation(sidebarLink.text) }}</a>
+        </div>
+    }
+    </div>

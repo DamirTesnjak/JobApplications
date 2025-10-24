@@ -1,0 +1,10 @@
+<div>
+    @if(!tutorialRunning) {
+        @if(hasNoData()) {
+            <app-info-message [text]="getInfoMessage()"></app-info-message>
+        }
+        @if(!results) {
+            <app-error-message [text]="getErrorMessage()"></app-error-message>
+        }
+    }
+</div>

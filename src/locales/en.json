@@ -50,7 +50,6 @@
     "password": "Password",
     "profilePicture": "Upolad profile picture",
     "saveChanges": "Save changes"
-
   },
   "settings": {
     "companyEmailConfiguration": "Company email configuration",
@@ -176,10 +175,10 @@
   },
   "localeSwitcher": {
     "changeLanguage": "Change language",
-    "locale": "{locale, select, en {English} hr {Hrvatski} sl {Sloveščina} other {other}}"
+    "locale": "{en: English, hr: Hrvatski, sl: Sloveščina, other: Ostalo}"
   },
   "sidebar": {
-    "candidates":"Candidates",
+    "candidates": "Candidates",
     "settings": "Settings",
     "help": "Help"
   },

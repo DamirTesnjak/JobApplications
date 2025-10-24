@@ -1,0 +1,28 @@
+@use "styles/global/globals.module.scss" as globals;
+
+.tabsBarContainer {
+  display: flex;
+  flex-direction: row;
+  padding: 20px 20px 0 20px;
+  color: globals.$primary-color;
+
+  .tabItem {
+    height: 100%;
+    width: auto;
+    margin: 0 10px 0 10px;
+    align-items: center;
+    color: globals.$button-text-font-color;
+    border-bottom: 2px solid;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    &:hover {
+      align-items: center;
+      color: globals.$primary-color;
+      border-bottom: 2px solid;
+      border-bottom-color: globals.$primary-color;
+    }
+  }
+}

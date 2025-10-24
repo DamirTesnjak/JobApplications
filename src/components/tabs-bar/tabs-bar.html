@@ -1,0 +1,12 @@
+<div className="tabsBarContainer">
+    @for(tabItem of tabList; track tabItem) {
+        <a 
+            [id]="tabItem.id" 
+            class="tabItem" 
+            [routerLink]="tabItem.url"
+            [attr.key]="tabItem.url"
+        >
+            {{ tabItem.text }}
+        </a>
+    }
+</div>
