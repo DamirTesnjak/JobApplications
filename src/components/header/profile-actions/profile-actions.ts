@@ -7,10 +7,11 @@ import { Button } from "../../button/button.component";
 import { RouterLink } from '@angular/router';
 import { IInitialStateHrUser } from '../../../app/state/hrUser/hrUser.state';
 import { getFile } from '../../../utils/getFile/getFile';
+import { TutorialFeature } from "../../tutorial-feature/tutorial-feature";
 
 @Component({
     selector: 'app-profile-actions',
-    imports: [MatIconModule, Button, RouterLink],
+    imports: [MatIconModule, Button, RouterLink, TutorialFeature],
     templateUrl: './profile-actions.html',
     styleUrl: '../header.scss'
 })

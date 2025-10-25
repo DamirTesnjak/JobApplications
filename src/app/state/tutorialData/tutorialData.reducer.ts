@@ -84,7 +84,7 @@ export const initialStateTutorialData = {
 };
 
 
-export const hrUserReducer = createReducer(
+export const tutorialDataReducer = createReducer(
     initialStateTutorialData,
     on(Actions.updateTutorialData, (state, payload) => updateWholeObjectInState(state, payload.tutorialData))
 )

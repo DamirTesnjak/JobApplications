@@ -1,0 +1,74 @@
+@use "styles/global/globals.module.scss" as globals;
+@use "styles/global/include-media" as mediaQuery;
+
+.selectionSaveToolbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 10px;
+  height: auto;
+  margin: 5px 0 5px 10px;
+
+  .buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 27px 0 0 0;
+  }
+}
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 5px 0 5px 10px;
+
+  .emailType, .emailTemplateDropdown {
+    margin: 5px 0 20px 0;
+  }
+}
+
+.textAreaDisplay {
+  display: grid;
+  grid-column-gap: 5px;
+  grid-template-columns: 1fr 1fr;
+
+  @include mediaQuery.media("<desktop") {
+    grid-row-gap: 20px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  .textarea {
+    grid-column: 1/2;
+    margin: 0 20px 0 10px;
+    padding: 20px;
+    height: 400px;
+    width: calc(100% - 40px);
+    border: 1px solid globals.$input-border;
+    resize: none;
+
+    @include mediaQuery.media("<desktop") {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      margin: 0 10px 0 10px;
+      width: calc(100% - 20px);
+    }
+  }
+
+  .preview {
+    grid-column: 2/3;
+    margin: 0 20px 0 10px;
+    padding: 20px;
+    height: 400px;
+    background-color: globals.$white;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+    overflow: auto;
+
+    @include mediaQuery.media("<desktop") {
+      grid-column: 1/2;
+      grid-row: 2/3;
+      margin: 0 10px 0 10px;
+    }
+  }
+}

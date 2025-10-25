@@ -23,6 +23,7 @@
     "@angular/router": "^20.3.6",
     "@angular/ssr": "^20.3.6",
     "@ngrx/store": "^20.0.1",
+    "angular-shepherd": "^20.0.0",
     "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
