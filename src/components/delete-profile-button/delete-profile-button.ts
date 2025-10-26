@@ -14,17 +14,16 @@ import { updateCandidate } from '../../app/state/candidate/candidate.actions';
 import { updateHrUser } from '../../app/state/hrUser/hrUser.actions';
 
 @Component({
-    selector: 'app-delete-email-template-button',
+    selector: 'app-delete-profile-button',
     imports: [Button],
     templateUrl: './delete-profile-button.html',
     styleUrl: './delete-profile-button.scss'
 })
-export class DeleteEmailTemplateButtonComponent {
+export class DeleteProfileButton {
     private dialogService = inject(DialogService);
     private snackBarService = inject(SnackBarService);
     private store = inject(Store);
-
-    constructor(private http: HttpClient) { }
+    private http = inject(HttpClient);
 
     snackbarProps = snackbarProps;
 

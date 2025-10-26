@@ -17,8 +17,8 @@ import { stateSelector } from '../../utils/stateSelector/stateSelector';
     styleUrl: './edit-form.scss'
 })
 export class EditForm {
-
     private readonly store = inject(Store);
+    private http = inject(HttpClient);
 
     @Input() id: string = "";
     @Input() stateModel!:
@@ -35,8 +35,6 @@ export class EditForm {
 
     actionResponse = signal<any>({});
     stateModelKeyAndValues = stateSelector(this.storeSlice, this.store);
-
-    constructor(private http: HttpClient) { }
 
     stateModelKeys = Object.keys(flattenObject(this.stateModel));
     fieldsToDisplayKeys = this.stateModelKeys.filter(

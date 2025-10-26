@@ -1,4 +1,4 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
 import { useTranslation } from '../../utils/translation/useTranslation';
 import { candidateCongratulationEmailJobPosition } from '../../utils/emailMessagesTemplates/messageCandidateSelected';
 import { candidateRejectionEmailJobPosition } from '../../utils/emailMessagesTemplates/messageCandidateRejected';
@@ -8,6 +8,9 @@ import addHTMLTags from '../../utils/addHTMLTags/addHTMLTags';
 import { EDIT_TEXT_BUTTON } from '../../constants/constants';
 import { InputComponent } from '../input/input';
 import { Button } from "../button/button.component";
+import { HttpClient } from '@angular/common/http';
+import { SnackBarService } from '../snackBar.service';
+import { snackbarProps } from '../globalConstant';
 
 @Component({
     selector: 'app-text-editor',
@@ -15,11 +18,18 @@ import { Button } from "../button/button.component";
     templateUrl: './text-editor.html',
 })
 export class TextEditor {
+    private snackBarService = inject(SnackBarService);
+
+
     @Input() data: IData = {
         emailText: "",
         emailType: "",
     };
+    @Output() onClick = new EventEmitter<void>();
 
+    constructor(private http: HttpClient) { }
+
+    snackbarProps = snackbarProps;
     translation = useTranslation("en", "textEditor");
 
     textAreaText = signal({
@@ -90,4 +100,28 @@ export class TextEditor {
             }
         }
     };
+
+    handleFormAction(event: Event) {
+        event.preventDefault();
+
+        const form = event.target as HTMLFormElement;
+        const formData = new FormData(form);
+
+        const bodyReq = {
+            formData: formData,
+        }
+
+        this.http.post('api/createEmailTemplate', bodyReq).subscribe({
+            next: (res) => {
+                console.log('resCreateEmailTemplate', res);
+                this.snackBarService.openSnackBar({
+                    ...this.snackbarProps,
+                    message: res.successMessage,
+                    type: 'success',
+                });
+            },
+            error: (err) => this.snackBarService.openSnackBar({ ...this.snackbarProps, message: err.errorMessage, type: 'error' }),
+        });
+        this.onClick.emit();
+    }
 }

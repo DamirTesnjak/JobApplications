@@ -3,6 +3,10 @@ import { ShepherdService } from 'angular-shepherd';
 import { useTranslation } from '../../utils/translation/useTranslation';
 import { Router } from '@angular/router';
 import { ITourSteps } from './type';
+import { stateSelector } from '../../utils/stateSelector/stateSelector';
+import { Store } from '@ngrx/store';
+import { ITutorialData } from '../../app/state/tutorialData/tutorialData.state';
+import { updateTutorialData } from '../../app/state/tutorialData/tutorialData.actions';
 
 @Component({
     selector: 'app-tutorial-feature',
@@ -11,12 +15,16 @@ import { ITourSteps } from './type';
 })
 export class TutorialFeature {
     private shepherd = inject(ShepherdService);
+    private store = inject(Store);
     private router = inject(Router)
 
     translation = useTranslation("en", "tutorial");
     steps: Array<any> = [];
     locations: string[] = [];
-    tutorialRunning = false; // mimic Redux state
+
+    signal = stateSelector("tutorialData", this.store);
+    state = this.signal() as ITutorialData;
+    tutorialRunning = this.state.tutorialRunning;
 
     ngOnInit() {
         this.setupTourSteps();
@@ -103,7 +111,12 @@ export class TutorialFeature {
     }
 
     startTutorial() {
-        this.tutorialRunning = true;
+        this.store.dispatch(updateTutorialData({
+            tutorialData: {
+                ...this.state,
+                tutorialRunning: true,
+            }
+        }))
         this.locations = [];
 
         this.shepherd.defaultStepOptions = {
@@ -153,7 +166,12 @@ export class TutorialFeature {
         });
 
         this.shepherd.tourObject?.on('complete', () => {
-            this.tutorialRunning = false;
+            this.store.dispatch(updateTutorialData({
+                tutorialData: {
+                    ...this.state,
+                    tutorialRunning: false,
+                }
+            }))
         });
     };
 

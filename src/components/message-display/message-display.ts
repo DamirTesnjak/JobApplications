@@ -18,10 +18,9 @@ export class MessageDisplay {
 
     @Input() page: string = ""
     @Input() pageData!: string;
-    @Input() parsedResults!: {
+    @Input() results!: {
         [x: string]: ITableData[];
     };
-    @Input() results!: string;
 
     translation = useTranslation("en", this.page);
     signal = stateSelector("tutorialData", this.store);
@@ -30,9 +29,9 @@ export class MessageDisplay {
 
     hasNoData(): boolean {
         return (
-            this.parsedResults &&
-            (!this.parsedResults[this.pageData] ||
-                this.parsedResults[this.pageData].length === 0)
+            this.results &&
+            (!this.results[this.pageData] ||
+                this.results[this.pageData].length === 0)
         );
     }
 

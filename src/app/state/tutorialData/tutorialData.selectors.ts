@@ -4,7 +4,7 @@ import { ITutorialData } from "./tutorialData.state";
 export const selectTaskState = createFeatureSelector<ITutorialData>('tutorialData');
 
 // 2) Basic selectors on the slice:
-export const selectHrUser = createSelector(
+export const selectTutorialData = createSelector(
     selectTaskState,
     (state: ITutorialData) => state
 );

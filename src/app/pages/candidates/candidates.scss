@@ -1,0 +1,9 @@
+.candidatesPage {
+  grid-area: page;
+}
+
+.candidate {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

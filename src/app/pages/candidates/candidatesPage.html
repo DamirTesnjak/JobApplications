@@ -1,0 +1,12 @@
+<div>
+    <TableComponent
+        [tableData]="results().candidates || []"
+        columnsToDisplay="columnsToDisplay"
+        page="candidates"
+      />
+    <app-message-display
+        pageData="candidates"
+        page="candidates"
+        [results]="results()"
+      />
+</div>

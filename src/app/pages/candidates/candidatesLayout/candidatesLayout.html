@@ -1,0 +1,12 @@
+<div id="container" class="container">
+    <h3>{{ translation("candidates") }}</h3>
+    <a routerLink="/candidates/createCandidate">
+        <app-button
+            className='button'
+            [text]="translation('addNewCandidate')"
+            iconName="add-icon"
+            type='button'
+        />
+    </a>
+    <router-outlet />
+</div>

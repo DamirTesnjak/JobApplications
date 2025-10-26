@@ -1,0 +1,37 @@
+@if(!data){
+    <div>Could not found profile data</div>
+}
+@else {
+    <div class="container">
+      <div class="candidateProfilePage">
+        <h3
+          className="pageTitle"
+        >{{`${translation("candidateProfile")}: ${data.name} ${data.surname}`}}</h3>
+        <div className="profilePicture">
+          <div id="profilePicture">
+            <img
+              [src]="getPicture(data.profilePicture.file)!"
+              alt="Profile image"
+              width="200"
+              height="200"
+            />
+            <div className="buttonsContainer">
+              <a [routerLink]="['/candidateProfile', id, 'editCandidate']">
+                <app-button
+                  className="button"
+                  [text]="translation('editProfile')"
+                  iconName="add-icon"
+                  type="button"
+                />
+              </a>
+              <app-delete-profile-button
+                [id]="id"
+                [databaseName]="DATABASES.candidates"
+              />
+            </div>
+          </div>
+        </div>
+          <router-outlet />
+      </div>
+    </div>
+}

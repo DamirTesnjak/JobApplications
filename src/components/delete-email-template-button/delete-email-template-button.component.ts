@@ -16,8 +16,7 @@ import { IButtonProps } from '../button/type';
 export class DeleteEmailTemplateButtonComponent {
   private dialogService = inject(DialogService);
   private snackBarService = inject(SnackBarService);
-
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
 
   snackbarProps = snackbarProps;
 

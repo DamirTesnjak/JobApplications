@@ -1,8 +1,10 @@
-export function getFile(file: {
+export type IFile = {
     name: string;
     data: string;
     contentType: string;
-}) {
+}
+
+export function getFile(file: IFile) {
     const { name, data, contentType } = file;
     const fileType = contentType?.split('/')[1];
 
