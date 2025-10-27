@@ -1,0 +1,10 @@
+<form action={formAction}>
+    <input name='id' [value]="clientId" [readOnly]="true" [hidden]="true" />
+    <input [name]="name" [value]="value" [readOnly]="true" [hidden]="true" />
+    <app-button
+        className="submitButton"
+        [text]="text"
+        type="submit"
+        [iconName]="buttonIcons[iconName]"
+    />
+</form>

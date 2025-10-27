@@ -26,6 +26,7 @@ import { updateCandidate } from './serverEndpoints/updateCandidate';
 import { updateEmailTemplate } from './serverEndpoints/updateEmailTemplate';
 import { updateHrUser } from './serverEndpoints/updateHrUser';
 import { verifyEmail } from './serverEndpoints/veritifyEmail';
+import { sendEmail } from './serverEndpoints/sendEmail';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
@@ -118,6 +119,10 @@ app.post('api/updateHrUser'), async (req: any, res: any) => {
 
 app.post('api/verifyEmail'), async (req: any, res: any) => {
   verifyEmail(req, res);
+}
+
+app.post('api/sendEmail'), async (req: any, res: any) => {
+  sendEmail(req, res);
 }
 
 /**

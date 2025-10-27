@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 
-export async function getDataFromToken(req: Express.Request) {
+export function getDataFromToken(req: Express.Request) {
     try {
         const cookieHeader = req.headers.cookie || '';
         const tokenMatch = cookieHeader
