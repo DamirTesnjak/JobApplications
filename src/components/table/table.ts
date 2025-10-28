@@ -5,6 +5,7 @@ import { ImageComponent } from '../image-component/image-component';
 import { IconComponent } from '../icon-component/icon-component';
 import { LinkButtonComponent } from '../link-button-component/link-button-component';
 import { CommonModule } from '@angular/common';
+import { RowButton } from '../rowButton/rowButton';
 
 @Component({
     selector: 'app-table',
@@ -24,14 +25,17 @@ export class TableComponent {
         if (column.cellImage) return ImageComponent;
         if (column.cellIcon) return IconComponent;
         if (column.cellLinkButton) return LinkButtonComponent;
+        if (column.cellRowButton) return RowButton;
 
         return column.cell;
     }
 
     setCellComponentsInputs(column: any, row: any) {
-        if (column.cellButton) return column.cellButton.inputs;
-        if (column.cellImage) return column.cellImage.inputs;
-        if (column.cellIcon) return column.cellIcon.inputs;
-        if (column.cellLinkButton) return column.cellLinkButton.inputs;
+        if (column.cellButton) return column.cellButton;
+        if (column.cellImage) return column.cellImage;
+        if (column.cellIcon) return column.cellIcon;
+        if (column.cellLinkButton) return column.cellLinkButton;
+        if (column.cellRowButton) return column.cellRowButton;
+        return;
     }
 }

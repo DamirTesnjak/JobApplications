@@ -1,0 +1,11 @@
+<div className="profileForm">
+      <app-edit-form
+        [id]="id"
+        serverActionName="updateHrUser"
+        [stateModel]="initialStateHrUser"
+        [storeSlice]="STORE_REDUCER_NAME.hrUser"
+        [editable]="true"
+        [showUploadPictureButton]="true"
+        [showUploadCVButton]="false"
+      />
+</div>

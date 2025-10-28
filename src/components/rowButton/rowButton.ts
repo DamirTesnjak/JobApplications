@@ -1,6 +1,9 @@
 import { Component, inject, Input } from '@angular/core';
 import { Button } from '../button/button.component';
 import { HttpClient } from '@angular/common/http';
+import { SnackBarService } from '../snackBar.service';
+import { snackbarProps } from '../globalConstant';
+import { useTranslation } from '../../utils/translation/useTranslation';
 
 @Component({
     selector: 'app-row-button',
@@ -8,14 +11,18 @@ import { HttpClient } from '@angular/common/http';
     templateUrl: './rowButton.html',
 })
 export class RowButton {
-    private http = inject(HttpClient);
+    translation = useTranslation("en", "sendEmail");
 
+    private http = inject(HttpClient);
+    private snackBarService = inject(SnackBarService);
 
     @Input() clientId!: string;
     @Input() value!: string;
     @Input() name!: string;
     @Input() text!: string;
     @Input() iconName!: string;
+
+    snackbarProps = snackbarProps;
 
     buttonIcons = {
         archive: "ArchiveIcon",
@@ -37,11 +44,13 @@ export class RowButton {
         this.http.post(`api/sendEmail}`, bodyReq).subscribe({
             next: (res) => {
                 console.log("sendEmail", res);
-                this.actionResponse.set(res);
+                this.snackBarService.openSnackBar({
+                    ...this.snackbarProps,
+                    message: this.translation("emailSend"),
+                    type: 'success',
+                });
             },
-            error: (error) => {
-                this.actionResponse.set(error);
-            },
+            error: (err) => this.snackBarService.openSnackBar({ ...this.snackbarProps, message: this.translation("emailSendError"), type: 'error' }),
         });
         // this.onClick.emit();
     }

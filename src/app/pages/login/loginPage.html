@@ -1,0 +1,22 @@
+<form (ngSubmit)="handleFormAction($event)">
+    @for(inputField of inputFields; track inputField ) {
+        <div key="inputField.name">
+            <app-input
+                className="standard"
+                [name]="inputField.name"
+                [label]="inputField.label"
+                [type]="inputField.type"
+                flow="flowRow"
+                [errorMessage]="response && response.errorFieldValidation
+                    ? response.errorFieldValidation[inputField.name]
+                    : null"
+                [defaultValue]="response && response.error && response.prevState
+                    ? response.prevState[inputField.name]
+                    : ''"
+        />
+      </div>
+    }
+    <div class="buttonsContainer">
+        <app-button className="submitButton" type="submit" [text]="translation('profileActionsLogin')" />
+    </div>
+</form>

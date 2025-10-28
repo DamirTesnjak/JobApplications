@@ -1,0 +1,38 @@
+@if(!data){
+    <div>Could not found profile data</div>
+}
+@else {
+    <div class="container">
+      <div class="hrProfilePage">
+            <div class="logoutContainer">
+                <h3 class="pageTitle">{{`${translation("candidateProfile")}: ${data.name} ${data.surname}`}}</h3>
+                <app-logout-button />
+            </div>
+        <div class="profilePicture">
+          <div id="profilePicture">
+            <img
+              [src]="getPicture(data.profilePicture.file)!"
+              alt="Profile image"
+              width="200"
+              height="200"
+            />
+            <div class="buttonsContainer">
+              <a routerLink="/hrUserProfile/editHrUserProfile">
+                <app-button
+                  class="button"
+                  [text]="translation('editProfile')"
+                  iconName="add-icon"
+                  type="button"
+                />
+              </a>
+              <app-delete-profile-button
+                [id]="id"
+                [databaseName]="DATABASES.hrUsers"
+              />
+            </div>
+          </div>
+        </div>
+          <router-outlet />
+      </div>
+    </div>
+}
