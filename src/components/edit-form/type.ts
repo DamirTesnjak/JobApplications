@@ -1,4 +1,4 @@
-import { initialStateCandidate, initialStateCompanyEmailConfigs, initialStateHrUser } from "../../app/state/reducers";
+import { initialStateCandidate, initialStateCompanyEmailConfigs, initialStateHrUser } from "../../app/state/companyEmailConfigs/companyEmailConfigs.reducers";
 
 export interface IEditFormProps {
     id?: string;

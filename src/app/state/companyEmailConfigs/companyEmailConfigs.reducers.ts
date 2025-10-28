@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import * as Actions from './actions';
-import updateWholeObjectInState from '../../utils/methods/updateWholeObjectInState';
+import * as Actions from './companyEmailConfigs.actions';
+import updateWholeObjectInState from '../../../utils/methods/updateWholeObjectInState';
 
 export const initialStateCompanyEmailConfigs = {
     id: '',

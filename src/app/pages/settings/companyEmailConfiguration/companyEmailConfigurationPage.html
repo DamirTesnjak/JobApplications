@@ -1,0 +1,9 @@
+<div class="container">
+    <h3 id="companyEmailConfiguration-title">{{ translation("companyEmailConfiguration") }}</h3>
+    <app-edit-form
+        serverActionName="createCompanyEmailConfiguration"
+        [stateModel]="initialStateCompanyEmailConfigs"
+        [storeSlice]="STORE_REDUCER_NAME.companyEmailConfigs"
+        [editable]="false"
+      />
+</div>

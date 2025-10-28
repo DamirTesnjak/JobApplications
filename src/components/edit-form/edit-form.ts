@@ -1,7 +1,7 @@
 import { Component, inject, Input, signal, Signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Button } from '../button/button.component';
-import { initialStateCompanyEmailConfigs } from '../../app/state/reducers';
+import { initialStateCompanyEmailConfigs } from '../../app/state/companyEmailConfigs/companyEmailConfigs.reducers';
 import flattenObject from '../../utils/methods/flattenObject';
 import { InputComponent } from '../input/input';
 import { StatusDisplay } from '../status-display/status-display';
