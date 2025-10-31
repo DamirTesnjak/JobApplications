@@ -6,6 +6,14 @@ import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { updateHrUser } from '../../state/hrUser/hrUser.actions';
 import { Router } from '@angular/router';
+import { IHrUserSchema } from '../../../utils/dbConfig/models/hrUserModel';
+
+interface IResponse {
+    successMessage?: string;
+    errorMessage?: string;
+    data?: IHrUserSchema;
+    success?: boolean;
+}
 
 @Component({
     selector: 'app-loging-page',
@@ -37,7 +45,7 @@ export class LoginPage {
     }
 
     getHrUserProfileData() {
-        let result = {};
+        let result: IResponse = {};
         this.http.post("api/getHrUserProfile", {}).subscribe({
             next: (res) => {
                 console.log("getHrUserProfile", res);
@@ -49,7 +57,7 @@ export class LoginPage {
         });
 
         if (result.data) {
-            this.store.dispatch(updateHrUser({ hrUser: res.data }))
+            this.store.dispatch(updateHrUser({ hrUser: result.data }))
             this.router.navigate(["/candidates"]);
         }
     };

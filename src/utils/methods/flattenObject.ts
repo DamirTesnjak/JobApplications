@@ -1,4 +1,7 @@
-import { initialStateCandidate, initialStateCompanyEmailConfigs, initialStateHrUser, initialStateTutorialData } from '../../app/state/companyEmailConfigs/companyEmailConfigs.reducers';
+import { initialStateCandidate } from "../../app/state/candidate/candidate.reducer";
+import { initialStateCompanyEmailConfigs } from "../../app/state/companyEmailConfigs/companyEmailConfigs.reducers";
+import { initialStateHrUser } from "../../app/state/hrUser/hrUser.reducer";
+import { initialStateTutorialData } from "../../app/state/tutorialData/tutorialData.reducer";
 
 export type IInitialStateCandidate = typeof initialStateCandidate;
 export type IInitialStateHrUser = typeof initialStateHrUser;
