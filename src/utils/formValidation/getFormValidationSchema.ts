@@ -1,12 +1,12 @@
 import { z, ZodObject, ZodRawShape, ZodString } from 'zod';
 import { IFormDataType } from './types/formDataType';
-import { getTranslations } from 'next-intl/server';
+import { useTranslation } from '../translation/useTranslation';
 
 export async function getFormValidationSchema(
     formDataObject: IFormDataType,
     skipFileUploadValidation?: boolean,
 ) {
-    const translation = await getTranslations("formValidation");
+    const translation = useTranslation("formValidation");
     const fieldsKeys = Object.keys(formDataObject);
     const schemaShape: {
         [x: string]: ZodString | ZodObject<ZodRawShape>;

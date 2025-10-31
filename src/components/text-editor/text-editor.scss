@@ -1,5 +1,5 @@
-@use "styles/global/globals.module.scss" as globals;
-@use "styles/global/include-media" as mediaQuery;
+@use "../../styles/global/globals.module.scss" as globals;
+@use "../../styles/global/include-media" as mediaQuery;
 
 .selectionSaveToolbar {
   display: flex;
