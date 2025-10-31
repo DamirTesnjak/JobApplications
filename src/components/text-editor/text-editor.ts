@@ -11,10 +11,11 @@ import { Button } from "../button/button.component";
 import { HttpClient } from '@angular/common/http';
 import { SnackBarService } from '../snackBar.service';
 import { snackbarProps } from '../globalConstant';
+import { SelectInput } from '../select-input/selectInput';
 
 @Component({
     selector: 'app-text-editor',
-    imports: [InputComponent, Button],
+    imports: [InputComponent, Button, SelectInput],
     templateUrl: './text-editor.html',
 })
 export class TextEditor {
@@ -54,7 +55,7 @@ export class TextEditor {
             employeeFired: candidateEmailFiredFromJobPosition,
         }
 
-    handleChangeOnSelectEmailTemplate(event: SelectChangeEvent) {
+    handleChangeOnSelectEmailTemplate(event: any) {
         const previewElement = document.getElementById('preview');
         if (previewElement) {
             previewElement.innerHTML = this.preDefinedEmailTemplates[event.target.value];

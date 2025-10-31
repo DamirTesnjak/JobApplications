@@ -24,8 +24,8 @@ export class MessageDisplay {
 
     translation = useTranslation("en", this.page);
     signal = stateSelector("tutorialData", this.store);
-    state = this.signal() as ITutorialData;
-    tutorialRunning = this.state.tutorialRunning;
+    stateTutorialRunning = this.signal() as ITutorialData;
+    tutorialRunning = this.stateTutorialRunning.tutorialRunning;
 
     hasNoData(): boolean {
         return (

@@ -1,0 +1,29 @@
+<div class="container">
+      <h3>{{ translation("mapEmailTemplateMessages") }}</h3>
+      <form
+        id="form"
+        (ngSubmit)="handleFormAction($event)"
+      >
+        <select-input
+          [label]="translation('archive')"
+          [options]="selectDropdownEmailList"
+          [placeholder]="translation('selectEmailTemplate')"
+        />
+        <select-input
+          [label]="translation('hire')"
+          [options]="selectDropdownEmailList"
+          [placeholder]="translation('selectEmailTemplate')"
+        />
+        <select-input
+          [label]="translation('reject')"
+          [options]="selectDropdownEmailList"
+          [placeholder]="translation('selectEmailTemplate')"
+        />
+        <select-input
+          [label]="translation('fire')"
+          [options]="selectDropdownEmailList"
+          [placeholder]="translation('selectEmailTemplate')"
+        />
+        <app-button className="submitButton" type="submit" [text]="translation('saveChanges')" />
+      </form>
+    </div>

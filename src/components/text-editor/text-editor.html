@@ -8,9 +8,9 @@
             name='emailType'
             type='text'
           />
-          <SelectInput
+          <select-input
             [label]="translation('emailTemplate')"
-            onSelect={handleChangeOnSelectEmailTemplate}
+            [selectionChange]="handleChangeOnSelectEmailTemplate"
             listDropdown={selectDropdownEmailList}
             [placeholder]="translation('selectEmailTemplate')"
           />
@@ -29,7 +29,7 @@
             />
           </div>
         </div>
-        <div id="textEditorToolbar" className={styles.toolbar}>
+        <div id="textEditorToolbar" class="toolbar">
           <app-button
             className="textButton"
             iconName="paragraph"
