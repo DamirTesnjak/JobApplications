@@ -1,0 +1,14 @@
+    <div>
+      <h3>Verifying Email</h3>
+      @if(result.verified) {
+        <div>
+          <h4>Email verified</h4>
+          <a routerLink="/login">Login</a>
+        </div>
+      }
+      @if(result.error){
+        <div>
+          <h4>{{result.error}}</h4>
+        </div>
+      }
+    </div>

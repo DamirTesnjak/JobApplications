@@ -19,6 +19,7 @@ import { EmailTypePage } from './pages/settings/emailType/emailTypePage';
 import { MapTemplateMessagesPage } from './pages/settings/mapTemplateMessages/mapTemplateMessagesPage';
 import { OverviewEmailTemplateMessagesPage } from './pages/settings/overviewEmailTemplateMessages/overviewEmailTemplateMessagesPage';
 import { SetupEmailTemplateMessagesPage } from './pages/settings/setupEmailTemplateMessages/setupEmailTemplateMessagesPage';
+import { VerifyEmailPage } from './pages/verifyEmail/verifyEmailPage';
 
 export const routes: Routes = [
     {
@@ -70,5 +71,9 @@ export const routes: Routes = [
             { path: 'overviewEmailTemplateMessagesPage', component: OverviewEmailTemplateMessagesPage },
             { path: 'setupEmailTemplateMessagesPage', component: SetupEmailTemplateMessagesPage },
         ],
+    },
+    {
+        path: 'verifyEmail',
+        component: VerifyEmailPage,
     }
 ];
