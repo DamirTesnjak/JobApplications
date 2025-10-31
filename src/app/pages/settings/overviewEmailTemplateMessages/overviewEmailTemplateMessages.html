@@ -1,0 +1,13 @@
+<div className="container">
+    <h3>{{ translation('emailTemplates')}}</h3>
+    <app-table
+        [dataSource]="results.emailTemplates || []"
+        [columnsToDisplay]="columnsToDisplay"
+        [tableColumnsDef]="tableColumnsDef"
+    />
+    <app-message-display
+        pageData="emailTemplates"
+        page='emailTemplatePage'
+        [results]="results"
+    />
+</div>

@@ -15,7 +15,7 @@ export interface ICandidatesTableDataRowProps {
 
 export const candidatesColumnDef = (
   row: ICandidatesTableDataRowProps | null,
-  translation: ReturnType<typeof useTranslations<string>>
+  translation: (key: string) => string
 ): {
   [x: string]: {
     title: string;

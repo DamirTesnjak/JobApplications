@@ -6,6 +6,7 @@ import { IconComponent } from '../icon-component/icon-component';
 import { LinkButtonComponent } from '../link-button-component/link-button-component';
 import { CommonModule } from '@angular/common';
 import { RowButton } from '../rowButton/rowButton';
+import { DeleteEmailTemplateButton } from '../delete-email-template-button/delete-email-template-button.component';
 
 @Component({
     selector: 'app-table',
@@ -16,9 +17,9 @@ import { RowButton } from '../rowButton/rowButton';
 export class TableComponent {
     @Input() tableColumnsDef!: any;
     @Input() dataSource!: any;
-    @Input() columnDefinitions!: any;
+    @Input() columnsToDisplay!: any;
 
-    displayedColumns = Object.keys(this.columnDefinitions);
+    displayedColumns = Object.keys(this.columnsToDisplay);
 
     getCellComponent(column: any, row: any) {
         if (column.cellButton) return Button;
@@ -26,6 +27,7 @@ export class TableComponent {
         if (column.cellIcon) return IconComponent;
         if (column.cellLinkButton) return LinkButtonComponent;
         if (column.cellRowButton) return RowButton;
+        if (column.cell) return DeleteEmailTemplateButton;
 
         return column.cell;
     }

@@ -13,7 +13,7 @@ import { IButtonProps } from '../button/type';
   templateUrl: './delete-email-template-button.component.html',
   styleUrl: './delete-email-template-button.component.scss'
 })
-export class DeleteEmailTemplateButtonComponent {
+export class DeleteEmailTemplateButton {
   private dialogService = inject(DialogService);
   private snackBarService = inject(SnackBarService);
   private http = inject(HttpClient);

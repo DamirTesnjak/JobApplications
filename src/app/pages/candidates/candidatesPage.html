@@ -1,8 +1,8 @@
 <div>
-    <TableComponent
-        [tableData]="results().candidates || []"
-        columnsToDisplay="columnsToDisplay"
-        page="candidates"
+    <app-table
+        [dataSource]="results().candidates || []"
+        [columnsToDisplay]="columnsToDisplay"
+        [tableColumnsDef]="tableColumnsDef"
       />
     <app-message-display
         pageData="candidates"

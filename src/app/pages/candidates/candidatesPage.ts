@@ -1,14 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { MessageDisplay } from '../../../components/message-display/message-display';
+import { TableComponent } from "../../../components/table/table";
+import { useTranslation } from '../../../utils/translation/useTranslation';
+import { candidatesColumnDef } from './customerTableDataProps';
 
 @Component({
     selector: 'app-create-candidate-page',
-    imports: [MessageDisplay],
+    imports: [MessageDisplay, TableComponent],
     templateUrl: './CandidatesPage.html',
 })
 export class CandidatesPage {
     private http = inject(HttpClient);
+    translation = useTranslation("en", "candidates");
 
     columnsToDisplay = [
         'profilePicture',
@@ -27,8 +31,9 @@ export class CandidatesPage {
         'button5',
     ];
 
-    results = signal({});
-
+    signal = signal({});
+    results = this.signal() as any;
+    tableColumnsDef = candidatesColumnDef;
 
     ngOnInit() {
         this.http.post("api/getCandidates", {}).subscribe({
