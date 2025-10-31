@@ -18,7 +18,7 @@ export class RowButton {
     private snackBarService = inject(SnackBarService);
     private store = inject(Store);
 
-    translation = useTranslation("en", "logoutButton");
+    translation = useTranslation("logoutButton");
 
     snackbarProps = snackbarProps;
 

@@ -11,5 +11,5 @@ import { DeleteProfileButton } from '../../../../components/delete-profile-butto
     templateUrl: './candidatesLayout.html',
 })
 export class CandidatesLayout {
-    translation = useTranslation("en", PAGES.candidates);
+    translation = useTranslation(PAGES.candidates);
 }

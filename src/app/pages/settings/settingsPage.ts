@@ -7,5 +7,5 @@ import { useTranslation } from '../../../utils/translation/useTranslation';
     templateUrl: './settingsPage.html',
 })
 export class SettingsPage {
-    translation = useTranslation("en", "settings");
+    translation = useTranslation("settings");
 }

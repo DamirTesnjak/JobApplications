@@ -16,7 +16,7 @@ import { useTranslation } from '../utils/translation/useTranslation';
 export async function sendEmail(req: any, res: any) {
     try {
 
-        const translation = useTranslation('en', 'serverAction');
+        const translation = useTranslation('serverAction');
         const formData = req.body.formData;
         const formDataObject = getFormDataObject(formData);
         const { emailTemplateType } = formDataObject;
@@ -207,8 +207,6 @@ export async function sendEmail(req: any, res: any) {
         };
 
         await transport.sendMail(mailOptions);
-
-        revalidatePath(`${locale}\candidates`);
 
         return { successMessage: translation("emailSentToTheCandidate"), success: true };
     } catch (error) {

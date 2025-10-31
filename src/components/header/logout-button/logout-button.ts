@@ -22,7 +22,7 @@ export class LogoutButton {
     snackbarProps = snackbarProps;
 
 
-    translation = useTranslation("en", "logoutButton");
+    translation = useTranslation("logoutButton");
 
     handleLogout(): void {
         this.http.post(`api/logoutHrUser`, {}).subscribe({

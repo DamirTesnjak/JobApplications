@@ -11,5 +11,5 @@ import { RouterLink } from '@angular/router';
 export class Sidebar {
     @Input() sidebarLinks!: ISidebarProps[];
 
-    translation = useTranslation("en", "sidebar");
+    translation = useTranslation("sidebar");
 }

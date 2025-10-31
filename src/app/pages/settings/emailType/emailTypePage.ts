@@ -14,7 +14,7 @@ export class EmailTypePage {
     private route = inject(ActivatedRoute);
     private http = inject(HttpClient);
 
-    translation = useTranslation("en", "setupEmailTemplateMessages");
+    translation = useTranslation("setupEmailTemplateMessages");
 
     actionResponse = signal<any>({});
     data = this.actionResponse().data;

@@ -22,7 +22,7 @@ export class HrUserProfileLayout {
     private route = inject(ActivatedRoute);
     private http = inject(HttpClient);
 
-    translation = useTranslation("en", PAGES.candidatesProfile);
+    translation = useTranslation(PAGES.candidatesProfile);
 
     actionResponse = signal<any>({});
     data = this.actionResponse().data;

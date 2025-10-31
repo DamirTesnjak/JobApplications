@@ -13,5 +13,5 @@ export class TabsBar {
     @Input() tabsList!: ITabList[];
     @Input() activeLink!: string;
 
-    translation = useTranslation("en", "sidebar");
+    translation = useTranslation("sidebar");
 }

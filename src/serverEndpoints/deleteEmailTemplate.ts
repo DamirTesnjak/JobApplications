@@ -7,7 +7,7 @@ import { useTranslation } from '../utils/translation/useTranslation';
 
 export async function deleteEmailTemplate(req: any, res: any) {
     try {
-        const translation = useTranslation('en', 'serverAction');
+        const translation = useTranslation('serverAction');
         const formDataObject = getFormDataObject(req.body.formData);
         const Model = await connectToDB(DATABASES.emailTemplates) as Model<IEmailTemplateSchema>;
 

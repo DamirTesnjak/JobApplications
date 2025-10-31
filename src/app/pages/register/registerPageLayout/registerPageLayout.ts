@@ -8,5 +8,5 @@ import { useTranslation } from '../../../../utils/translation/useTranslation';
     templateUrl: './registerPageLayout.html',
 })
 export class RegisterPageLayout {
-    translation = useTranslation("en", "register");
+    translation = useTranslation("register");
 }

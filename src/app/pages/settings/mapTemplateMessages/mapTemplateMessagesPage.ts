@@ -26,7 +26,7 @@ export class MapTemplateMessagesPage {
 
     snackbarProps = snackbarProps;
 
-    translation = useTranslation("en", "mapTemplateMessages");
+    translation = useTranslation("mapTemplateMessages");
 
     signalEmailTemplates = signal([]);
     stateEmailTemplates = this.signalEmailTemplates() as IEmailTemplate[];

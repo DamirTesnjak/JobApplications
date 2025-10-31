@@ -13,6 +13,6 @@ import { LocaleSwitcher } from "../locale-switcher/locale-switcher";
 export class Header {
     @Input() text: string = "";
 
-    translation = useTranslation("en", "header");
+    translation = useTranslation("header");
 
 }

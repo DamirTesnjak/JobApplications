@@ -9,5 +9,5 @@ import { TextEditor } from '../../../../components/text-editor/text-editor';
     templateUrl: './setupEmailTemplateMessagesPage.html',
 })
 export class SetupEmailTemplateMessagesPage {
-    translation = useTranslation("en", "setupEmailTemplateMessages");
+    translation = useTranslation("setupEmailTemplateMessages");
 }

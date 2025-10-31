@@ -12,7 +12,7 @@ import { useTranslation } from '../../../../utils/translation/useTranslation';
     templateUrl: './companyEmailConfigurationPage.html',
 })
 export class CompanyEmailConfigurationPage {
-    translation = useTranslation("en", "editForm");
+    translation = useTranslation("editForm");
 
     initialStateCompanyEmailConfigs: IInitialStateCompanyEmailConfigs = initialStateCompanyEmailConfigs;
     STORE_REDUCER_NAME = STORE_REDUCER_NAME;

@@ -18,7 +18,7 @@ export class LoginPage {
     private store = inject(Store);
     private router = inject(Router);
 
-    translation = useTranslation("en", "login");
+    translation = useTranslation("login");
     signal = signal<any>({});
     response = this.signal() as any;
 

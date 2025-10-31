@@ -18,7 +18,7 @@ export interface ISendEmail {
 
 const sendEmail = async ({ email, emailType, userId }: ISendEmail) => {
     // create a hashed token
-    const translation = useTranslation('en', 'serverAction');
+    const translation = useTranslation('serverAction');
     const hashedToken = await bcryptjs.hash(userId.toString(), 10);
 
     const Model = await connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
@@ -109,7 +109,7 @@ const sendEmail = async ({ email, emailType, userId }: ISendEmail) => {
 
 export const createHrUser = async (req: any, res: any) => {
     try {
-        const translation = useTranslation('en', 'serverAction');
+        const translation = useTranslation('serverAction');
         const formData = req.body.formData;
         const formDataObject = getFormDataObject(formData);
 

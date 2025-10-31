@@ -20,7 +20,7 @@ export class ProfileActions {
 
     @Input() text: string = "";
 
-    translation = useTranslation("en", "header");
+    translation = useTranslation("header");
 
     signal = stateSelector("hrUser", this.store);
     state = this.signal() as IInitialStateHrUser;

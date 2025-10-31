@@ -13,7 +13,7 @@ import { emailTemplatesColumnDef } from './emailTemplatesTableDataProps';
 export class OverviewEmailTemplateMessagesPage {
     private http = inject(HttpClient);
 
-    translation = useTranslation("en", "emailTemplatePage");
+    translation = useTranslation("emailTemplatePage");
     tableColumnsDef = emailTemplatesColumnDef;
 
     columnsToDisplay = [

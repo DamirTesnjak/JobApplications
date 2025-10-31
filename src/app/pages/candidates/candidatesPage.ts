@@ -12,7 +12,7 @@ import { candidatesColumnDef } from './customerTableDataProps';
 })
 export class CandidatesPage {
     private http = inject(HttpClient);
-    translation = useTranslation("en", "candidates");
+    translation = useTranslation("candidates");
 
     columnsToDisplay = [
         'profilePicture',

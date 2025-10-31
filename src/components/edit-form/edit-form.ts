@@ -44,7 +44,7 @@ export class EditForm {
             stateModelKey !== 'id',
     )
 
-    translation = useTranslation("en", "editForm");
+    translation = useTranslation("editForm");
 
     flattenedObjects(stateModelKey: string) {
         return this.newProfile

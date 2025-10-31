@@ -16,7 +16,7 @@ export class RegisterPage {
     private http = inject(HttpClient);
     private snackBarService = inject(SnackBarService);
 
-    translation = useTranslation("en", "register");
+    translation = useTranslation("register");
     signal = signal<any>({});
     response = this.signal() as any;
     snackbarProps = snackbarProps;

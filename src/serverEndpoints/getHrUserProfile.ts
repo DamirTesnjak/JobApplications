@@ -7,7 +7,7 @@ import { useTranslation } from '../utils/translation/useTranslation';
 
 export async function getHrUserProfile(req: any, res: any) {
     try {
-        const translation = useTranslation('en', 'serverAction');
+        const translation = useTranslation('serverAction');
         const tokenData = await getDataFromToken(req);
 
         const Model = await connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;

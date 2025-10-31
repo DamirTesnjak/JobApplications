@@ -6,7 +6,7 @@ import { useTranslation } from '../utils/translation/useTranslation';
 
 export async function verifyEmail(req: any, res: any) {
     try {
-        const translation = useTranslation('en', 'serverAction');
+        const translation = useTranslation('serverAction');
         const Model = await connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 
         if (!Model) {

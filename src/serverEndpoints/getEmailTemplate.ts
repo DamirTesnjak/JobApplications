@@ -6,7 +6,7 @@ import { useTranslation } from '../utils/translation/useTranslation';
 
 export async function getEmailTemplate(req: any, res: any) {
     try {
-        const translation = useTranslation('en', 'serverAction');
+        const translation = useTranslation('serverAction');
         const Model = await connectToDB(
             DATABASES.emailTemplates,
         ) as Model<IEmailTemplateSchema>;

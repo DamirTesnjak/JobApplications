@@ -22,7 +22,7 @@ export class MessageDisplay {
         [x: string]: ITableData[];
     };
 
-    translation = useTranslation("en", this.page);
+    translation = useTranslation(this.page);
     signal = stateSelector("tutorialData", this.store);
     stateTutorialRunning = this.signal() as ITutorialData;
     tutorialRunning = this.stateTutorialRunning.tutorialRunning;

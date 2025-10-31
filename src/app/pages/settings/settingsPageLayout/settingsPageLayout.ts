@@ -10,7 +10,7 @@ import { TabsBar } from '../../../../components/tabs-bar/tabs-bar';
     templateUrl: './settingsPageLayout.html',
 })
 export class SettingsPageLayout {
-    translation = useTranslation("en", "settings");
+    translation = useTranslation("settings");
 
     tabsList = [
         {

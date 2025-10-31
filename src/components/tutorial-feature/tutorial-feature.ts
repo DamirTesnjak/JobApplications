@@ -18,7 +18,7 @@ export class TutorialFeature {
     private store = inject(Store);
     private router = inject(Router)
 
-    translation = useTranslation("en", "tutorial");
+    translation = useTranslation("tutorial");
     steps: Array<any> = [];
     locations: string[] = [];
 

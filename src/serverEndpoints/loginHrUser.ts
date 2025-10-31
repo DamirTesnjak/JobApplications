@@ -12,7 +12,7 @@ import { useTranslation } from '../utils/translation/useTranslation';
 
 export async function loginHrUser(req: any, res: any) {
     try {
-        const translation = useTranslation('en', 'serverAction');
+        const translation = useTranslation('serverAction');
         const formData = req.body.formData;
         const formDataObject = getFormDataObject(formData);
 

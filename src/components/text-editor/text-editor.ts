@@ -31,7 +31,7 @@ export class TextEditor {
     constructor(private http: HttpClient) { }
 
     snackbarProps = snackbarProps;
-    translation = useTranslation("en", "textEditor");
+    translation = useTranslation("textEditor");
 
     textAreaText = signal({
         manualEditing: false,

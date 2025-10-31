@@ -11,7 +11,7 @@ import { useTranslation } from '../../utils/translation/useTranslation';
     templateUrl: './rowButton.html',
 })
 export class RowButton {
-    translation = useTranslation("en", "sendEmail");
+    translation = useTranslation("sendEmail");
 
     private http = inject(HttpClient);
     private snackBarService = inject(SnackBarService);
