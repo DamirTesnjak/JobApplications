@@ -19,7 +19,7 @@ interface IEmailTemplate {
     imports: [SelectInput, Button],
     templateUrl: './mapTemplateMessagesPage.html',
 })
-export class SettingsPage {
+export class MapTemplateMessagesPage {
     private http = inject(HttpClient);
     private readonly store = inject(Store);
     private snackBarService = inject(SnackBarService);

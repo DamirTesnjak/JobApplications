@@ -9,7 +9,7 @@ import { TabsBar } from '../../../../components/tabs-bar/tabs-bar';
     imports: [RouterOutlet, MatTabsModule, TabsBar],
     templateUrl: './settingsPageLayout.html',
 })
-export class SettingsPage {
+export class SettingsPageLayout {
     translation = useTranslation("en", "settings");
 
     tabsList = [

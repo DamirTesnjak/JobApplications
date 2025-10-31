@@ -8,9 +8,9 @@ import { emailTemplatesColumnDef } from './emailTemplatesTableDataProps';
 @Component({
     selector: 'app-create-candidate-page',
     imports: [MessageDisplay, TableComponent],
-    templateUrl: './overviewEmailTemplateMessages.html',
+    templateUrl: './overviewEmailTemplateMessagesPage.html',
 })
-export class CandidatesPage {
+export class OverviewEmailTemplateMessagesPage {
     private http = inject(HttpClient);
 
     translation = useTranslation("en", "emailTemplatePage");
