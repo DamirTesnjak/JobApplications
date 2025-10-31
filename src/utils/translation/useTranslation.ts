@@ -18,7 +18,7 @@ export const routing = {
 export function useTranslation(mainKey: string) {
     const store = inject(Store);
     const signal = stateSelector("locale", store);
-    const state = signal() as IInitialStateHrUser;
+    const state = signal() as any;
     const lang = state.locale;
 
     const locale = lang || locales['en'];
