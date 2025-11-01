@@ -1,12 +1,8 @@
 import * as jwt from 'jsonwebtoken';
 
-export function getDataFromToken(req: Express.Request) {
+export function getDataFromToken(req: { cookies: { [x: string]: string; }; }) {
     try {
-        const cookieHeader = req.headers.cookie || '';
-        const tokenMatch = cookieHeader
-            .split(';')
-            .find((c) => c.trim().startsWith('token='));
-        const token = tokenMatch ? tokenMatch.split('=')[1] : '';
+        const token = req.cookies["token"] || '';
 
         if (!token) {
             console.log('No token found');

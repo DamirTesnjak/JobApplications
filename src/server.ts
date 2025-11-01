@@ -5,6 +5,7 @@ import {
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -47,6 +48,7 @@ const angularApp = new AngularNodeAppEngine();
  */
 
 app.use(express.json());
+app.use(cookieParser());
 
 // Deletes email template
 app.post('api/email_template/delete'), async (req: any, res: any) => {
