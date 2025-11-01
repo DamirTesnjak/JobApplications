@@ -8,6 +8,22 @@ import { ITutorialData } from '../../../state/tutorialData/tutorialData.state';
 import { Store } from '@ngrx/store';
 import { SnackBarService } from '../../../../components/snackBar.service';
 import { snackbarProps } from '../../../../components/globalConstant';
+import { IEmailTemplateSchema } from '../../../../utils/dbConfig/models/emailTemplateModel';
+
+interface IResponseEmailTemplates {
+    successMessage: string;
+    errorMessage?: string;
+    emailTemplates: IEmailTemplateSchema[];
+    success?: boolean;
+}
+
+interface IResponseMapEmailTemplates {
+    successMessage: string;
+    errorMessage?: string;
+    success?: boolean;
+    error?: boolean;
+
+}
 
 interface IEmailTemplate {
     emailType: string;
@@ -44,10 +60,11 @@ export class MapTemplateMessagesPage {
         })) || [];
 
     ngOnInit() {
-        this.http.post("api/getEmailTemplates", {}).subscribe({
+        this.http.post("api/getEmailTemplates", {}, { observe: 'response' }).subscribe({
             next: (res) => {
                 console.log("getEmailTemplates", res);
-                this.signalEmailTemplates.set(res);
+                const response = res.body as IResponseEmailTemplates;
+                this.signalEmailTemplates.set(response.emailTemplates);
 
             },
             error: (error) => {
@@ -66,12 +83,13 @@ export class MapTemplateMessagesPage {
             formData: formData,
         }
 
-        this.http.post('api/mapEmailTemplates', bodyReq).subscribe({
+        this.http.post('api/mapEmailTemplates', bodyReq, { observe: 'response' }).subscribe({
             next: (res) => {
                 console.log('resMapEmailTemplates', res);
+                const response = res.body as IResponseMapEmailTemplates;
                 this.snackBarService.openSnackBar({
                     ...this.snackbarProps,
-                    message: res.successMessage,
+                    message: response.successMessage,
                     type: 'success',
                 });
             },

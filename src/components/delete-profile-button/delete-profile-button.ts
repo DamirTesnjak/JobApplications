@@ -13,6 +13,13 @@ import { initialStateHrUser } from '../../app/state/hrUser/hrUser.reducer';
 import { updateCandidate } from '../../app/state/candidate/candidate.actions';
 import { updateHrUser } from '../../app/state/hrUser/hrUser.actions';
 
+interface IResponse {
+    successMessage: string;
+    errorMessage?: string;
+    success?: boolean;
+    error?: boolean;
+}
+
 @Component({
     selector: 'app-delete-profile-button',
     imports: [Button],
@@ -59,13 +66,14 @@ export class DeleteProfileButton {
             formData: formData,
         }
 
-        this.http.post('api/profile/delete', bodyReq).subscribe({
+        this.http.post('api/profile/delete', bodyReq, { observe: 'response' }).subscribe({
             next: (res) => {
-                if (res.success) {
+                if (res.status === 200) {
                     console.log('resprofileDelete', res);
+                    const response = res.body as IResponse;
                     this.snackBarService.openSnackBar({
                         ...this.snackbarProps,
-                        message: res.successMessage,
+                        message: response.successMessage,
                         type: 'success',
                     });
                     if (DATABASES.candidates === this.database) {

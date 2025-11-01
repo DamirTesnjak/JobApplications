@@ -9,6 +9,14 @@ import { HttpClient } from '@angular/common/http';
 import { DATABASES } from '../../../../constants/constants';
 import { updateCandidate } from '../../../state/candidate/candidate.actions';
 import { Store } from '@ngrx/store';
+import { IIinitialStateCandidate } from '../../../state/candidate/candidate.state';
+
+interface IResponse {
+    successMessage: string;
+    errorMessage?: string;
+    data: IIinitialStateCandidate;
+    success?: boolean;
+}
 
 @Component({
     selector: 'app-candidate-profile-layout',
@@ -35,11 +43,12 @@ export class CandidateProfileLayout {
             id: this.id,
         }
 
-        this.http.post("api/getCandidateProfile", bodyReq).subscribe({
+        this.http.post("api/getCandidateProfile", bodyReq, { observe: 'response' }).subscribe({
             next: (res) => {
                 console.log("getCandidateProfile", res);
-                this.actionResponse.set(res);
-                this.store.dispatch(updateCandidate({ candidate: res.data }))
+                const response = res.body as IResponse;
+                this.actionResponse.set(response);
+                this.store.dispatch(updateCandidate({ candidate: response.data }))
 
             },
             error: (error) => {

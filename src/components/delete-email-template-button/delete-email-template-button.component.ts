@@ -7,6 +7,13 @@ import { SnackBarService } from '../snackBar.service';
 import { snackbarProps } from '../globalConstant';
 import { IButtonProps } from '../button/type';
 
+interface IResponse {
+  successMessage: string;
+  errorMessage?: string;
+  success?: boolean;
+  error?: boolean;
+}
+
 @Component({
   selector: 'app-delete-email-template-button',
   imports: [Button],
@@ -49,12 +56,13 @@ export class DeleteEmailTemplateButton {
       formData: formData,
     }
 
-    this.http.post('api/email_template/delete', bodyReq).subscribe({
+    this.http.post('api/email_template/delete', bodyReq, { observe: 'response' }).subscribe({
       next: (res) => {
         console.log('resEmailTemplateDelete', res);
+        const response = res.body as IResponse;
         this.snackBarService.openSnackBar({
           ...this.snackbarProps,
-          message: res.successMessage,
+          message: response.successMessage,
           type: 'success',
         });
       },

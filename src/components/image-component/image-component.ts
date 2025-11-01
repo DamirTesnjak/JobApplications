@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
     selector: 'app-image-component',
     imports: [MatIconModule],
     templateUrl: './image-component.html',
-    styleUrl: './image-component.scss',
 })
 export class ImageComponent {
     @Input() src!: string;

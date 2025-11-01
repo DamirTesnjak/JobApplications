@@ -12,6 +12,14 @@ import { HttpClient } from '@angular/common/http';
 import { SnackBarService } from '../snackBar.service';
 import { snackbarProps } from '../globalConstant';
 import { SelectInput } from '../select-input/selectInput';
+import { IFormDataObject } from '../../utils/formValidation/getFormDataObject';
+
+interface IResponse {
+    successMessage: string;
+    errorMessage?: string;
+    success?: boolean;
+    prevState?: IFormDataObject;
+}
 
 @Component({
     selector: 'app-text-editor',
@@ -112,12 +120,13 @@ export class TextEditor {
             formData: formData,
         }
 
-        this.http.post('api/createEmailTemplate', bodyReq).subscribe({
+        this.http.post('api/createEmailTemplate', bodyReq, { observe: 'response' }).subscribe({
             next: (res) => {
                 console.log('resCreateEmailTemplate', res);
+                const response = res.body as IResponse;
                 this.snackBarService.openSnackBar({
                     ...this.snackbarProps,
-                    message: res.successMessage,
+                    message: response.successMessage,
                     type: 'success',
                 });
             },

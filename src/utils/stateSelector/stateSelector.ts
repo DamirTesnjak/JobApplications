@@ -14,6 +14,6 @@ const selectors: ISelectors = {
 }
 
 export function stateSelector(slice: string, store: Store<any>) {
-    const selectedState = store.selectSignal(selectors[slice])
+    const selectedState = store.selectSignal(selectors[slice]);
     return selectedState;
 }

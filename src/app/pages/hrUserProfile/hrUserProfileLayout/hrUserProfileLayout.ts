@@ -10,6 +10,14 @@ import { DATABASES } from '../../../../constants/constants';
 import { Store } from '@ngrx/store';
 import { LogoutButton } from '../../../../components/header/logout-button/logout-button';
 import { updateHrUser } from '../../../state/hrUser/hrUser.actions';
+import { IInitialStateHrUser } from '../../../state/hrUser/hrUser.state';
+
+interface IResponse {
+    successMessage: string;
+    errorMessage?: string;
+    data: IInitialStateHrUser;
+    success?: boolean;
+}
 
 @Component({
     selector: 'app-hruser-profile-layout',
@@ -36,11 +44,12 @@ export class HrUserProfileLayout {
             id: this.id,
         }
 
-        this.http.post("api/getHrUserProfile", bodyReq).subscribe({
+        this.http.post("api/getHrUserProfile", bodyReq, { observe: 'response' }).subscribe({
             next: (res) => {
                 console.log("getHrUserProfile", res);
-                this.actionResponse.set(res);
-                this.store.dispatch(updateHrUser({ hrUser: res.data }))
+                const response = res.body as IResponse;
+                this.actionResponse.set(response);
+                this.store.dispatch(updateHrUser({ hrUser: response.data }))
             },
             error: (error) => {
                 this.actionResponse.set(error);

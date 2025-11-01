@@ -8,7 +8,7 @@ import { DATABASES } from '../../constants/constants';
 
 export async function connectToDB(database: string) {
     try {
-        const connection = await createConnection(`${process.env.MONGO_URL}/${database}`)
+        const connection = await createConnection(`${process.env["MONGO_URL"]}/${database}`)
             .asPromise();
 
         if (connection.readyState === 0) {

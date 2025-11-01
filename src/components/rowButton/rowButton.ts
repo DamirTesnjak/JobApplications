@@ -5,6 +5,14 @@ import { SnackBarService } from '../snackBar.service';
 import { snackbarProps } from '../globalConstant';
 import { useTranslation } from '../../utils/translation/useTranslation';
 
+interface IButtonIcons {
+    [x: string]: "ArchiveIcon" | "WorkIcon" | "CancelIcon" | "LogoutIcon";
+    archive: "ArchiveIcon",
+    hire: "WorkIcon",
+    reject: "CancelIcon",
+    fire: "LogoutIcon"
+}
+
 @Component({
     selector: 'app-row-button',
     imports: [Button],
@@ -24,7 +32,7 @@ export class RowButton {
 
     snackbarProps = snackbarProps;
 
-    buttonIcons = {
+    buttonIcons: IButtonIcons = {
         archive: "ArchiveIcon",
         hire: "WorkIcon",
         reject: "CancelIcon",
@@ -41,7 +49,7 @@ export class RowButton {
             formData: formData,
         }
 
-        this.http.post(`api/sendEmail}`, bodyReq).subscribe({
+        this.http.post(`api/sendEmail`, bodyReq).subscribe({
             next: (res) => {
                 console.log("sendEmail", res);
                 this.snackBarService.openSnackBar({
