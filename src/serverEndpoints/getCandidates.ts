@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import { Model } from '../utils/mongooseImport/mongooseImport';
 import { connectToDB } from '../utils/dbConfig/dbConfig';
 import { ICandidateSchema } from '../utils/dbConfig/models/candidateModel.js';
 import { DATABASES } from '../constants/constants';

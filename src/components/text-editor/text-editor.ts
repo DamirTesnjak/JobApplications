@@ -67,10 +67,6 @@ export class TextEditor {
         const previewElement = document.getElementById('preview');
         if (previewElement) {
             previewElement.innerHTML = this.preDefinedEmailTemplates[event.target.value];
-            setEmailTemplate({
-                manualEditing: false,
-                selectedCategory: event.target.value,
-            });
             this.textAreaText.set({
                 manualEditing: false,
                 text: this.preDefinedEmailTemplates[event.target.value],

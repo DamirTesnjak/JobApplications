@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export interface IHrUserSchema {
-    id: string;
+    id?: string;
     profilePicture: {
         file: {
             name: string;
@@ -16,13 +16,13 @@ export interface IHrUserSchema {
     email: string;
     username: string;
     password: string;
-    isVerified: boolean;
-    isAdmin: boolean;
-    active: boolean;
-    forgotPasswordToken: string;
-    forgotPasswordTokenExpiry: Date;
-    verifyToken: string | undefined;
-    verifyTokenExpiry: Date | undefined;
+    isVerified?: boolean;
+    isAdmin?: boolean;
+    active?: boolean;
+    forgotPasswordToken?: string;
+    forgotPasswordTokenExpiry?: Date;
+    verifyToken?: string | undefined;
+    verifyTokenExpiry?: Date | undefined;
 }
 
 const { Schema } = mongoose;

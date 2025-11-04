@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import { Model } from '../utils/mongooseImport/mongooseImport';
 import { connectToDB } from '../utils/dbConfig/dbConfig';
 import { IEmailTemplateSchema } from '../utils/dbConfig/models/emailTemplateModel';
 import { DATABASES } from '../constants/constants';

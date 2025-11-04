@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 export interface ICandidateSchema {
     _id?: string;
-    id: string;
+    id?: string;
     profilePicture: {
         file: {
             name: string;
@@ -32,7 +32,7 @@ export interface ICandidateSchema {
         archived: boolean;
         employed: boolean;
         rejected: boolean;
-        fired: boolean;
+        fired?: boolean;
     };
 }
 

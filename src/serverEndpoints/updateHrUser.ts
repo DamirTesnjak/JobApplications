@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import { Model } from '../utils/mongooseImport/mongooseImport';
 import checkFormValidation from '../utils/utilsServer/checkFormValidation';
 import { connectToDB } from '../utils/dbConfig/dbConfig';
 import { getFormDataObject } from '../utils/formValidation/getFormDataObject';

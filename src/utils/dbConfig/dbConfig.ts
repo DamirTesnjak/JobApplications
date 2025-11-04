@@ -1,4 +1,4 @@
-import { createConnection } from 'mongoose';
+import { createConnection } from '../mongooseImport/mongooseImport';
 import candidateSchema from './models/candidateModel.js';
 import hrUserSchema from './models/hrUserModel';
 import emailTemplateSchema from './models/emailTemplateModel';

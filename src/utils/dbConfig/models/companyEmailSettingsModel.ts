@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export interface ICompanyEmailSettingsSchema {
-    id: string;
+    id?: string;
     emailHost: string;
     port: number;
     email: string;

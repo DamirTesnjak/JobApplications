@@ -1,7 +1,5 @@
-'use server';
-
 import nodemailer from 'nodemailer';
-import { Model } from 'mongoose';
+import { Model } from '../utils/mongooseImport/mongooseImport';
 import { connectToDB } from '../utils/dbConfig/dbConfig';
 import { getFormDataObject } from '../utils/formValidation/getFormDataObject';
 import { IMappedEmailTemplates } from '../utils/dbConfig/models/mappedEmailTemplates';

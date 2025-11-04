@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import { Model } from '../utils/mongooseImport/mongooseImport';
 import { connectToDB } from '../utils/dbConfig/dbConfig';
 import { getFormDataObject } from '../utils/formValidation/getFormDataObject';
 import { IHrUserSchema } from '../utils/dbConfig/models/hrUserModel';

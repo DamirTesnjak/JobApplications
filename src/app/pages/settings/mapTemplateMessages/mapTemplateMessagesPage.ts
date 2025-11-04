@@ -44,7 +44,7 @@ export class MapTemplateMessagesPage {
 
     translation = useTranslation("mapTemplateMessages");
 
-    signalEmailTemplates = signal([]);
+    signalEmailTemplates = signal<IEmailTemplateSchema[]>([]);
     stateEmailTemplates = this.signalEmailTemplates() as IEmailTemplate[];
     emailTemplates = this.stateEmailTemplates;
 

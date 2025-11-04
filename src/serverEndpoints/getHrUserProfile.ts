@@ -1,4 +1,4 @@
-import { Model } from 'mongoose'
+import { Model } from '../utils/mongooseImport/mongooseImport';
 import { connectToDB } from '../utils/dbConfig/dbConfig';
 import { getDataFromToken } from '../utils/getDataFromToken/getDataFromToken';
 import { IHrUserSchema } from '../utils/dbConfig/models/hrUserModel';

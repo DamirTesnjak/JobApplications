@@ -1,6 +1,4 @@
-'use server';
-
-import { Model } from 'mongoose';
+import { Model } from '../utils/mongooseImport/mongooseImport';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import checkFormValidation from '../utils/utilsServer/checkFormValidation';

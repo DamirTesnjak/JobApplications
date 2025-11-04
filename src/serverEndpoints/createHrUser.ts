@@ -1,4 +1,4 @@
-import { Model, Types } from 'mongoose';
+import { Model, Types } from '../utils/mongooseImport/mongooseImport';
 import nodemailer from 'nodemailer';
 import bcryptjs from 'bcryptjs';
 import checkFormValidation from '../utils/utilsServer/checkFormValidation';
@@ -13,7 +13,7 @@ import { useTranslation } from '../utils/translation/useTranslation';
 export interface ISendEmail {
     email: IHrUserSchema['email'];
     emailType: string;
-    userId: Types.ObjectId;
+    userId: Types["ObjectId"];
 }
 
 const sendEmail = async ({ email, emailType, userId }: ISendEmail) => {
@@ -166,7 +166,7 @@ export const createHrUser = async (req: any, res: any) => {
         }
 
         const newUser = new Model({
-            profilePicture: uploadedProfilePictureFile,
+            profilePicture: uploadedProfilePictureFile!,
             name: formDataObject['name'],
             surname: formDataObject['surname'],
             phoneNumber: formDataObject['phoneNumber'],

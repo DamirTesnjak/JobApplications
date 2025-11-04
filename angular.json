@@ -4,13 +4,6 @@
   "newProjectRoot": "projects",
   "projects": {
     "JobApplications": {
-      "i18n": {
-        "sourceLocale": "en-US",
-        "locales": {
-          "sl-SL": "src/locale/messages.sl.xlf",
-          "hr-HR": "src/locale/messages.hr.xlf"
-        }
-      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +17,6 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "localize": ["sl-SL", "hr-HR"],
             "outputPath": "dist/job-applications",
             "index": "src/index.html",
             "browser": "src/main.ts",

@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import { Model } from '../utils/mongooseImport/mongooseImport';
 import checkFormValidation from '../utils/utilsServer/checkFormValidation';
 import { connectToDB } from '../utils/dbConfig/dbConfig';
 import { getFormDataObject } from '../utils/formValidation/getFormDataObject';
@@ -66,7 +66,7 @@ export async function createCandidate(req: any, res: any) {
         );
 
         const newCandidate = new Model({
-            profilePicture: uploadedProfilePictureFile,
+            profilePicture: uploadedProfilePictureFile!,
             name: formDataObject['name'],
             surname: formDataObject['surname'],
             contact: {
@@ -78,7 +78,7 @@ export async function createCandidate(req: any, res: any) {
                 phoneNumber: formDataObject['phoneNumber'],
                 linkedIn: formDataObject['linkedIn'],
             },
-            curriculumVitae: uploadedCurriculumVitaeFile,
+            curriculumVitae: uploadedCurriculumVitaeFile!,
             status: {
                 archived: true,
                 employed: false,
