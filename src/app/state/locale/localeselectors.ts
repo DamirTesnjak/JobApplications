@@ -1,10 +1,9 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { IInitialStateLocale } from "./locale.state";
 
-export const selectTaskState = createFeatureSelector<IInitialStateLocale>('hrUser');
+export const selectTaskState = createFeatureSelector<IInitialStateLocale>('locale');
 
-// 2) Basic selectors on the slice:
-export const selectHrUser = createSelector(
+export const selectLocale = createSelector(
     selectTaskState,
     (state: IInitialStateLocale) => state
 );

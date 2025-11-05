@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EnvironmentInjector, inject, Input } from '@angular/core';
 import { useTranslation } from '../../utils/translation/useTranslation';
 import { ISidebarProps } from './type';
 import { RouterLink } from '@angular/router';
@@ -11,5 +11,6 @@ import { RouterLink } from '@angular/router';
 export class Sidebar {
     @Input() sidebarLinks!: ISidebarProps[];
 
-    translation = useTranslation("sidebar");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("sidebar", this.injector);
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
 
@@ -8,5 +8,6 @@ import { useTranslation } from '../../../../utils/translation/useTranslation';
     templateUrl: './registerPageLayout.html',
 })
 export class RegisterPageLayout {
-    translation = useTranslation("register");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("register", this.injector);
 }

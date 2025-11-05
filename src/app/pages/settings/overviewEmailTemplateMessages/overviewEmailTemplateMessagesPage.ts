@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, signal } from '@angular/core';
+import { Component, EnvironmentInjector, inject, signal } from '@angular/core';
 import { MessageDisplay } from '../../../../components/message-display/message-display';
 import { TableComponent } from '../../../../components/table/table';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
@@ -13,7 +13,8 @@ import { emailTemplatesColumnDef } from './emailTemplatesTableDataProps';
 export class OverviewEmailTemplateMessagesPage {
     private http = inject(HttpClient);
 
-    translation = useTranslation("emailTemplatePage");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("emailTemplatePage", this.injector);
     tableColumnsDef = emailTemplatesColumnDef;
 
     columnsToDisplay = [
@@ -24,7 +25,9 @@ export class OverviewEmailTemplateMessagesPage {
     results = this.signal() as any;
 
     ngOnInit() {
-        this.http.post("api/getEmailTemplates", {}).subscribe({
+        this.http.post("api/getEmailTemplates", {
+            injector: this.injector
+        }).subscribe({
             next: (res) => {
                 console.log("getEmailTemplates", res);
                 this.signal.set(res);

@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EnvironmentInjector, inject, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { useTranslation } from '../../../utils/translation/useTranslation';
 import { stateSelector } from '../../../utils/stateSelector/stateSelector';
@@ -20,7 +20,8 @@ export class ProfileActions {
 
     @Input() text: string = "";
 
-    translation = useTranslation("header");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("header", this.injector);
 
     signal = stateSelector("hrUser", this.store);
     state = this.signal() as IInitialStateHrUser;

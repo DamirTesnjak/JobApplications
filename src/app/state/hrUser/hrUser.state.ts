@@ -1,5 +1,5 @@
 export interface IInitialStateHrUser {
-    id: string;
+    id?: string;
     profilePicture: {
         file: {
             name: string;

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, EnvironmentInjector, inject, signal } from '@angular/core';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
 import { TextEditor } from '../../../../components/text-editor/text-editor';
 import { ActivatedRoute } from '@angular/router';
@@ -14,7 +14,8 @@ export class EmailTypePage {
     private route = inject(ActivatedRoute);
     private http = inject(HttpClient);
 
-    translation = useTranslation("setupEmailTemplateMessages");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("setupEmailTemplateMessages", this.injector);
 
     actionResponse = signal<any>({});
     data = this.actionResponse().data;
@@ -25,6 +26,7 @@ export class EmailTypePage {
 
         const bodyReq = {
             id: this.id,
+            injector: this.injector
         }
 
         this.http.post("api/getEmailTemplate", bodyReq).subscribe({

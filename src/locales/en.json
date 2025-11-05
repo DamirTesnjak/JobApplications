@@ -175,7 +175,7 @@
   },
   "localeSwitcher": {
     "changeLanguage": "Change language",
-    "locale": "{en: English, hr: Hrvatski, sl: Sloveščina, other: Ostalo}"
+    "locale": "{\"en\": \"English\", \"hr\": \"Hrvatski\", \"sl\": \"Sloveščina\", \"other\": \"Ostalo\"}"
   },
   "sidebar": {
     "candidates": "Candidates",

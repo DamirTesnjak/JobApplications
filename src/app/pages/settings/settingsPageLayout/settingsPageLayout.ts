@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
 import { RouterOutlet } from '@angular/router';
@@ -10,7 +10,8 @@ import { TabsBar } from '../../../../components/tabs-bar/tabs-bar';
     templateUrl: './settingsPageLayout.html',
 })
 export class SettingsPageLayout {
-    translation = useTranslation("settings");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("settings", this.injector);
 
     tabsList = [
         {

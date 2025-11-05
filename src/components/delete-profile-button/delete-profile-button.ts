@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EnvironmentInjector, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { HttpClient } from '@angular/common/http';
 import { DialogComponent } from '../dialog-component/dialog-component';
@@ -31,6 +31,7 @@ export class DeleteProfileButton {
     private snackBarService = inject(SnackBarService);
     private store = inject(Store);
     private http = inject(HttpClient);
+    injector = inject(EnvironmentInjector);
 
     snackbarProps = snackbarProps;
 
@@ -64,6 +65,7 @@ export class DeleteProfileButton {
 
         const bodyReq = {
             formData: formData,
+            injector: this.injector
         }
 
         this.http.post('api/profile/delete', bodyReq, { observe: 'response' }).subscribe({

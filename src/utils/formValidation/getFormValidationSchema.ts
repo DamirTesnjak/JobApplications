@@ -3,10 +3,11 @@ import { IFormDataType } from './types/formDataType';
 import { useTranslation } from '../translation/useTranslation';
 
 export async function getFormValidationSchema(
+    injector: any,
     formDataObject: IFormDataType,
     skipFileUploadValidation?: boolean,
 ) {
-    const translation = useTranslation("formValidation");
+    const translation = useTranslation("formValidation", injector);
     const fieldsKeys = Object.keys(formDataObject);
     const schemaShape: {
         [x: string]: ZodString | ZodObject<ZodRawShape>;

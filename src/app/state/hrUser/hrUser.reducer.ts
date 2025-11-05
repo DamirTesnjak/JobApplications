@@ -3,7 +3,6 @@ import updateWholeObjectInState from "../../../utils/methods/updateWholeObjectIn
 import * as Actions from './hrUser.actions';
 
 export const initialStateHrUser = {
-    id: '',
     profilePicture: {
         file: {
             name: '',

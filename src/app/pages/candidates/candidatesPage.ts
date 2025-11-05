@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, signal } from '@angular/core';
+import { Component, EnvironmentInjector, inject, signal } from '@angular/core';
 import { MessageDisplay } from '../../../components/message-display/message-display';
 import { TableComponent } from "../../../components/table/table";
-import { useTranslation } from '../../../utils/translation/useTranslation';
 import { candidatesColumnDef } from './customerTableDataProps';
+import { useTranslation } from '../../../utils/translation/useTranslation';
 
 @Component({
     selector: 'app-create-candidate-page',
@@ -12,7 +12,9 @@ import { candidatesColumnDef } from './customerTableDataProps';
 })
 export class CandidatesPage {
     private http = inject(HttpClient);
-    translation = useTranslation("candidates");
+
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("candidates", this.injector);
 
     columnsToDisplay = [
         'profilePicture',
@@ -32,11 +34,11 @@ export class CandidatesPage {
     ];
 
     signal = signal({});
-    results = this.signal() as any;
+    results = this.signal as any;
     tableColumnsDef = candidatesColumnDef;
 
     ngOnInit() {
-        this.http.post("api/getCandidates", {}).subscribe({
+        this.http.post("api/getCandidates", { injector: this.injector }).subscribe({
             next: (res) => {
                 console.log("getCandidates", res);
                 this.results.set(res);

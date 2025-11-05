@@ -1,4 +1,4 @@
-import { Component, inject, Input, signal } from '@angular/core';
+import { Component, EnvironmentInjector, inject, Input, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { useTranslation, routing } from '../../utils/translation/useTranslation';
 import { Button } from "../button/button.component";
@@ -22,7 +22,8 @@ export class LocaleSwitcher {
 
     defaultLocale = signal(this.state.locale);
 
-    translation = useTranslation("localeSwitcher");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("localeSwitcher", this.injector);
 
     JSONParse(value: string) {
         return JSON.parse(value);

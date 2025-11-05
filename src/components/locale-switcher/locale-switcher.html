@@ -10,9 +10,8 @@
     >
         @for(locale of locales; track locale) {
             <option [attr.key]="locale" [value]="locale">
-                {{ JSONParse(translation("locales")).locale }}
+                {{ JSONParse(translation("locale"))[locale] }}
             </option>
         }
     </select>
-    </app-button>
-/>
+</app-button>

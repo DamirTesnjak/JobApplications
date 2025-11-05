@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, effect, EnvironmentInjector, inject, signal } from '@angular/core';
 import { useTranslation } from '../../../utils/translation/useTranslation';
 import { Button } from '../../../components/button/button.component';
 import { InputComponent } from '../../../components/input/input';
@@ -16,7 +16,8 @@ export class RegisterPage {
     private http = inject(HttpClient);
     private snackBarService = inject(SnackBarService);
 
-    translation = useTranslation("register");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("register", this.injector);
     signal = signal<any>({});
     response = this.signal() as any;
     snackbarProps = snackbarProps;
@@ -51,6 +52,7 @@ export class RegisterPage {
 
         const bodyReq = {
             formData: formData,
+            injector: this.injector
         }
 
         this.http.post("api/createHrUser", bodyReq).subscribe({

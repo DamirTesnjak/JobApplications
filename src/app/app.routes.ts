@@ -23,6 +23,14 @@ import { VerifyEmailPage } from './pages/verifyEmail/verifyEmailPage';
 
 export const routes: Routes = [
     {
+        path: '',
+        component: CandidatesLayout,
+        children: [
+            { path: '', component: CandidatesPage },
+            { path: 'createCandidate', component: CreateCandidatePage },
+        ],
+    },
+    {
         path: 'candidateProfile/:id',
         component: CandidateProfileLayout,
         children: [

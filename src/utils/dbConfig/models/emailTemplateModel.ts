@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export interface IEmailTemplateSchema {
-    id: string;
+    id?: string;
     emailType: string;
     emailText: string;
     companyLogo: {

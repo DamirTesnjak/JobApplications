@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EnvironmentInjector, inject, Input } from '@angular/core';
 import { ShepherdService } from 'angular-shepherd';
 import { useTranslation } from '../../utils/translation/useTranslation';
 import { Router } from '@angular/router';
@@ -18,7 +18,8 @@ export class TutorialFeature {
     private store = inject(Store);
     private router = inject(Router)
 
-    translation = useTranslation("tutorial");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("tutorial", this.injector);
     steps: Array<any> = [];
     locations: string[] = [];
 

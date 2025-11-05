@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EnvironmentInjector, inject, Input } from '@angular/core';
 import { useTranslation } from '../../utils/translation/useTranslation';
-import { RouterLink } from '@angular/router';
 import { ITabList } from './type';
 import { MatTabsModule } from '@angular/material/tabs';
 
@@ -13,5 +12,6 @@ export class TabsBar {
     @Input() tabsList!: ITabList[];
     @Input() activeLink!: string;
 
-    translation = useTranslation("sidebar");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("sidebar", this.injector);
 }

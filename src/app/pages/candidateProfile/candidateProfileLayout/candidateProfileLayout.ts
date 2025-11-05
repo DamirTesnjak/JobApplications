@@ -1,7 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, EnvironmentInjector, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { PAGES } from '../../../../locales/constants';
-import { useTranslation } from '../../../../utils/translation/useTranslation';
 import { Button } from '../../../../components/button/button.component';
 import { DeleteProfileButton } from '../../../../components/delete-profile-button/delete-profile-button';
 import { getFile, IFile } from '../../../../utils/getFile/getFile';
@@ -10,6 +9,7 @@ import { DATABASES } from '../../../../constants/constants';
 import { updateCandidate } from '../../../state/candidate/candidate.actions';
 import { Store } from '@ngrx/store';
 import { IIinitialStateCandidate } from '../../../state/candidate/candidate.state';
+import { useTranslation } from '../../../../utils/translation/useTranslation';
 
 interface IResponse {
     successMessage: string;
@@ -28,8 +28,9 @@ export class CandidateProfileLayout {
     private store = inject(Store);
     private route = inject(ActivatedRoute);
     private http = inject(HttpClient);
+    injector = inject(EnvironmentInjector);
 
-    translation = useTranslation(PAGES.candidatesProfile);
+    translation = useTranslation(PAGES.candidatesProfile, this.injector);
 
     actionResponse = signal<any>({});
     data = this.actionResponse().data;
@@ -41,6 +42,7 @@ export class CandidateProfileLayout {
 
         const bodyReq = {
             id: this.id,
+            injector: this.injector
         }
 
         this.http.post("api/getCandidateProfile", bodyReq, { observe: 'response' }).subscribe({

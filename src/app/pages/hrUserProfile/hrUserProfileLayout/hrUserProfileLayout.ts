@@ -1,7 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, EnvironmentInjector, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { PAGES } from '../../../../locales/constants';
-import { useTranslation } from '../../../../utils/translation/useTranslation';
 import { Button } from '../../../../components/button/button.component';
 import { DeleteProfileButton } from '../../../../components/delete-profile-button/delete-profile-button';
 import { getFile, IFile } from '../../../../utils/getFile/getFile';
@@ -11,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { LogoutButton } from '../../../../components/header/logout-button/logout-button';
 import { updateHrUser } from '../../../state/hrUser/hrUser.actions';
 import { IInitialStateHrUser } from '../../../state/hrUser/hrUser.state';
+import { useTranslation } from '../../../../utils/translation/useTranslation';
 
 interface IResponse {
     successMessage: string;
@@ -30,7 +30,8 @@ export class HrUserProfileLayout {
     private route = inject(ActivatedRoute);
     private http = inject(HttpClient);
 
-    translation = useTranslation(PAGES.candidatesProfile);
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation(PAGES.candidatesProfile, this.injector);
 
     actionResponse = signal<any>({});
     data = this.actionResponse().data;
@@ -42,6 +43,7 @@ export class HrUserProfileLayout {
 
         const bodyReq = {
             id: this.id,
+            injector: this.injector
         }
 
         this.http.post("api/getHrUserProfile", bodyReq, { observe: 'response' }).subscribe({

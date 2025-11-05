@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export interface IMappedEmailTemplates {
-    id: string;
+    id?: string;
     archive: string;
     hire: string;
     reject: string;

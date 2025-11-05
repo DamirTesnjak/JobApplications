@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EnvironmentInjector, inject, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { useTranslation } from '../../utils/translation/useTranslation';
 import { ITableData } from './type';
@@ -14,15 +14,17 @@ import { ITutorialData } from '../../app/state/tutorialData/tutorialData.state';
     templateUrl: './message-display.html',
 })
 export class MessageDisplay {
-    private readonly store = inject(Store);
+    private store = inject(Store);
 
-    @Input() page: string = ""
+    @Input() page!: string
     @Input() pageData!: string;
     @Input() results!: {
         [x: string]: ITableData[];
     };
 
-    translation = useTranslation(this.page);
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation(this.page, this.injector);
+
     signal = stateSelector("tutorialData", this.store);
     stateTutorialRunning = this.signal() as ITutorialData;
     tutorialRunning = this.stateTutorialRunning.tutorialRunning;

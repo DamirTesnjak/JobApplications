@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { useTranslation } from '../../../utils/translation/useTranslation';
 
 @Component({
@@ -7,5 +7,6 @@ import { useTranslation } from '../../../utils/translation/useTranslation';
     templateUrl: './settingsPage.html',
 })
 export class SettingsPage {
-    translation = useTranslation("settings");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("settings", this.injector);
 }

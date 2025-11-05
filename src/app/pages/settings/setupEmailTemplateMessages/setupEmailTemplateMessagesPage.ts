@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
 import { TextEditor } from '../../../../components/text-editor/text-editor';
 
@@ -9,5 +9,6 @@ import { TextEditor } from '../../../../components/text-editor/text-editor';
     templateUrl: './setupEmailTemplateMessagesPage.html',
 })
 export class SetupEmailTemplateMessagesPage {
-    translation = useTranslation("setupEmailTemplateMessages");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("setupEmailTemplateMessages", this.injector);
 }

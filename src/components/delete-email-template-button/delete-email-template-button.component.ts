@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EnvironmentInjector, EventEmitter, inject, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DialogComponent } from '../dialog-component/dialog-component';
 import { Button } from '../button/button.component';
@@ -24,6 +24,7 @@ export class DeleteEmailTemplateButton {
   private dialogService = inject(DialogService);
   private snackBarService = inject(SnackBarService);
   private http = inject(HttpClient);
+  injector = inject(EnvironmentInjector);
 
   snackbarProps = snackbarProps;
 
@@ -54,6 +55,7 @@ export class DeleteEmailTemplateButton {
 
     const bodyReq = {
       formData: formData,
+      injector: this.injector
     }
 
     this.http.post('api/email_template/delete', bodyReq, { observe: 'response' }).subscribe({

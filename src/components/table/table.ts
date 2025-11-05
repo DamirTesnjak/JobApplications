@@ -19,7 +19,7 @@ export class TableComponent {
     @Input() dataSource!: any;
     @Input() columnsToDisplay!: any;
 
-    displayedColumns = Object.keys(this.columnsToDisplay);
+    displayedColumns = this.columnsToDisplay ? Object.keys(this.columnsToDisplay) : [];
 
     getCellComponent(column: any, row: any) {
         if (column.cellButton) return Button;

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, EnvironmentInjector, inject, signal } from '@angular/core';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
 import { SelectInput } from '../../../../components/select-input/selectInput';
 import { Button } from "../../../../components/button/button.component";
@@ -42,7 +42,8 @@ export class MapTemplateMessagesPage {
 
     snackbarProps = snackbarProps;
 
-    translation = useTranslation("mapTemplateMessages");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("mapTemplateMessages", this.injector);
 
     signalEmailTemplates = signal<IEmailTemplateSchema[]>([]);
     stateEmailTemplates = this.signalEmailTemplates() as IEmailTemplate[];
@@ -60,7 +61,9 @@ export class MapTemplateMessagesPage {
         })) || [];
 
     ngOnInit() {
-        this.http.post("api/getEmailTemplates", {}, { observe: 'response' }).subscribe({
+        this.http.post("api/getEmailTemplates", {
+            injector: this.injector
+        }, { observe: 'response' }).subscribe({
             next: (res) => {
                 console.log("getEmailTemplates", res);
                 const response = res.body as IResponseEmailTemplates;
@@ -81,6 +84,7 @@ export class MapTemplateMessagesPage {
 
         const bodyReq = {
             formData: formData,
+            injector: this.injector
         }
 
         this.http.post('api/mapEmailTemplates', bodyReq, { observe: 'response' }).subscribe({

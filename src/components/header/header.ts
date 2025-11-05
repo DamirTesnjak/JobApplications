@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EnvironmentInjector, inject, Input } from '@angular/core';
 import { useTranslation } from '../../utils/translation/useTranslation';
 import { MatIconModule } from '@angular/material/icon';
 import { ProfileActions } from './profile-actions/profile-actions';
@@ -13,6 +13,7 @@ import { LocaleSwitcher } from "../locale-switcher/locale-switcher";
 export class Header {
     @Input() text: string = "";
 
-    translation = useTranslation("header");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("header", this.injector);
 
 }

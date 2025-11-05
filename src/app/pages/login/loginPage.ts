@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, effect, EnvironmentInjector, inject, signal } from '@angular/core';
 import { useTranslation } from '../../../utils/translation/useTranslation';
 import { Button } from '../../../components/button/button.component';
 import { InputComponent } from '../../../components/input/input';
@@ -26,7 +26,8 @@ export class LoginPage {
     private store = inject(Store);
     private router = inject(Router);
 
-    translation = useTranslation("login");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("login", this.injector);
     signal = signal<any>({});
     response = this.signal() as any;
 
@@ -46,7 +47,9 @@ export class LoginPage {
 
     getHrUserProfileData() {
         let result: IResponse = {};
-        this.http.post("api/getHrUserProfile", {}).subscribe({
+        this.http.post("api/getHrUserProfile", {
+            injector: this.injector
+        }).subscribe({
             next: (res) => {
                 console.log("getHrUserProfile", res);
                 result = res
@@ -70,6 +73,7 @@ export class LoginPage {
 
         const bodyReq = {
             formData: formData,
+            injector: this.injector
         }
 
         this.http.post("api/loginHrUser", bodyReq).subscribe({

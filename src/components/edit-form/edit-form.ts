@@ -1,4 +1,4 @@
-import { Component, inject, Input, signal, Signal } from '@angular/core';
+import { Component, EnvironmentInjector, inject, Input, signal, Signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Button } from '../button/button.component';
 import { initialStateCompanyEmailConfigs } from '../../app/state/companyEmailConfigs/companyEmailConfigs.reducers';
@@ -44,7 +44,8 @@ export class EditForm {
             stateModelKey !== 'id',
     )
 
-    translation = useTranslation("editForm");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("editForm", this.injector);
 
     flattenedObjects(stateModelKey: string) {
         return this.newProfile
@@ -67,6 +68,7 @@ export class EditForm {
 
         const bodyReq = {
             formData: formData,
+            injector: this.injector
         }
 
         this.http.post(`api/${this.serverActionName}`, bodyReq).subscribe({

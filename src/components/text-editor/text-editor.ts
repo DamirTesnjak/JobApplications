@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
+import { Component, EnvironmentInjector, EventEmitter, inject, Input, Output, signal } from '@angular/core';
 import { useTranslation } from '../../utils/translation/useTranslation';
 import { candidateCongratulationEmailJobPosition } from '../../utils/emailMessagesTemplates/messageCandidateSelected';
 import { candidateRejectionEmailJobPosition } from '../../utils/emailMessagesTemplates/messageCandidateRejected';
@@ -39,7 +39,8 @@ export class TextEditor {
     constructor(private http: HttpClient) { }
 
     snackbarProps = snackbarProps;
-    translation = useTranslation("textEditor");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("textEditor", this.injector);
 
     textAreaText = signal({
         manualEditing: false,
@@ -114,6 +115,7 @@ export class TextEditor {
 
         const bodyReq = {
             formData: formData,
+            injector: this.injector
         }
 
         this.http.post('api/createEmailTemplate', bodyReq, { observe: 'response' }).subscribe({

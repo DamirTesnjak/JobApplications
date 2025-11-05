@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EnvironmentInjector, inject, Input } from '@angular/core';
 import { Button } from '../button/button.component';
 import { HttpClient } from '@angular/common/http';
 import { SnackBarService } from '../snackBar.service';
@@ -19,7 +19,8 @@ interface IButtonIcons {
     templateUrl: './rowButton.html',
 })
 export class RowButton {
-    translation = useTranslation("sendEmail");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("sendEmail", this.injector);
 
     private http = inject(HttpClient);
     private snackBarService = inject(SnackBarService);
@@ -47,6 +48,7 @@ export class RowButton {
 
         const bodyReq = {
             formData: formData,
+            injector: this.injector
         }
 
         this.http.post(`api/sendEmail`, bodyReq).subscribe({

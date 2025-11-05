@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EnvironmentInjector, inject, Input } from '@angular/core';
 import { useTranslation } from '../../../utils/translation/useTranslation';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
@@ -21,11 +21,11 @@ export class LogoutButton {
     @Input() text: string = "";
     snackbarProps = snackbarProps;
 
-
-    translation = useTranslation("logoutButton");
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation("logoutButton", this.injector);
 
     handleLogout(): void {
-        this.http.post(`api/logoutHrUser`, {}).subscribe({
+        this.http.post(`api/logoutHrUser`, { injector: this.injector }).subscribe({
             next: () => {
                 this.store.dispatch(updateHrUser({ hrUser: initialStateHrUser }))
             },

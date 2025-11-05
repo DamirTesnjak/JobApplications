@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { Button } from '../button/button.component';
 import { HttpClient } from '@angular/common/http';
 import { SnackBarService } from '../snackBar.service';
@@ -17,13 +17,14 @@ export class RowButton {
     private http = inject(HttpClient);
     private snackBarService = inject(SnackBarService);
     private store = inject(Store);
+    injector = inject(EnvironmentInjector);
 
-    translation = useTranslation("logoutButton");
+    translation = useTranslation("logoutButton", this.injector);
 
     snackbarProps = snackbarProps;
 
     handleLogout(): void {
-        this.http.post(`api/logoutHrUser`, {}).subscribe({
+        this.http.post(`api/logoutHrUser`, { injector: this.injector }).subscribe({
             next: (res) => {
                 console.log("logoutHrUser", res);
                 this.store.dispatch(updateHrUser({ hrUser: initialStateHrUser }))

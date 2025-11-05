@@ -1,4 +1,3 @@
-import { Model } from '../utils/mongooseImport/mongooseImport';
 import { connectToDB } from '../utils/dbConfig/dbConfig';
 import { IEmailTemplateSchema } from '../utils/dbConfig/models/emailTemplateModel';
 import { DATABASES } from '../constants/constants';
@@ -6,40 +5,48 @@ import { useTranslation } from '../utils/translation/useTranslation';
 
 export async function getEmailTemplates(req: any, res: any) {
     try {
-        const translation = useTranslation('serverAction');
-        const Model = await connectToDB(
-            DATABASES.emailTemplates,
-        ) as Model<IEmailTemplateSchema>;
+        if (typeof window === "undefined") {
+            const mongoose = await import('mongoose');
+            type Model<T = any> = typeof mongoose.Model<T>;
+            const translation = useTranslation('serverAction', req.body.injector);
+            const Model = await connectToDB(
+                DATABASES.emailTemplates,
+            ) as Model<IEmailTemplateSchema>;
 
-        if (!Model) {
-            console.log(
-                'ERROR_GET_EMAIL_TEMPLATES: Error with connecting to the database!',
-            );
-            return res.status(500).json({
-                errorMessage: translation("somethingWentWrong"),
-                error: true,
+            if (!Model) {
+                console.log(
+                    'ERROR_GET_EMAIL_TEMPLATES: Error with connecting to the database!',
+                );
+                return res.status(500).json({
+                    errorMessage: translation("somethingWentWrong"),
+                    error: true,
+                });
+            }
+
+            const emailTemplates: IEmailTemplateSchema[] = await Model.find({});
+
+            if (!emailTemplates) {
+                return res.status(500).json({
+                    errorMessage: translation("cannotFindAnyEmailTemplates"),
+                    error: true,
+                });
+            }
+
+            if (emailTemplates.length === 0) {
+                return res.status(500).json({
+                    errorMessage: translation("noEmailTemplatesFound"),
+                    error: true,
+                });
+            }
+            return res.status(200).json({
+                successMessage: 'Fetching data successful!',
+                success: true,
+                emailTemplates,
             });
         }
-
-        const emailTemplates: IEmailTemplateSchema[] = await Model.find({});
-
-        if (!emailTemplates) {
-            return res.status(500).json({
-                errorMessage: translation("cannotFindAnyEmailTemplates"),
-                error: true,
-            });
-        }
-
-        if (emailTemplates.length === 0) {
-            return res.status(500).json({
-                errorMessage: translation("noEmailTemplatesFound"),
-                error: true,
-            });
-        }
-        return res.status(200).json({
-            successMessage: 'Fetching data successful!',
-            success: true,
-            emailTemplates,
+        return res.status(500).json({
+            errorMessage: 'Unexpected error occurred',
+            error: true,
         });
     }
     catch (error) {

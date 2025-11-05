@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { PAGES } from '../../../../locales/constants';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
@@ -11,5 +11,6 @@ import { DeleteProfileButton } from '../../../../components/delete-profile-butto
     templateUrl: './candidatesLayout.html',
 })
 export class CandidatesLayout {
-    translation = useTranslation(PAGES.candidates);
+    injector = inject(EnvironmentInjector);
+    translation = useTranslation(PAGES.candidates, this.injector);
 }
