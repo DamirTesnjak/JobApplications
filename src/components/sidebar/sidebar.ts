@@ -7,6 +7,7 @@ import { RouterLink } from '@angular/router';
     selector: 'app-sidebar',
     imports: [RouterLink],
     templateUrl: './sidebar.html',
+    styleUrl: './sidebar.scss'
 })
 export class Sidebar {
     @Input() sidebarLinks!: ISidebarProps[];

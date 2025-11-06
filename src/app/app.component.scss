@@ -1,0 +1,11 @@
+@use "../styles/global/include-media" as mediaQuery;
+
+.container {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+
+  @include mediaQuery.media("<desktop") {
+    grid-template-rows: auto 50px 1fr;
+    grid-template-columns: 1fr;
+  }
+}
