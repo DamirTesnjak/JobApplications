@@ -3,6 +3,7 @@
         @for (tab of tabsList; track tab.id) {
             <a mat-tab-link
                 (click)="activeLink = tab.url"
+                [routerLink]="tab.url"
                 [active]="activeLink == tab.url"
             >
                 {{tab.text}}

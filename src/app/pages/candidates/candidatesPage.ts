@@ -4,6 +4,7 @@ import { MessageDisplay } from '../../../components/message-display/message-disp
 import { TableComponent } from "../../../components/table/table";
 import { candidatesColumnDef } from './customerTableDataProps';
 import { useTranslation } from '../../../utils/translation/useTranslation';
+import { ITableData } from '../../../components/message-display/type';
 
 @Component({
     selector: 'app-create-candidate-page',
@@ -34,18 +35,20 @@ export class CandidatesPage {
     ];
 
     signal = signal({});
-    results = this.signal as any;
+    results = this.signal() as {
+        [x: string]: ITableData[];
+    };
     tableColumnsDef = candidatesColumnDef;
 
     ngOnInit() {
         this.http.post("api/getCandidates", { injector: this.injector }).subscribe({
             next: (res) => {
                 console.log("getCandidates", res);
-                this.results.set(res);
+                this.signal.set(res);
 
             },
             error: (error) => {
-                this.results.set(error);
+                this.signal.set(error);
             },
         });
     }

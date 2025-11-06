@@ -62,7 +62,7 @@ export const routes: Routes = [
         ],
     },
     {
-        path: 'signup',
+        path: 'register',
         component: RegisterPageLayout,
         children: [
             { path: '', component: RegisterPage },
@@ -73,11 +73,11 @@ export const routes: Routes = [
         component: SettingsPageLayout,
         children: [
             { path: '', component: SettingsPage },
-            { path: 'companyEmailConfigurationPage', component: CompanyEmailConfigurationPage },
+            { path: 'companyEmailConfiguration', component: CompanyEmailConfigurationPage },
             { path: 'emailType', component: EmailTypePage },
-            { path: 'mapTemplateMessagesPage', component: MapTemplateMessagesPage },
-            { path: 'overviewEmailTemplateMessagesPage', component: OverviewEmailTemplateMessagesPage },
-            { path: 'setupEmailTemplateMessagesPage', component: SetupEmailTemplateMessagesPage },
+            { path: 'mapTemplateMessages', component: MapTemplateMessagesPage },
+            { path: 'overviewEmailTemplateMessages', component: OverviewEmailTemplateMessagesPage },
+            { path: 'setupEmailTemplateMessages', component: SetupEmailTemplateMessagesPage },
         ],
     },
     {

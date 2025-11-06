@@ -11,4 +11,8 @@ import { Header } from "../components/header/header";
 })
 export class AppComponent {
   title = 'JobApplications';
+  sidebarLinks = [
+    { link: '/candidates', text: 'candidates' },
+    { link: '/settings', text: 'settings' },
+  ]
 }

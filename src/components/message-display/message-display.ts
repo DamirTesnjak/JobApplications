@@ -1,4 +1,4 @@
-import { Component, EnvironmentInjector, inject, Input } from '@angular/core';
+import { Component, EnvironmentInjector, inject, Input, SimpleChanges } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { useTranslation } from '../../utils/translation/useTranslation';
 import { ITableData } from './type';
@@ -23,11 +23,17 @@ export class MessageDisplay {
     };
 
     injector = inject(EnvironmentInjector);
-    translation = useTranslation(this.page, this.injector);
+    translation!: (key: string) => string;
 
-    signal = stateSelector("tutorialData", this.store);
+    readonly signal = stateSelector("tutorialData", this.store);
     stateTutorialRunning = this.signal() as ITutorialData;
     tutorialRunning = this.stateTutorialRunning.tutorialRunning;
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['page']?.currentValue) {
+            this.translation = useTranslation(this.page, this.injector);
+        }
+    }
 
     hasNoData(): boolean {
         return (

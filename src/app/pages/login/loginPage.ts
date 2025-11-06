@@ -38,7 +38,7 @@ export class LoginPage {
 
     constructor() {
         effect(() => {
-            const res = this.response();
+            const res = this.response;
             if (res && res.success) {
                 this.getHrUserProfileData();
             }
