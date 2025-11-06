@@ -1,4 +1,4 @@
-import { Component, EnvironmentInjector, inject, Input, signal, Signal } from '@angular/core';
+import { Component, EnvironmentInjector, inject, Input, signal, Signal, SimpleChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Button } from '../button/button.component';
 import { initialStateCompanyEmailConfigs } from '../../app/state/companyEmailConfigs/companyEmailConfigs.reducers';
@@ -10,9 +10,10 @@ import { initialStateCandidate } from '../../app/state/candidate/candidate.reduc
 import { initialStateHrUser } from '../../app/state/hrUser/hrUser.reducer';
 import { Store } from '@ngrx/store';
 import { stateSelector } from '../../utils/stateSelector/stateSelector';
+import { CommonModule } from '@angular/common';
 @Component({
     selector: 'app-edit-form',
-    imports: [Button, InputComponent, StatusDisplay],
+    imports: [Button, InputComponent, StatusDisplay, CommonModule],
     templateUrl: './edit-form.html',
     styleUrl: './edit-form.scss'
 })
@@ -25,7 +26,7 @@ export class EditForm {
         | typeof initialStateCandidate
         | typeof initialStateHrUser
         | typeof initialStateCompanyEmailConfigs;
-    @Input() storeSlice: string = "";
+    @Input() storeSlice!: string;
     @Input() editable: boolean = false;
     @Input() newProfile: boolean = false;
     @Input() showUploadCVButton: boolean = false;
@@ -34,15 +35,24 @@ export class EditForm {
     @Input() serverActionName: string = "";
 
     actionResponse = signal<any>({});
-    stateModelKeyAndValues = stateSelector(this.storeSlice, this.store);
+    stateModelKeyAndValues: any;
 
-    stateModelKeys = Object.keys(flattenObject(this.stateModel));
-    fieldsToDisplayKeys = this.stateModelKeys.filter(
-        (stateModelKey) =>
-            stateModelKey !== 'data' &&
-            stateModelKey !== 'contentType' &&
-            stateModelKey !== 'id',
-    )
+    stateModelKeys!: string[];
+    fieldsToDisplayKeys!: string[];
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['stateModel'] || changes['storeSlice']) {
+            this.stateModelKeyAndValues = stateSelector(this.storeSlice, this.store);
+
+            this.stateModelKeys = Object.keys(flattenObject(this.stateModel));
+            this.fieldsToDisplayKeys = this.stateModelKeys.filter(
+                (stateModelKey) =>
+                    stateModelKey !== 'data' &&
+                    stateModelKey !== 'contentType' &&
+                    stateModelKey !== 'id',
+            )
+        }
+    }
 
     injector = inject(EnvironmentInjector);
     translation = useTranslation("editForm", this.injector);
@@ -57,7 +67,7 @@ export class EditForm {
         if (this.actionResponse() && this.actionResponse().prevState) {
             return this.actionResponse().prevState[field];
         }
-        return this.flattenedObjects(field);
+        return "";
     };
 
     handleFormAction(event: Event): void {
