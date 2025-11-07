@@ -6,6 +6,8 @@ import { useTranslation } from '../../../../utils/translation/useTranslation';
     selector: 'app-loging-page-layout',
     imports: [RouterOutlet],
     templateUrl: './registerPageLayout.html',
+    styleUrl: '../../../../styles/global/globals.module.scss'
+
 })
 export class RegisterPageLayout {
     injector = inject(EnvironmentInjector);

@@ -10,6 +10,7 @@ import { useTranslation } from '../../../../utils/translation/useTranslation';
     selector: 'app-company-email-configuration-page',
     imports: [EditForm],
     templateUrl: './companyEmailConfigurationPage.html',
+    styleUrl: '../../../../styles/global/globals.module.scss'
 })
 export class CompanyEmailConfigurationPage {
     injector = inject(EnvironmentInjector);

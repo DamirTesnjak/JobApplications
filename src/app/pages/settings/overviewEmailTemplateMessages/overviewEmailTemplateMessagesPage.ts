@@ -9,6 +9,7 @@ import { emailTemplatesColumnDef } from './emailTemplatesTableDataProps';
     selector: 'app-create-candidate-page',
     imports: [MessageDisplay, TableComponent],
     templateUrl: './overviewEmailTemplateMessagesPage.html',
+    styleUrl: '../../../../styles/global/globals.module.scss'
 })
 export class OverviewEmailTemplateMessagesPage {
     private http = inject(HttpClient);

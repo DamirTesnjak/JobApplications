@@ -7,6 +7,7 @@ import { EditForm } from '../../../../components/edit-form/edit-form';
     selector: 'app-create-candidate-page',
     imports: [EditForm],
     templateUrl: './createCandidatePage.html',
+    styleUrl: '../../../../styles/global/globals.module.scss'
 })
 export class CreateCandidatePage {
     STORE_REDUCER_NAME = STORE_REDUCER_NAME;

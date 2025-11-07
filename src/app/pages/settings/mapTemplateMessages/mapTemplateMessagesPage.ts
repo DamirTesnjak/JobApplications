@@ -34,6 +34,7 @@ interface IEmailTemplate {
     selector: 'app-map-template-nessages-page',
     imports: [SelectInput, Button],
     templateUrl: './mapTemplateMessagesPage.html',
+    styleUrl: '../../../../styles/global/globals.module.scss'
 })
 export class MapTemplateMessagesPage {
     private http = inject(HttpClient);

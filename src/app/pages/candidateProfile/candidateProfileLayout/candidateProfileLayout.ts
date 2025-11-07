@@ -22,7 +22,7 @@ interface IResponse {
     selector: 'app-candidate-profile-layout',
     imports: [RouterOutlet, RouterLink, Button, DeleteProfileButton],
     templateUrl: './candidateProfileLayout.html',
-    styleUrl: './candidateProfileLayout.scss'
+    styleUrl: '../../../../styles/global/globals.module.scss'
 })
 export class CandidateProfileLayout {
     private store = inject(Store);

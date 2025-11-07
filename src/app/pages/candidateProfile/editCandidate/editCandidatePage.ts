@@ -10,7 +10,7 @@ import { Store } from '@ngrx/store';
     selector: 'app-edit-candidate-page',
     imports: [EditForm],
     templateUrl: './editCandidatePage.html',
-    styleUrl: '../candidateProfileLayout/candidateProfileLayout.scss'
+    styleUrl: '../../../../styles/global/globals.module.scss'
 })
 export class EditCandidatePage {
     private route = inject(ActivatedRoute);

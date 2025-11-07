@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
     selector: 'app-email-type-page',
     imports: [TextEditor],
     templateUrl: './emailTypePage.html',
+    styleUrl: '../../../../styles/global/globals.module.scss'
 })
 export class EmailTypePage {
     private route = inject(ActivatedRoute);

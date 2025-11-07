@@ -10,7 +10,7 @@ import { ITableData } from '../../../components/message-display/type';
     selector: 'app-create-candidate-page',
     imports: [MessageDisplay, TableComponent],
     templateUrl: './CandidatesPage.html',
-    styleUrl: './candidatesLayout/candidatesLayout.scss'
+    styleUrl: '../../../styles/global/globals.module.scss'
 })
 export class CandidatesPage {
     private http = inject(HttpClient);

@@ -10,6 +10,7 @@ import { snackbarProps } from '../../../components/globalConstant';
     selector: 'app-register-page',
     imports: [Button, InputComponent],
     templateUrl: './registerPage.html',
+    styleUrl: '../../../styles/global/globals.module.scss'
 })
 
 export class RegisterPage {

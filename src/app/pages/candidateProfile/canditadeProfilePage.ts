@@ -8,7 +8,7 @@ import { STORE_REDUCER_NAME } from '../../../constants/constants';
     selector: 'app-candidate-profile-page',
     imports: [EditForm],
     templateUrl: './candidateProfilePage.html',
-    styleUrl: './candidateProfileLayout/candidateProfileLayout.scss'
+    styleUrl: '../../../styles/global/globals.module.scss'
 })
 export class CandidateProfilePage {
     initialStateCandidate: IIinitialStateCandidate = initialStateCandidate;

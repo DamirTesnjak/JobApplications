@@ -9,7 +9,7 @@ import { DeleteProfileButton } from '../../../../components/delete-profile-butto
     selector: 'app-candidate-layout',
     imports: [RouterOutlet, RouterLink, Button],
     templateUrl: './candidatesLayout.html',
-    styleUrl: './candidatesLayout.scss'
+    styleUrl: '../../../../styles/global/globals.module.scss'
 })
 export class CandidatesLayout {
     injector = inject(EnvironmentInjector);

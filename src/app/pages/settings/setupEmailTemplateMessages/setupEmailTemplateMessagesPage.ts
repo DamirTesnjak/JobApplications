@@ -7,6 +7,7 @@ import { TextEditor } from '../../../../components/text-editor/text-editor';
     selector: 'app-setup-email-template-messages-page',
     imports: [TextEditor],
     templateUrl: './setupEmailTemplateMessagesPage.html',
+    styleUrl: '../../../../styles/global/globals.module.scss'
 })
 export class SetupEmailTemplateMessagesPage {
     injector = inject(EnvironmentInjector);

@@ -1,3 +1,4 @@
+<div class="page">
 <form (ngSubmit)="handleFormAction($event)">
     @for(inputField of inputFields; track inputField ) {
         <div key="inputField.name">
@@ -27,3 +28,4 @@
         <app-button className="submitButton" type="submit" [text]="translation('saveChanges')" />
     </div>
 </form>
+</div>

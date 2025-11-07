@@ -19,6 +19,8 @@ interface IResponse {
     selector: 'app-loging-page',
     imports: [Button, InputComponent],
     templateUrl: './loginPage.html',
+    styleUrl: '../../../styles/global/globals.module.scss'
+
 })
 
 export class LoginPage {
