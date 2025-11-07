@@ -8,6 +8,7 @@ import { initialStateHrUser } from '../../state/hrUser/hrUser.reducer';
     selector: 'app-hr-profile-page',
     imports: [EditForm],
     templateUrl: './hrProfilePage.html',
+    styleUrl: './hrUserProfileLayout/hrUserProfileLayout.scss'
 })
 export class HrProfilePage {
     initialStateHrUser: IInitialStateHrUser = initialStateHrUser;

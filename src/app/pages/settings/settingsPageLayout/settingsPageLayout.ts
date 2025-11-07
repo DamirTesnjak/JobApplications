@@ -8,6 +8,7 @@ import { TabsBar } from '../../../../components/tabs-bar/tabs-bar';
     selector: 'app-settings-page-layout',
     imports: [RouterOutlet, MatTabsModule, TabsBar],
     templateUrl: './settingsPageLayout.html',
+    styleUrl: './settingsPageLayout.scss'
 })
 export class SettingsPageLayout {
     injector = inject(EnvironmentInjector);

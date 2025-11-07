@@ -7,7 +7,12 @@ import { Header } from "../components/header/header";
   selector: 'app-root',
   imports: [RouterOutlet, Sidebar, Header],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: [
+    '../styles/mainLayout/container.module.scss',
+    '../styles/global/globals.module.scss',
+    '../components/sidebar/sidebar.scss',
+    '../components/header/header.scss'
+  ]
 })
 export class AppComponent {
   title = 'JobApplications';

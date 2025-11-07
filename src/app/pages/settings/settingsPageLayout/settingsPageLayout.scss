@@ -1,0 +1,20 @@
+@use "../../../../styles/global/include-media" as mediaQuery;
+
+.page {
+  grid-column: 2/3;
+  grid-row: 2/4;
+
+  @include mediaQuery.media("<desktop") {
+    display: grid;
+    grid-template-rows: auto auto;
+    row-gap: 20px;
+    grid-column: 1/3;
+    grid-row: 3/4;
+  }
+}
+
+.candidate {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

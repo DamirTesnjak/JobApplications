@@ -1,4 +1,3 @@
-<header class="header">
     <div class="appNameDisplay">
         <span class="appLogo">
             <mat-icon fontIcon="supervised_user_circle"></mat-icon>
@@ -9,7 +8,6 @@
         </span>
     </div>
     <div class="profileActions">
-        <app-profile-actions />
+        <app-profile-actions [className]="'profileAuthActions'" />
         <app-locale-switcher />
     </div>
-</header>

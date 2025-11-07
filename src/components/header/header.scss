@@ -10,31 +10,31 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px 10px 20px;
-  box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+  box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15); 
+}
 
-  .appNameDisplay {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
+.appNameDisplay {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
 
-    .appLogo {
-      svg {
-        color: globals.$primary-color;
-        font-size: 35px;
-      }
-    }
-
-    .appNameFirstPart {
-      font-size: 35px;
-      font-weight: 500;
+  .appLogo {
+    svg {
       color: globals.$primary-color;
+      font-size: 35px;
     }
+  }
 
-    .appNameSecondPart {
-      @extend .appNameFirstPart;
-      color: unset;
-    }
+  .appNameFirstPart {
+    font-size: 35px;
+    font-weight: 500;
+    color: globals.$primary-color;
+  }
+
+  .appNameSecondPart {
+    @extend .appNameFirstPart;
+    color: unset;
   }
 }
 
@@ -51,12 +51,12 @@
       text-transform: uppercase;
       text-decoration: none;
     }
-
-    .profileNameDisplay {
-      display: flex;
-      flex-direction: row;
-      gap: 10px;
-      align-items: center;
-    }
   }
 }
+
+.profileNameDisplay {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+  }
