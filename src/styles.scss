@@ -2,3 +2,14 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+app-candidate-layout,
+app-candidate-profile-layout,
+app-settings-page-layout,
+app-hruser-profile-layout,
+app-loging-page-layout,
+app-loging-page-layout
+{
+    grid-column: 2/3;
+    grid-row: 2/3;
+}

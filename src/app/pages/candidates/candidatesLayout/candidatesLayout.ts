@@ -6,7 +6,7 @@ import { Button } from '../../../../components/button/button.component';
 import { DeleteProfileButton } from '../../../../components/delete-profile-button/delete-profile-button';
 
 @Component({
-    selector: 'app-candidate-profile-layout',
+    selector: 'app-candidate-layout',
     imports: [RouterOutlet, RouterLink, Button],
     templateUrl: './candidatesLayout.html',
     styleUrl: './candidatesLayout.scss'

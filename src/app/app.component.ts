@@ -11,7 +11,8 @@ import { Header } from "../components/header/header";
     '../styles/mainLayout/container.module.scss',
     '../styles/global/globals.module.scss',
     '../components/sidebar/sidebar.scss',
-    '../components/header/header.scss'
+    '../components/header/header.scss',
+    './app.component.scss'
   ]
 })
 export class AppComponent {
