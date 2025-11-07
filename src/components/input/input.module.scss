@@ -14,6 +14,7 @@
 
 .uploadButton {
   @extend .button;
+  height: auto;
   cursor: pointer;
 }
 
