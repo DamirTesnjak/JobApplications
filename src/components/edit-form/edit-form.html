@@ -47,6 +47,7 @@
             [label]="translation('profilePicture')"
             name="profilePicture"
             type="file"
+            (change)="onFileSelected($event)"
         />
     }
     @if(showUploadCVButton && editable) {
@@ -56,6 +57,7 @@
             [label]="translation('cvFile')"
             name="file"
             type="file"
+            (change)="onFileSelected($event)"
         />
     }
     <app-button

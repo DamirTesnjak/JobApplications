@@ -1,4 +1,4 @@
-import { Component, EnvironmentInjector, inject, Input, signal, Signal, SimpleChanges } from '@angular/core';
+import { Component, EnvironmentInjector, EventEmitter, inject, Input, Output, signal, Signal, SimpleChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Button } from '../button/button.component';
 import { initialStateCompanyEmailConfigs } from '../../app/state/companyEmailConfigs/companyEmailConfigs.reducers';
@@ -34,11 +34,14 @@ export class EditForm {
     @Input() hrForm: boolean = false;
     @Input() serverActionName: string = "";
 
+    @Output() change = new EventEmitter<Event>();
+
     actionResponse = signal<any>({});
     stateModelKeyAndValues: any;
 
     stateModelKeys!: string[];
     fieldsToDisplayKeys!: string[];
+    selectedFile: File | null = null;
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes['stateModel'] || changes['storeSlice']) {
@@ -74,7 +77,14 @@ export class EditForm {
         event.preventDefault();
 
         const form = event.target as HTMLFormElement;
+
         const formData = new FormData(form);
+
+        if (this.selectedFile) {
+            formData.append("file", this.selectedFile); // ✅ add file
+        }
+
+        console.log('formData', formData);
 
         const bodyReq = {
             formData: formData,
@@ -91,5 +101,13 @@ export class EditForm {
             },
         });
         // this.onClick.emit();
+    }
+
+    onFileSelected(event: Event): void {
+        const input = event.target as HTMLInputElement;
+
+        if (input.files && input.files.length > 0) {
+            this.selectedFile = input.files[0];
+        }
     }
 }

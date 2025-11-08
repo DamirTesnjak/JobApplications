@@ -6,7 +6,7 @@
         {{ label }}
       </label>
       <input
-        [id]="name"
+        [id]="name + '-file'"
         [name]="name"
         [class]="CLASS_NAME[className]"
         [attr.role]="role"
@@ -16,6 +16,7 @@
         [readOnly]="readOnly"
         [required]="required"
         [checked]="checked"
+        (change)="change.emit($event)"
       />
       @if(errorMessage) {
         <div class="errorMessage">{{ errorMessage }}</div>
