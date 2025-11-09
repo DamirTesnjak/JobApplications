@@ -26,6 +26,7 @@ interface IResponse {
     selector: 'app-text-editor',
     imports: [InputComponent, Button, SelectInput],
     templateUrl: './text-editor.html',
+    styleUrl: './text-editor.scss'
 })
 export class TextEditor {
     private snackBarService = inject(SnackBarService);
