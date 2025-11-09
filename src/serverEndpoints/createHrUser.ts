@@ -13,15 +13,16 @@ export interface ISendEmail {
     email: IHrUserSchema['email'];
     emailType: string;
     userId: any;
-    injector: any;
+    locale: string;
 }
 
-const sendEmail = async ({ email, emailType, userId, injector }: ISendEmail) => {
+const sendEmail = async ({ email, emailType, userId, locale }: ISendEmail) => {
     if (typeof window === "undefined") {
         const mongoose = await import('mongoose');
         type Model<T = any> = typeof mongoose.Model<T>;
         // create a hashed token
-        const translation = useTranslation('serverAction', injector);
+
+        const translation = useTranslation('serverAction', locale);
         const hashedToken = await bcryptjs.hash(userId.toString(), 10);
 
         const Model = await connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
@@ -119,8 +120,8 @@ export const createHrUser = async (req: any, res: any) => {
         if (typeof window === "undefined") {
             const mongoose = await import('mongoose');
             type Model<T = any> = typeof mongoose.Model<T>;
-            const injector = req.body.locale
-            const translation = useTranslation('serverAction', injector);
+            const locale = req.body.locale
+            const translation = useTranslation('serverAction', locale);
             const formData = req.body.formData;
             const formDataObject = getFormDataObject(formData);
 
@@ -131,7 +132,7 @@ export const createHrUser = async (req: any, res: any) => {
                     formDataObject,
                     errorMessage: 'ERROR_CREATE_HR_USER: inputField validation error',
                     skipFileUploadValidation: false,
-                    injector
+                    locale
                 });
 
             if (error) {
@@ -206,7 +207,7 @@ export const createHrUser = async (req: any, res: any) => {
                 email: formDataObject['email'] as IHrUserSchema['email'],
                 emailType: EMAIL_TYPE.verify,
                 userId: savedUser._id,
-                injector,
+                locale,
             });
 
             if (!messageId) {
@@ -218,11 +219,11 @@ export const createHrUser = async (req: any, res: any) => {
                 });
             }
 
-            return {
+            return res.status(200).json({
                 successMessage: translation("userCreated"),
                 success: true,
                 prevState: formDataObject,
-            };
+            });
         }
         return res.status(500).json({
             errorMessage: 'Unexpected error occurred',

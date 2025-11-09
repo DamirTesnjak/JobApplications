@@ -9,7 +9,7 @@ export async function getCandidateProfile(req: any, res: any) {
             const mongoose = await import('mongoose');
             type Model<T = any> = typeof mongoose.Model<T>;
             const injector = req.body.locale
-            const translation = useTranslation('serverAction', injector);
+            const translation = useTranslation('serverAction', req.body.locale);
             const Model = await connectToDB(DATABASES.candidates) as Model<ICandidateSchema>;
 
             if (!Model) {

@@ -12,9 +12,9 @@ export async function loginHrUser(req: any, res: any) {
         if (typeof window === "undefined") {
             const mongoose = await import('mongoose');
             type Model<T = any> = typeof mongoose.Model<T>;
-            const translation = useTranslation('serverAction', req.body.locale);
+            const locale = req.body.locale
+            const translation = useTranslation('serverAction', locale);
             const formData = req.body.formData;
-            const injector = req.body.locale
             const formDataObject = getFormDataObject(formData);
 
             // Return early if the form data is invalid
@@ -23,7 +23,7 @@ export async function loginHrUser(req: any, res: any) {
                     formData,
                     formDataObject,
                     errorMessage: 'ERROR_LOGIN_HR_USER: inputField validation error',
-                    injector
+                    locale
                 });
 
             if (error) {

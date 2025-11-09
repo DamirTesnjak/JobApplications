@@ -6,16 +6,16 @@ export interface IcheckFormValidationArgs {
     formDataObject: IFormDataType;
     errorMessage: string;
     skipFileUploadValidation?: boolean;
-    injector: any;
+    locale: string;
 }
 
 export default async function checkFormValidation({
     formData,
     formDataObject,
     skipFileUploadValidation,
-    injector,
+    locale,
 }: IcheckFormValidationArgs) {
-    const validatedFields = await formValidation(injector, formData, skipFileUploadValidation);
+    const validatedFields = await formValidation(locale, formData, skipFileUploadValidation);
 
     if (!validatedFields.success) {
         const errorFieldValidation: { [x: string]: string } = {};

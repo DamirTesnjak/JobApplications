@@ -6,7 +6,6 @@ import { useTranslation } from '../utils/translation/useTranslation';
 export async function getCandidates(req: any, res: any) {
     try {
         if (typeof window === "undefined") {
-            console.log('req', req.body);
             const mongoose = await import('mongoose');
             type Model<T = any> = typeof mongoose.Model<T>;
             const translation = useTranslation('serverAction', req.body.locale);
@@ -55,12 +54,12 @@ export async function getCandidates(req: any, res: any) {
                 });
             }
             if (candidates.length === 0) {
-                return JSON.stringify({
-                    errorMessage: translation('candidateNotFound'),
+                return res.status(200).json({
+                    errorMessage: translation('noCandidatesFound'),
                     error: true,
                 });
             }
-            return res.status(500).json({
+            return res.status(200).json({
                 successMessage: 'Fetching data successful!',
                 success: true,
                 candidates: mappedCandidates,

@@ -205,7 +205,7 @@ export async function sendEmail(req: any, res: any) {
 
             await transport.sendMail(mailOptions);
 
-            return { successMessage: translation("emailSentToTheCandidate"), success: true };
+            return res.status(200).json({ successMessage: translation("emailSentToTheCandidate"), success: true });
         }
         return res.status(500).json({
             errorMessage: 'Unexpected error occurred',
