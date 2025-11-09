@@ -28,24 +28,24 @@ export class RegisterPage {
     snackbarProps = snackbarProps;
 
     inputFields = [
-        { name: 'name', type: 'text', label: this.translation('name') },
-        { name: 'surname', type: 'text', label: this.translation('surname') },
+        { name: 'name', type: 'text', label: 'name' },
+        { name: 'surname', type: 'text', label: 'surname' },
         {
             name: 'companyName',
             type: 'text',
-            label: this.translation('company'),
+            label: 'company',
         },
         {
             name: 'phoneNumber',
             type: 'text',
-            label: this.translation('phoneNumber'),
+            label: 'phoneNumber',
         },
-        { name: 'email', type: 'email', label: this.translation('email') },
-        { name: 'username', type: 'text', label: this.translation('username') },
+        { name: 'email', type: 'email', label: 'email' },
+        { name: 'username', type: 'text', label: 'username' },
         {
             name: 'password',
             type: 'password',
-            label: this.translation('password'),
+            label: 'password',
         },
     ];
 
@@ -76,6 +76,5 @@ export class RegisterPage {
             },
 
         });
-        // this.onClick.emit();
     }
 }

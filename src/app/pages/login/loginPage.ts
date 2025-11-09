@@ -35,8 +35,8 @@ export class LoginPage {
     response = this.signal() as any;
 
     inputFields = [
-        { name: "username", type: "text", label: this.translation("username") },
-        { name: "password", type: "password", label: this.translation("password") },
+        { name: "username", type: "text", label: "username" },
+        { name: "password", type: "password", label: "password" },
     ];
 
     constructor() {
@@ -88,6 +88,5 @@ export class LoginPage {
                 this.signal.set(error);
             },
         });
-        // this.onClick.emit();
     }
 }
