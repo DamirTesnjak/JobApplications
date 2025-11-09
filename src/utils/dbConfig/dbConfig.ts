@@ -4,6 +4,7 @@ import emailTemplateSchema from './models/emailTemplateModel';
 import companyEmailSettingsSchema from './models/companyEmailSettingsModel';
 import mappedEmailTemplates from './models/mappedEmailTemplates';
 import { DATABASES } from '../../constants/constants';
+import { ENV } from '../../environments/env.generated.js';
 
 export async function connectToDB(database: string) {
     try {
@@ -11,7 +12,7 @@ export async function connectToDB(database: string) {
             const mongoose = await import('mongoose');
             const createConnection = mongoose.createConnection;
 
-            const connection = await createConnection(`${process.env["MONGO_URL"]}/${database}`)
+            const connection = await createConnection(`${ENV["MONGO_URL"]}/${database}`)
                 .asPromise();
 
             if (connection.readyState === 0) {
