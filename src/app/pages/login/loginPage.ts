@@ -50,8 +50,9 @@ export class LoginPage {
 
     getHrUserProfileData() {
         let result: IResponse = {};
+        const locale = this.localeService.getLocale()
         this.http.post("api/getHrUserProfile", {
-            locale: this.localeService.getLocale()
+            locale: locale()
         }).subscribe({
             next: (res) => {
                 console.log("getHrUserProfile", res);

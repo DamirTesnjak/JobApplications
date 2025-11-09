@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, Signal, signal } from '@angular/core';
 import { MessageDisplay } from '../../../components/message-display/message-display';
 import { TableComponent } from "../../../components/table/table";
 import { candidatesColumnDef } from './customerTableDataProps';
@@ -43,8 +43,9 @@ export class CandidatesPage {
     tableColumnsDef = candidatesColumnDef;
 
     ngOnInit() {
+        const locale = this.localeService.getLocale()
         this.http.post("api/getCandidates", {
-            locale: this.localeService.getLocale()
+            locale: locale()
         }).subscribe({
             next: (res) => {
                 console.log("getCandidates", res);

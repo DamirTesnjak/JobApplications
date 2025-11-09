@@ -47,9 +47,11 @@ export class RowButton {
         const form = event.target as HTMLFormElement;
         const formData = new FormData(form);
 
+        const locale = this.localeService.getLocale()
+
         const bodyReq = {
             formData: formData,
-            locale: this.localeService.getLocale()
+            locale: locale()
         }
 
         this.http.post(`api/sendEmail`, bodyReq).subscribe({

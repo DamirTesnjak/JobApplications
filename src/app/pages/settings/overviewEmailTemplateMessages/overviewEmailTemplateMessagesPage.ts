@@ -27,8 +27,10 @@ export class OverviewEmailTemplateMessagesPage {
     results = this.signal() as any;
 
     ngOnInit() {
+        const locale = this.localeService.getLocale()
+
         this.http.post("api/getEmailTemplates", {
-            locale: this.localeService.getLocale()
+            locale: locale()
         }).subscribe({
             next: (res) => {
                 console.log("getEmailTemplates", res);

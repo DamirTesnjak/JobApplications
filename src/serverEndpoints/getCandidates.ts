@@ -6,6 +6,7 @@ import { useTranslation } from '../utils/translation/useTranslation';
 export async function getCandidates(req: any, res: any) {
     try {
         if (typeof window === "undefined") {
+            console.log('req', req.body);
             const mongoose = await import('mongoose');
             type Model<T = any> = typeof mongoose.Model<T>;
             const translation = useTranslation('serverAction', req.body.locale);

@@ -42,9 +42,10 @@ export class HrUserProfileLayout {
     ngOnInit() {
         this.id = this.route.snapshot.paramMap.get('id')!;
 
+        const locale = this.localeService.getLocale()
         const bodyReq = {
             id: this.id,
-            locale: this.localeService.getLocale()
+            locale: locale()
         }
 
         this.http.post("api/getHrUserProfile", bodyReq, { observe: 'response' }).subscribe({
