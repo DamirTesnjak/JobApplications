@@ -17,5 +17,5 @@ export class TabsBar {
     @Input() activeLink!: string;
 
     injector = inject(EnvironmentInjector);
-    translation = useTranslation("sidebar", this.localeService.languageString);
+    translation = useTranslation("sidebar", this.localeService.getLocale());
 }

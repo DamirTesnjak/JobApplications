@@ -17,7 +17,7 @@ export class CandidatesPage {
     private http = inject(HttpClient);
     private localeService = inject(DetectLocaleChangeService);
 
-    translation = useTranslation("candidates", this.localeService.languageString);
+    translation = useTranslation("candidates", this.localeService.getLocale());
 
     columnsToDisplay = [
         'profilePicture',
@@ -44,7 +44,7 @@ export class CandidatesPage {
 
     ngOnInit() {
         this.http.post("api/getCandidates", {
-            locale: this.localeService.languageString
+            locale: this.localeService.getLocale()
         }).subscribe({
             next: (res) => {
                 console.log("getCandidates", res);

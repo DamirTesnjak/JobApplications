@@ -16,6 +16,6 @@ export class Header {
 
     @Input() text: string = "";
 
-    translation = useTranslation("header", this.localeService.languageString);
+    translation = useTranslation("header", this.localeService.getLocale());
 
 }

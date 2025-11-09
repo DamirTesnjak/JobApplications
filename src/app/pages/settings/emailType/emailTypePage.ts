@@ -17,7 +17,7 @@ export class EmailTypePage {
     private http = inject(HttpClient);
     private localeService = inject(DetectLocaleChangeService);
 
-    translation = useTranslation("setupEmailTemplateMessages", this.localeService.languageString);
+    translation = useTranslation("setupEmailTemplateMessages", this.localeService.getLocale());
 
     actionResponse = signal<any>({});
     data = this.actionResponse().data;
@@ -28,7 +28,7 @@ export class EmailTypePage {
 
         const bodyReq = {
             id: this.id,
-            locale: this.localeService.languageString
+            locale: this.localeService.getLocale()
         }
 
         this.http.post("api/getEmailTemplate", bodyReq).subscribe({

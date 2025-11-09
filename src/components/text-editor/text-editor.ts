@@ -41,7 +41,7 @@ export class TextEditor {
 
     snackbarProps = snackbarProps;
     injector = inject(EnvironmentInjector);
-    translation = useTranslation("textEditor", this.localeService.languageString);
+    translation = useTranslation("textEditor", this.localeService.getLocale());
 
     textAreaText = signal({
         manualEditing: false,

@@ -14,5 +14,5 @@ export class SetupEmailTemplateMessagesPage {
     injector = inject(EnvironmentInjector);
     private localeService = inject(DetectLocaleChangeService);
 
-    translation = useTranslation("setupEmailTemplateMessages", this.localeService.languageString);
+    translation = useTranslation("setupEmailTemplateMessages", this.localeService.getLocale());
 }

@@ -11,5 +11,5 @@ import { DetectLocaleChangeService } from '../../../../utils/translation/detectL
 })
 export class LoginPageLayout {
     private localeService = inject(DetectLocaleChangeService);
-    translation = useTranslation("login", this.localeService.languageString);
+    translation = useTranslation("login", this.localeService.getLocale());
 }

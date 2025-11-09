@@ -20,12 +20,12 @@ export class RowButton {
     private store = inject(Store);
     private localeService = inject(DetectLocaleChangeService);
 
-    translation = useTranslation("logoutButton", this.localeService.languageString);
+    translation = useTranslation("logoutButton", this.localeService.getLocale());
 
     snackbarProps = snackbarProps;
 
     handleLogout(): void {
-        this.http.post(`api/logoutHrUser`, { locale: this.localeService.languageString }).subscribe({
+        this.http.post(`api/logoutHrUser`, { locale: this.localeService.getLocale() }).subscribe({
             next: (res) => {
                 console.log("logoutHrUser", res);
                 this.store.dispatch(updateHrUser({ hrUser: initialStateHrUser }))

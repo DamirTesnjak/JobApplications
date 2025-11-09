@@ -45,7 +45,7 @@ export class MapTemplateMessagesPage {
 
     snackbarProps = snackbarProps;
 
-    translation = useTranslation("mapTemplateMessages", this.localeService.languageString);
+    translation = useTranslation("mapTemplateMessages", this.localeService.getLocale());
 
     signalEmailTemplates = signal<IEmailTemplateSchema[]>([]);
     stateEmailTemplates = this.signalEmailTemplates() as IEmailTemplate[];
@@ -64,7 +64,7 @@ export class MapTemplateMessagesPage {
 
     ngOnInit() {
         this.http.post("api/getEmailTemplates", {
-            locale: this.localeService.languageString
+            locale: this.localeService.getLocale()
         }, { observe: 'response' }).subscribe({
             next: (res) => {
                 console.log("getEmailTemplates", res);
@@ -86,7 +86,7 @@ export class MapTemplateMessagesPage {
 
         const bodyReq = {
             formData: formData,
-            locale: this.localeService.languageString
+            locale: this.localeService.getLocale()
         }
 
         this.http.post('api/mapEmailTemplates', bodyReq, { observe: 'response' }).subscribe({

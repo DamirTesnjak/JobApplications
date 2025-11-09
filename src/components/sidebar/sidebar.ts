@@ -15,5 +15,5 @@ export class Sidebar {
 
     @Input() sidebarLinks!: ISidebarProps[];
 
-    translation = useTranslation("sidebar", this.localeService.languageString);
+    translation = useTranslation("sidebar", this.localeService.getLocale());
 }

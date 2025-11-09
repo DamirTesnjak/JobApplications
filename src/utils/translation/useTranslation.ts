@@ -1,8 +1,7 @@
 import EN_locale from "../../locales/en.json";
 import SL_locale from "../../locales/sl.json";
 import HR_locale from "../../locales/hr.json";
-import { stateSelector } from "../stateSelector/stateSelector";
-import { EnvironmentInjector, inject, Injector, runInInjectionContext, WritableSignal } from "@angular/core";
+import { Injector, Signal } from "@angular/core";
 import { provideStore, Store } from "@ngrx/store";
 
 const locales: Record<string, any> = {
@@ -21,10 +20,11 @@ const injector = Injector.create({
     ]
 });
 
-export function useTranslation(mainKey: string, language: string) {
-    const locale = language || locales['en'];
+export function useTranslation(mainKey: string, language: Signal<string>) {
+
     return (key: string): string => {
-        const translations = locales[locale];
+        const localeCode = language();
+        const translations = locales[localeCode] ?? locales['en'];
         return translations[mainKey][key];
     }
 }

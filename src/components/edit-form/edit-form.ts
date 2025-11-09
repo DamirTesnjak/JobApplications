@@ -46,16 +46,6 @@ export class EditForm {
     fieldsToDisplayKeys!: string[];
     selectedFile: File | null = null;
 
-    localeState = stateSelector("locale", this.store);
-    language = signal<string>("en");
-    languageString = this.language() as string;
-
-    localeEffect = effect(() => {
-        const locale = this.localeState() as { locale: string };
-        console.log('locale changed:', locale?.locale);
-        this.language.set(locale.locale);
-    });
-
     ngOnChanges(changes: SimpleChanges) {
         if (changes['stateModel'] || changes['storeSlice']) {
             this.stateModelKeyAndValues = stateSelector(this.storeSlice, this.store);
@@ -70,7 +60,7 @@ export class EditForm {
         }
     }
 
-    translation = useTranslation("editForm", this.localeService.languageString);
+    translation = useTranslation("editForm", this.localeService.getLocale());
 
     flattenedObjects(stateModelKey: string) {
         return this.newProfile

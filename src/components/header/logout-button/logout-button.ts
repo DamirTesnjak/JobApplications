@@ -24,10 +24,10 @@ export class LogoutButton {
     @Input() text: string = "";
     snackbarProps = snackbarProps;
 
-    translation = useTranslation("logoutButton", this.localeService.languageString);
+    translation = useTranslation("logoutButton", this.localeService.getLocale());
 
     handleLogout(): void {
-        this.http.post(`api/logoutHrUser`, { locale: this.localeService.languageString }).subscribe({
+        this.http.post(`api/logoutHrUser`, { locale: this.localeService.getLocale() }).subscribe({
             next: () => {
                 this.store.dispatch(updateHrUser({ hrUser: initialStateHrUser }))
             },

@@ -15,7 +15,7 @@ export class SettingsPageLayout {
     injector = inject(EnvironmentInjector);
     private localeService = inject(DetectLocaleChangeService);
 
-    translation = useTranslation("settings", this.localeService.languageString);
+    translation = useTranslation("settings", this.localeService.getLocale());
 
     tabsList = [
         {

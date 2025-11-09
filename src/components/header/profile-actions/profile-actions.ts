@@ -22,7 +22,7 @@ export class ProfileActions {
 
     @Input() text: string = "";
 
-    translation = useTranslation("header", this.localeService.languageString);
+    translation = useTranslation("header", this.localeService.getLocale());
 
     signal = stateSelector("hrUser", this.store);
     state = this.signal() as IInitialStateHrUser;

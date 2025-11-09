@@ -16,7 +16,7 @@ import { DetectLocaleChangeService } from '../../../../utils/translation/detectL
 export class CompanyEmailConfigurationPage {
     private localeService = inject(DetectLocaleChangeService);
 
-    translation = useTranslation("editForm", this.localeService.languageString);
+    translation = useTranslation("editForm", this.localeService.getLocale());
 
     initialStateCompanyEmailConfigs: IInitialStateCompanyEmailConfigs = initialStateCompanyEmailConfigs;
     STORE_REDUCER_NAME = STORE_REDUCER_NAME;

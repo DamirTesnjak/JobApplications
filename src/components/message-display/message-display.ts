@@ -32,7 +32,7 @@ export class MessageDisplay {
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes['page']?.currentValue) {
-            this.translation = useTranslation(this.page, this.localeService.languageString);
+            this.translation = useTranslation(this.page, this.localeService.getLocale());
         }
     }
 

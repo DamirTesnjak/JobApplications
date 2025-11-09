@@ -16,7 +16,7 @@ export class OverviewEmailTemplateMessagesPage {
     private http = inject(HttpClient);
     private localeService = inject(DetectLocaleChangeService);
 
-    translation = useTranslation("emailTemplatePage", this.localeService.languageString);
+    translation = useTranslation("emailTemplatePage", this.localeService.getLocale());
     tableColumnsDef = emailTemplatesColumnDef;
 
     columnsToDisplay = [
@@ -28,7 +28,7 @@ export class OverviewEmailTemplateMessagesPage {
 
     ngOnInit() {
         this.http.post("api/getEmailTemplates", {
-            locale: this.localeService.languageString
+            locale: this.localeService.getLocale()
         }).subscribe({
             next: (res) => {
                 console.log("getEmailTemplates", res);

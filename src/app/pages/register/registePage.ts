@@ -22,7 +22,7 @@ export class RegisterPage {
     private snackBarService = inject(SnackBarService);
     private localeService = inject(DetectLocaleChangeService);
 
-    translation = useTranslation("register", this.localeService.languageString);
+    translation = useTranslation("register", this.localeService.getLocale());
     signal = signal<any>({});
     response = this.signal() as any;
     snackbarProps = snackbarProps;
@@ -57,7 +57,7 @@ export class RegisterPage {
 
         const bodyReq = {
             formData: formData,
-            locale: this.localeService.languageString
+            locale: this.localeService.getLocale()
         }
 
         this.http.post("api/createHrUser", bodyReq).subscribe({

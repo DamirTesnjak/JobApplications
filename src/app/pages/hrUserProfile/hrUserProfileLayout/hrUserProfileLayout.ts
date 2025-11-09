@@ -32,7 +32,7 @@ export class HrUserProfileLayout {
     private http = inject(HttpClient);
     private localeService = inject(DetectLocaleChangeService);
 
-    translation = useTranslation(PAGES.candidatesProfile, this.localeService.languageString);
+    translation = useTranslation(PAGES.candidatesProfile, this.localeService.getLocale());
 
     actionResponse = signal<any>({});
     data = this.actionResponse().data;
@@ -44,7 +44,7 @@ export class HrUserProfileLayout {
 
         const bodyReq = {
             id: this.id,
-            locale: this.localeService.languageString
+            locale: this.localeService.getLocale()
         }
 
         this.http.post("api/getHrUserProfile", bodyReq, { observe: 'response' }).subscribe({

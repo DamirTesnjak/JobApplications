@@ -30,7 +30,7 @@ export class LoginPage {
     private router = inject(Router);
     private localeService = inject(DetectLocaleChangeService);
 
-    translation = useTranslation("login", this.localeService.languageString);
+    translation = useTranslation("login", this.localeService.getLocale());
     signal = signal<any>({});
     response = this.signal() as any;
 
@@ -51,7 +51,7 @@ export class LoginPage {
     getHrUserProfileData() {
         let result: IResponse = {};
         this.http.post("api/getHrUserProfile", {
-            locale: this.localeService.languageString
+            locale: this.localeService.getLocale()
         }).subscribe({
             next: (res) => {
                 console.log("getHrUserProfile", res);
@@ -76,7 +76,7 @@ export class LoginPage {
 
         const bodyReq = {
             formData: formData,
-            locale: this.localeService.languageString
+            locale: this.localeService.getLocale()
         }
 
         this.http.post("api/loginHrUser", bodyReq).subscribe({

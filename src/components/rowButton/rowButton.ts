@@ -21,7 +21,7 @@ interface IButtonIcons {
 })
 export class RowButton {
     private localeService = inject(DetectLocaleChangeService);
-    translation = useTranslation("sendEmail", this.localeService.languageString);
+    translation = useTranslation("sendEmail", this.localeService.getLocale());
 
     private http = inject(HttpClient);
     private snackBarService = inject(SnackBarService);
@@ -49,7 +49,7 @@ export class RowButton {
 
         const bodyReq = {
             formData: formData,
-            locale: this.localeService.languageString
+            locale: this.localeService.getLocale()
         }
 
         this.http.post(`api/sendEmail`, bodyReq).subscribe({

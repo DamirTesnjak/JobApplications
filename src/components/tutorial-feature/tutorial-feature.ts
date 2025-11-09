@@ -22,7 +22,7 @@ export class TutorialFeature {
 
 
     injector = inject(EnvironmentInjector);
-    translation = useTranslation("tutorial", this.localeService.languageString);
+    translation = useTranslation("tutorial", this.localeService.getLocale());
     steps: Array<any> = [];
     locations: string[] = [];
 

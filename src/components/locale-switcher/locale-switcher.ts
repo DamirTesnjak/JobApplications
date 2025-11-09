@@ -25,7 +25,7 @@ export class LocaleSwitcher {
 
     defaultLocale = signal(this.state.locale);
 
-    translation = useTranslation("localeSwitcher", this.localeService.languageString);
+    translation = useTranslation("localeSwitcher", this.localeService.getLocale());
 
     JSONParse(value: string) {
         return JSON.parse(value);

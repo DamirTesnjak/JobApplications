@@ -10,5 +10,5 @@ import { DetectLocaleChangeService } from '../../../utils/translation/detectLoca
 })
 export class SettingsPage {
     private localeService = inject(DetectLocaleChangeService);
-    translation = useTranslation("settings", this.localeService.languageString);
+    translation = useTranslation("settings", this.localeService.getLocale());
 }
