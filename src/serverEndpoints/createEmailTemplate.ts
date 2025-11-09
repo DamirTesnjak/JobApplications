@@ -10,9 +10,9 @@ export async function createEmailTemplate(req: any, res: any) {
         if (typeof window === "undefined") {
             const mongoose = await import('mongoose');
             type Model<T = any> = typeof mongoose.Model<T>;
-            const translation = useTranslation('serverAction', req.body.injector);
+            const translation = useTranslation('serverAction', req.body.locale);
             const formData = req.body.formData;
-            const injector = req.body.injector
+            const injector = req.body.locale
             const formDataObject = getFormDataObject(formData);
 
             // Return early if the form data is invalid

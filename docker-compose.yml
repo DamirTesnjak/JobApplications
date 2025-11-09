@@ -1,0 +1,26 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:3000"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+
+    #specify the volumes to mount for the db service
+    # we're mounting the volume named "mongo-data" inside the container at /data/db directory
+    # this is done so that the data inside the mongodb container is persisted even if the container is stopped
+    volumes:
+      - mongo-data:/data/db
+
+# define the volumes to be used by the services
+volumes:
+  mongo-data:

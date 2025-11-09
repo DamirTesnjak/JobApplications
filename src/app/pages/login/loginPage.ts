@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { updateHrUser } from '../../state/hrUser/hrUser.actions';
 import { Router } from '@angular/router';
 import { IHrUserSchema } from '../../../utils/dbConfig/models/hrUserModel';
+import { DetectLocaleChangeService } from '../../../utils/translation/detectLocaleChange.service';
 
 interface IResponse {
     successMessage?: string;
@@ -27,9 +28,9 @@ export class LoginPage {
     private http = inject(HttpClient);
     private store = inject(Store);
     private router = inject(Router);
+    private localeService = inject(DetectLocaleChangeService);
 
-    injector = inject(EnvironmentInjector);
-    translation = useTranslation("login", this.injector);
+    translation = useTranslation("login", this.localeService.languageString);
     signal = signal<any>({});
     response = this.signal() as any;
 
@@ -50,7 +51,7 @@ export class LoginPage {
     getHrUserProfileData() {
         let result: IResponse = {};
         this.http.post("api/getHrUserProfile", {
-            injector: this.injector
+            locale: this.localeService.languageString
         }).subscribe({
             next: (res) => {
                 console.log("getHrUserProfile", res);
@@ -75,7 +76,7 @@ export class LoginPage {
 
         const bodyReq = {
             formData: formData,
-            injector: this.injector
+            locale: this.localeService.languageString
         }
 
         this.http.post("api/loginHrUser", bodyReq).subscribe({

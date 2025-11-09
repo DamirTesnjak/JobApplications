@@ -1,7 +1,8 @@
-import { Component, EnvironmentInjector, inject, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { useTranslation } from '../../utils/translation/useTranslation';
 import { ISidebarProps } from './type';
 import { RouterLink } from '@angular/router';
+import { DetectLocaleChangeService } from '../../utils/translation/detectLocaleChange.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -10,8 +11,9 @@ import { RouterLink } from '@angular/router';
     styleUrl: './sidebar.scss'
 })
 export class Sidebar {
+    private localeService = inject(DetectLocaleChangeService);
+
     @Input() sidebarLinks!: ISidebarProps[];
 
-    injector = inject(EnvironmentInjector);
-    translation = useTranslation("sidebar", this.injector);
+    translation = useTranslation("sidebar", this.localeService.languageString);
 }

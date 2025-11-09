@@ -34,69 +34,69 @@
             className="textButton"
             iconName="paragraph"
             type='button'
-            [onClick]="onButtonTextEditorClick('paragraph')"
+            (click)="onButtonTextEditorClick('paragraph')"
           />
           <app-button
             className="textButton"
             iconName="format-italic-icon"
             type="button"
-            [onClick]="onButtonTextEditorClick('italic')"
+            (click)="onButtonTextEditorClick('italic')"
           />
           <app-button
             className="textButton"
             iconName="format-bold-icon"
             type="button"
-            [onClick]="onButtonTextEditorClick('strong')"
+            (click)="onButtonTextEditorClick('strong')"
           />
           <app-button
             className="textButton"
             iconName="format-underlined-icon"
             type="button"
-            [onClick]="onButtonTextEditorClick('underline')"
+            (click)="onButtonTextEditorClick('underline')"
           />
           <app-button
             className="extButton"
             iconName="keyboard-return-icon"
             type="button"
-            [onClick]="onButtonTextEditorClick('newLine')"
+            (click)="onButtonTextEditorClick('newLine')"
           />
           <app-button
             className="textButton"
             iconName="link-Icon"
             type="button"
-            [onClick]="onButtonTextEditorClick('link')"
+            (click)="onButtonTextEditorClick('link')"
           />
           <app-button
             className="textButton"
             iconName="superscript-icon"
             type="button"
-            [onClick]="onButtonTextEditorClick('superscript')"
+            (click)="onButtonTextEditorClick('superscript')"
           />
           <app-button
             className="textButton"
             iconName="subscript-icon"
             type="button"
-            [onClick]="onButtonTextEditorClick('subscript')"
+            (click)="onButtonTextEditorClick('subscript')"
           />
           <app-button
             className="textButton"
             iconName="person-icon"
             type="button"
-            [onClick]="onButtonTextEditorClick('targetPersonFullName')"
+            (click)="onButtonTextEditorClick('targetPersonFullName')"
             [text]="translation('candidateName')"
           />
           <app-button
             className="textButton"
             iconName="account-box-icon"
             type="button"
-            [onClick]="onButtonTextEditorClick('hrUserFullNameTemplate')"
+            (click)="onButtonTextEditorClick('hrUserFullNameTemplate')"
             [text]="translation('yourName')"
           />
           <app-button
             className="textButton"
             iconName="business-icon"
             type="button"
-            [onClick]="onButtonTextEditorClick('companyNameTemplate')"
+            (click)="onButtonTextEditorClick('companyNameTemplate')"
             [text]="translation('companyName')"
           />
         </div>

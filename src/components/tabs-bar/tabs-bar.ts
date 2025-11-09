@@ -3,6 +3,7 @@ import { useTranslation } from '../../utils/translation/useTranslation';
 import { ITabList } from './type';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterLink } from '@angular/router';
+import { DetectLocaleChangeService } from '../../utils/translation/detectLocaleChange.service';
 
 @Component({
     selector: 'app-tabs-bar',
@@ -10,9 +11,11 @@ import { RouterLink } from '@angular/router';
     templateUrl: './tabs-bar.html',
 })
 export class TabsBar {
+    private localeService = inject(DetectLocaleChangeService);
+
     @Input() tabsList!: ITabList[];
     @Input() activeLink!: string;
 
     injector = inject(EnvironmentInjector);
-    translation = useTranslation("sidebar", this.injector);
+    translation = useTranslation("sidebar", this.localeService.languageString);
 }

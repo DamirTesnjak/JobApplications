@@ -1,4 +1,4 @@
-import { Component, EnvironmentInjector, EventEmitter, inject, Input, Output, signal, Signal, SimpleChanges } from '@angular/core';
+import { Component, effect, EventEmitter, inject, Input, Output, signal, SimpleChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Button } from '../button/button.component';
 import { initialStateCompanyEmailConfigs } from '../../app/state/companyEmailConfigs/companyEmailConfigs.reducers';
@@ -11,15 +11,18 @@ import { initialStateHrUser } from '../../app/state/hrUser/hrUser.reducer';
 import { Store } from '@ngrx/store';
 import { stateSelector } from '../../utils/stateSelector/stateSelector';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { DetectLocaleChangeService } from '../../utils/translation/detectLocaleChange.service';
 @Component({
     selector: 'app-edit-form',
-    imports: [Button, InputComponent, StatusDisplay, CommonModule],
+    imports: [Button, InputComponent, StatusDisplay, CommonModule, FormsModule],
     templateUrl: './edit-form.html',
     styleUrl: './edit-form.scss'
 })
 export class EditForm {
     private readonly store = inject(Store);
     private http = inject(HttpClient);
+    private localeService = inject(DetectLocaleChangeService);
 
     @Input() id: string = "";
     @Input() stateModel!:
@@ -43,6 +46,16 @@ export class EditForm {
     fieldsToDisplayKeys!: string[];
     selectedFile: File | null = null;
 
+    localeState = stateSelector("locale", this.store);
+    language = signal<string>("en");
+    languageString = this.language() as string;
+
+    localeEffect = effect(() => {
+        const locale = this.localeState() as { locale: string };
+        console.log('locale changed:', locale?.locale);
+        this.language.set(locale.locale);
+    });
+
     ngOnChanges(changes: SimpleChanges) {
         if (changes['stateModel'] || changes['storeSlice']) {
             this.stateModelKeyAndValues = stateSelector(this.storeSlice, this.store);
@@ -57,8 +70,7 @@ export class EditForm {
         }
     }
 
-    injector = inject(EnvironmentInjector);
-    translation = useTranslation("editForm", this.injector);
+    translation = useTranslation("editForm", this.localeService.languageString);
 
     flattenedObjects(stateModelKey: string) {
         return this.newProfile
@@ -74,6 +86,7 @@ export class EditForm {
     };
 
     handleFormAction(event: Event): void {
+        console.log("HANDLE FORM ACTION FIRED ✅");
         event.preventDefault();
 
         const form = event.target as HTMLFormElement;
@@ -81,14 +94,11 @@ export class EditForm {
         const formData = new FormData(form);
 
         if (this.selectedFile) {
-            formData.append("file", this.selectedFile); // ✅ add file
+            formData.append("file", this.selectedFile);
         }
-
-        console.log('formData', formData);
 
         const bodyReq = {
             formData: formData,
-            injector: this.injector
         }
 
         this.http.post(`api/${this.serverActionName}`, bodyReq).subscribe({
@@ -97,10 +107,10 @@ export class EditForm {
                 this.actionResponse.set(res);
             },
             error: (error) => {
+                console.log(`${this.serverActionName}`, error);
                 this.actionResponse.set(error);
             },
         });
-        // this.onClick.emit();
     }
 
     onFileSelected(event: Event): void {

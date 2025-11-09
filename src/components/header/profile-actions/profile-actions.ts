@@ -1,4 +1,4 @@
-import { Component, EnvironmentInjector, inject, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { useTranslation } from '../../../utils/translation/useTranslation';
 import { stateSelector } from '../../../utils/stateSelector/stateSelector';
@@ -8,6 +8,7 @@ import { RouterLink } from '@angular/router';
 import { IInitialStateHrUser } from '../../../app/state/hrUser/hrUser.state';
 import { getFile } from '../../../utils/getFile/getFile';
 import { TutorialFeature } from "../../tutorial-feature/tutorial-feature";
+import { DetectLocaleChangeService } from '../../../utils/translation/detectLocaleChange.service';
 
 @Component({
     selector: 'app-profile-actions',
@@ -17,11 +18,11 @@ import { TutorialFeature } from "../../tutorial-feature/tutorial-feature";
 })
 export class ProfileActions {
     private store = inject(Store);
+    private localeService = inject(DetectLocaleChangeService);
 
     @Input() text: string = "";
 
-    injector = inject(EnvironmentInjector);
-    translation = useTranslation("header", this.injector);
+    translation = useTranslation("header", this.localeService.languageString);
 
     signal = stateSelector("hrUser", this.store);
     state = this.signal() as IInitialStateHrUser;

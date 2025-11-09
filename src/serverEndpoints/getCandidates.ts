@@ -8,7 +8,7 @@ export async function getCandidates(req: any, res: any) {
         if (typeof window === "undefined") {
             const mongoose = await import('mongoose');
             type Model<T = any> = typeof mongoose.Model<T>;
-            const translation = useTranslation('serverAction', req.body.injector);
+            const translation = useTranslation('serverAction', req.body.locale);
             const Model = await connectToDB(DATABASES.candidates) as Model<ICandidateSchema>;
 
             if (!Model) {

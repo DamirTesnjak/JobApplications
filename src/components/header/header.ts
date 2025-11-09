@@ -1,8 +1,9 @@
-import { Component, EnvironmentInjector, inject, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { useTranslation } from '../../utils/translation/useTranslation';
 import { MatIconModule } from '@angular/material/icon';
 import { ProfileActions } from './profile-actions/profile-actions';
 import { LocaleSwitcher } from "../locale-switcher/locale-switcher";
+import { DetectLocaleChangeService } from '../../utils/translation/detectLocaleChange.service';
 
 @Component({
     selector: 'app-header',
@@ -11,9 +12,10 @@ import { LocaleSwitcher } from "../locale-switcher/locale-switcher";
     styleUrl: './header.scss'
 })
 export class Header {
+    private localeService = inject(DetectLocaleChangeService);
+
     @Input() text: string = "";
 
-    injector = inject(EnvironmentInjector);
-    translation = useTranslation("header", this.injector);
+    translation = useTranslation("header", this.localeService.languageString);
 
 }

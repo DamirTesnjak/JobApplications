@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EnvironmentInjector, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MessageDisplay } from '../../../../components/message-display/message-display';
 import { TableComponent } from '../../../../components/table/table';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
 import { emailTemplatesColumnDef } from './emailTemplatesTableDataProps';
+import { DetectLocaleChangeService } from '../../../../utils/translation/detectLocaleChange.service';
 
 @Component({
     selector: 'app-create-candidate-page',
@@ -13,9 +14,9 @@ import { emailTemplatesColumnDef } from './emailTemplatesTableDataProps';
 })
 export class OverviewEmailTemplateMessagesPage {
     private http = inject(HttpClient);
+    private localeService = inject(DetectLocaleChangeService);
 
-    injector = inject(EnvironmentInjector);
-    translation = useTranslation("emailTemplatePage", this.injector);
+    translation = useTranslation("emailTemplatePage", this.localeService.languageString);
     tableColumnsDef = emailTemplatesColumnDef;
 
     columnsToDisplay = [
@@ -27,7 +28,7 @@ export class OverviewEmailTemplateMessagesPage {
 
     ngOnInit() {
         this.http.post("api/getEmailTemplates", {
-            injector: this.injector
+            locale: this.localeService.languageString
         }).subscribe({
             next: (res) => {
                 console.log("getEmailTemplates", res);

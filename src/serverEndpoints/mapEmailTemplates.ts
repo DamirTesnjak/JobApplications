@@ -9,7 +9,7 @@ export async function mapEmailTemplates(req: any, res: any) {
         if (typeof window === "undefined") {
             const mongoose = await import('mongoose');
             type Model<T = any> = typeof mongoose.Model<T>;
-            const translation = useTranslation('serverAction', req.body.injector);
+            const translation = useTranslation('serverAction', req.body.locale);
             const formData = req.body.formData;
             const formDataObject = getFormDataObject(formData);
 

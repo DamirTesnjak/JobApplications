@@ -1,24 +1,28 @@
-import { Component, effect, EnvironmentInjector, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { useTranslation } from '../../../utils/translation/useTranslation';
 import { Button } from '../../../components/button/button.component';
 import { InputComponent } from '../../../components/input/input';
 import { HttpClient } from '@angular/common/http';
 import { SnackBarService } from '../../../components/snackBar.service';
 import { snackbarProps } from '../../../components/globalConstant';
+import { DetectLocaleChangeService } from '../../../utils/translation/detectLocaleChange.service';
 
 @Component({
     selector: 'app-register-page',
     imports: [Button, InputComponent],
     templateUrl: './registerPage.html',
-    styleUrl: '../../../styles/global/globals.module.scss'
+    styleUrls: [
+        '../../../components/edit-form/edit-form.scss',
+        '../../../styles/global/globals.module.scss'
+    ]
 })
 
 export class RegisterPage {
     private http = inject(HttpClient);
     private snackBarService = inject(SnackBarService);
+    private localeService = inject(DetectLocaleChangeService);
 
-    injector = inject(EnvironmentInjector);
-    translation = useTranslation("register", this.injector);
+    translation = useTranslation("register", this.localeService.languageString);
     signal = signal<any>({});
     response = this.signal() as any;
     snackbarProps = snackbarProps;
@@ -53,7 +57,7 @@ export class RegisterPage {
 
         const bodyReq = {
             formData: formData,
-            injector: this.injector
+            locale: this.localeService.languageString
         }
 
         this.http.post("api/createHrUser", bodyReq).subscribe({

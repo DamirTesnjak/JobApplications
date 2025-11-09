@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { IButtonProps } from './type';
 
@@ -14,6 +14,13 @@ export class Button {
   @Input() iconName: IButtonProps["iconName"] = "";
   @Input() type: IButtonProps["type"] = "button";
   @Input() text: IButtonProps["text"] = "";
-  @Input() onClick: any = "";
   @Input() component: any = "";
+
+  @Output() onClick = new EventEmitter();
+
+  handleClick(): void {
+    if (this.type !== 'submit') {
+      this.onClick.emit();
+    }
+  }
 }

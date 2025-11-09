@@ -1,10 +1,11 @@
-import { Component, EnvironmentInjector, inject, Input, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { useTranslation, routing } from '../../utils/translation/useTranslation';
 import { Button } from "../button/button.component";
 import { Store } from '@ngrx/store';
 import { stateSelector } from '../../utils/stateSelector/stateSelector';
 import { updateLocale } from '../../app/state/locale/locale.actions';
+import { DetectLocaleChangeService } from '../../utils/translation/detectLocaleChange.service';
 
 @Component({
     selector: 'app-locale-switcher',
@@ -14,6 +15,8 @@ import { updateLocale } from '../../app/state/locale/locale.actions';
 })
 export class LocaleSwitcher {
     private store = inject(Store);
+    private localeService = inject(DetectLocaleChangeService);
+
 
     locales = routing.locales;
 
@@ -22,8 +25,7 @@ export class LocaleSwitcher {
 
     defaultLocale = signal(this.state.locale);
 
-    injector = inject(EnvironmentInjector);
-    translation = useTranslation("localeSwitcher", this.injector);
+    translation = useTranslation("localeSwitcher", this.localeService.languageString);
 
     JSONParse(value: string) {
         return JSON.parse(value);

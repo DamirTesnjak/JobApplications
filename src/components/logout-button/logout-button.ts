@@ -1,4 +1,4 @@
-import { Component, EnvironmentInjector, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Button } from '../button/button.component';
 import { HttpClient } from '@angular/common/http';
 import { SnackBarService } from '../snackBar.service';
@@ -7,6 +7,7 @@ import { useTranslation } from '../../utils/translation/useTranslation';
 import { Store } from '@ngrx/store';
 import { initialStateHrUser } from '../../app/state/hrUser/hrUser.reducer';
 import { updateHrUser } from '../../app/state/hrUser/hrUser.actions';
+import { DetectLocaleChangeService } from '../../utils/translation/detectLocaleChange.service';
 
 @Component({
     selector: 'app-logout-button',
@@ -17,14 +18,14 @@ export class RowButton {
     private http = inject(HttpClient);
     private snackBarService = inject(SnackBarService);
     private store = inject(Store);
-    injector = inject(EnvironmentInjector);
+    private localeService = inject(DetectLocaleChangeService);
 
-    translation = useTranslation("logoutButton", this.injector);
+    translation = useTranslation("logoutButton", this.localeService.languageString);
 
     snackbarProps = snackbarProps;
 
     handleLogout(): void {
-        this.http.post(`api/logoutHrUser`, { injector: this.injector }).subscribe({
+        this.http.post(`api/logoutHrUser`, { locale: this.localeService.languageString }).subscribe({
             next: (res) => {
                 console.log("logoutHrUser", res);
                 this.store.dispatch(updateHrUser({ hrUser: initialStateHrUser }))

@@ -7,6 +7,7 @@ import { stateSelector } from '../../utils/stateSelector/stateSelector';
 import { Store } from '@ngrx/store';
 import { ITutorialData } from '../../app/state/tutorialData/tutorialData.state';
 import { updateTutorialData } from '../../app/state/tutorialData/tutorialData.actions';
+import { DetectLocaleChangeService } from '../../utils/translation/detectLocaleChange.service';
 
 @Component({
     selector: 'app-tutorial-feature',
@@ -16,10 +17,12 @@ import { updateTutorialData } from '../../app/state/tutorialData/tutorialData.ac
 export class TutorialFeature {
     private shepherd = inject(ShepherdService);
     private store = inject(Store);
-    private router = inject(Router)
+    private router = inject(Router);
+    private localeService = inject(DetectLocaleChangeService);
+
 
     injector = inject(EnvironmentInjector);
-    translation = useTranslation("tutorial", this.injector);
+    translation = useTranslation("tutorial", this.localeService.languageString);
     steps: Array<any> = [];
     locations: string[] = [];
 

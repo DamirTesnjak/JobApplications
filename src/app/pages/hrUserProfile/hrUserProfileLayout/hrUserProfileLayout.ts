@@ -1,4 +1,4 @@
-import { Component, EnvironmentInjector, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { PAGES } from '../../../../locales/constants';
 import { Button } from '../../../../components/button/button.component';
@@ -11,6 +11,7 @@ import { LogoutButton } from '../../../../components/header/logout-button/logout
 import { updateHrUser } from '../../../state/hrUser/hrUser.actions';
 import { IInitialStateHrUser } from '../../../state/hrUser/hrUser.state';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
+import { DetectLocaleChangeService } from '../../../../utils/translation/detectLocaleChange.service';
 
 interface IResponse {
     successMessage: string;
@@ -29,9 +30,9 @@ export class HrUserProfileLayout {
     private store = inject(Store);
     private route = inject(ActivatedRoute);
     private http = inject(HttpClient);
+    private localeService = inject(DetectLocaleChangeService);
 
-    injector = inject(EnvironmentInjector);
-    translation = useTranslation(PAGES.candidatesProfile, this.injector);
+    translation = useTranslation(PAGES.candidatesProfile, this.localeService.languageString);
 
     actionResponse = signal<any>({});
     data = this.actionResponse().data;
@@ -43,7 +44,7 @@ export class HrUserProfileLayout {
 
         const bodyReq = {
             id: this.id,
-            injector: this.injector
+            locale: this.localeService.languageString
         }
 
         this.http.post("api/getHrUserProfile", bodyReq, { observe: 'response' }).subscribe({

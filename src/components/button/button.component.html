@@ -2,8 +2,8 @@
     [id]="id"
     [class]="className"
     [type]="type"
-    (click)="onClick()"
->
+    (click)="handleClick()"
+  >
     @if (iconName && iconName.length > 0) {
         <mat-icon>{{iconName}}</mat-icon>
     }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { InputProps } from './type';
 
@@ -21,8 +21,6 @@ export class InputComponent {
     @Input() required: InputProps["required"] = false;
     @Input() checked: InputProps["checked"] = false;
     @Input() errorMessage: InputProps["errorMessage"] = null;
-
-    @Output() change = new EventEmitter<Event>();
 
     CLASS_NAME = {
         input: 'input',

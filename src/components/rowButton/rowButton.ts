@@ -1,9 +1,10 @@
-import { Component, EnvironmentInjector, inject, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Button } from '../button/button.component';
 import { HttpClient } from '@angular/common/http';
 import { SnackBarService } from '../snackBar.service';
 import { snackbarProps } from '../globalConstant';
 import { useTranslation } from '../../utils/translation/useTranslation';
+import { DetectLocaleChangeService } from '../../utils/translation/detectLocaleChange.service';
 
 interface IButtonIcons {
     [x: string]: "ArchiveIcon" | "WorkIcon" | "CancelIcon" | "LogoutIcon";
@@ -19,8 +20,8 @@ interface IButtonIcons {
     templateUrl: './rowButton.html',
 })
 export class RowButton {
-    injector = inject(EnvironmentInjector);
-    translation = useTranslation("sendEmail", this.injector);
+    private localeService = inject(DetectLocaleChangeService);
+    translation = useTranslation("sendEmail", this.localeService.languageString);
 
     private http = inject(HttpClient);
     private snackBarService = inject(SnackBarService);
@@ -48,7 +49,7 @@ export class RowButton {
 
         const bodyReq = {
             formData: formData,
-            injector: this.injector
+            locale: this.localeService.languageString
         }
 
         this.http.post(`api/sendEmail`, bodyReq).subscribe({

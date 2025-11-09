@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EnvironmentInjector, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MessageDisplay } from '../../../components/message-display/message-display';
 import { TableComponent } from "../../../components/table/table";
 import { candidatesColumnDef } from './customerTableDataProps';
 import { useTranslation } from '../../../utils/translation/useTranslation';
 import { ITableData } from '../../../components/message-display/type';
+import { DetectLocaleChangeService } from '../../../utils/translation/detectLocaleChange.service';
 
 @Component({
     selector: 'app-create-candidate-page',
@@ -14,9 +15,9 @@ import { ITableData } from '../../../components/message-display/type';
 })
 export class CandidatesPage {
     private http = inject(HttpClient);
+    private localeService = inject(DetectLocaleChangeService);
 
-    injector = inject(EnvironmentInjector);
-    translation = useTranslation("candidates", this.injector);
+    translation = useTranslation("candidates", this.localeService.languageString);
 
     columnsToDisplay = [
         'profilePicture',
@@ -42,7 +43,9 @@ export class CandidatesPage {
     tableColumnsDef = candidatesColumnDef;
 
     ngOnInit() {
-        this.http.post("api/getCandidates", { injector: this.injector }).subscribe({
+        this.http.post("api/getCandidates", {
+            locale: this.localeService.languageString
+        }).subscribe({
             next: (res) => {
                 console.log("getCandidates", res);
                 this.signal.set(res);

@@ -1,4 +1,4 @@
-import { Component, EnvironmentInjector, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
 import { SelectInput } from '../../../../components/select-input/selectInput';
 import { Button } from "../../../../components/button/button.component";
@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { SnackBarService } from '../../../../components/snackBar.service';
 import { snackbarProps } from '../../../../components/globalConstant';
 import { IEmailTemplateSchema } from '../../../../utils/dbConfig/models/emailTemplateModel';
+import { DetectLocaleChangeService } from '../../../../utils/translation/detectLocaleChange.service';
 
 interface IResponseEmailTemplates {
     successMessage: string;
@@ -40,11 +41,11 @@ export class MapTemplateMessagesPage {
     private http = inject(HttpClient);
     private readonly store = inject(Store);
     private snackBarService = inject(SnackBarService);
+    private localeService = inject(DetectLocaleChangeService);
 
     snackbarProps = snackbarProps;
 
-    injector = inject(EnvironmentInjector);
-    translation = useTranslation("mapTemplateMessages", this.injector);
+    translation = useTranslation("mapTemplateMessages", this.localeService.languageString);
 
     signalEmailTemplates = signal<IEmailTemplateSchema[]>([]);
     stateEmailTemplates = this.signalEmailTemplates() as IEmailTemplate[];
@@ -63,7 +64,7 @@ export class MapTemplateMessagesPage {
 
     ngOnInit() {
         this.http.post("api/getEmailTemplates", {
-            injector: this.injector
+            locale: this.localeService.languageString
         }, { observe: 'response' }).subscribe({
             next: (res) => {
                 console.log("getEmailTemplates", res);
@@ -85,7 +86,7 @@ export class MapTemplateMessagesPage {
 
         const bodyReq = {
             formData: formData,
-            injector: this.injector
+            locale: this.localeService.languageString
         }
 
         this.http.post('api/mapEmailTemplates', bodyReq, { observe: 'response' }).subscribe({

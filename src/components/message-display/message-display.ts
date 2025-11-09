@@ -1,4 +1,4 @@
-import { Component, EnvironmentInjector, inject, Input, SimpleChanges } from '@angular/core';
+import { Component, inject, Input, SimpleChanges } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { useTranslation } from '../../utils/translation/useTranslation';
 import { ITableData } from './type';
@@ -7,6 +7,7 @@ import { InfoMessage } from '../info-message/info-message';
 import { stateSelector } from '../../utils/stateSelector/stateSelector';
 import { Store } from '@ngrx/store';
 import { ITutorialData } from '../../app/state/tutorialData/tutorialData.state';
+import { DetectLocaleChangeService } from '../../utils/translation/detectLocaleChange.service';
 
 @Component({
     selector: 'app-message-display',
@@ -15,6 +16,7 @@ import { ITutorialData } from '../../app/state/tutorialData/tutorialData.state';
 })
 export class MessageDisplay {
     private store = inject(Store);
+    private localeService = inject(DetectLocaleChangeService);
 
     @Input() page!: string
     @Input() pageData!: string;
@@ -22,7 +24,6 @@ export class MessageDisplay {
         [x: string]: ITableData[];
     };
 
-    injector = inject(EnvironmentInjector);
     translation!: (key: string) => string;
 
     readonly signal = stateSelector("tutorialData", this.store);
@@ -31,7 +32,7 @@ export class MessageDisplay {
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes['page']?.currentValue) {
-            this.translation = useTranslation(this.page, this.injector);
+            this.translation = useTranslation(this.page, this.localeService.languageString);
         }
     }
 

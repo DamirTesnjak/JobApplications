@@ -1,5 +1,6 @@
-import { Component, EnvironmentInjector, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { useTranslation } from '../../../utils/translation/useTranslation';
+import { DetectLocaleChangeService } from '../../../utils/translation/detectLocaleChange.service';
 
 @Component({
     selector: 'app-settings-page',
@@ -8,6 +9,6 @@ import { useTranslation } from '../../../utils/translation/useTranslation';
     styleUrl: '../../../styles/global/globals.module.scss'
 })
 export class SettingsPage {
-    injector = inject(EnvironmentInjector);
-    translation = useTranslation("settings", this.injector);
+    private localeService = inject(DetectLocaleChangeService);
+    translation = useTranslation("settings", this.localeService.languageString);
 }

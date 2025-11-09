@@ -3,6 +3,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
 import { RouterOutlet } from '@angular/router';
 import { TabsBar } from '../../../../components/tabs-bar/tabs-bar';
+import { DetectLocaleChangeService } from '../../../../utils/translation/detectLocaleChange.service';
 
 @Component({
     selector: 'app-settings-page-layout',
@@ -12,7 +13,9 @@ import { TabsBar } from '../../../../components/tabs-bar/tabs-bar';
 })
 export class SettingsPageLayout {
     injector = inject(EnvironmentInjector);
-    translation = useTranslation("settings", this.injector);
+    private localeService = inject(DetectLocaleChangeService);
+
+    translation = useTranslation("settings", this.localeService.languageString);
 
     tabsList = [
         {

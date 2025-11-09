@@ -13,6 +13,7 @@ import { SnackBarService } from '../snackBar.service';
 import { snackbarProps } from '../globalConstant';
 import { SelectInput } from '../select-input/selectInput';
 import { IFormDataObject } from '../../utils/formValidation/getFormDataObject';
+import { DetectLocaleChangeService } from '../../utils/translation/detectLocaleChange.service';
 
 interface IResponse {
     successMessage: string;
@@ -28,7 +29,7 @@ interface IResponse {
 })
 export class TextEditor {
     private snackBarService = inject(SnackBarService);
-
+    private localeService = inject(DetectLocaleChangeService);
 
     @Input() data: IData = {
         emailText: "",
@@ -40,7 +41,7 @@ export class TextEditor {
 
     snackbarProps = snackbarProps;
     injector = inject(EnvironmentInjector);
-    translation = useTranslation("textEditor", this.injector);
+    translation = useTranslation("textEditor", this.localeService.languageString);
 
     textAreaText = signal({
         manualEditing: false,

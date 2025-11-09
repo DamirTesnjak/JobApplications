@@ -11,12 +11,10 @@
         [class]="CLASS_NAME[className]"
         [attr.role]="role"
         [type]="type"
-        [value]="value"
         [attr.defaultValue]="defaultValue"
         [readOnly]="readOnly"
         [required]="required"
         [checked]="checked"
-        (change)="change.emit($event)"
       />
       @if(errorMessage) {
         <div class="errorMessage">{{ errorMessage }}</div>

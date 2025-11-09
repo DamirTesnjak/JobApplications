@@ -1,6 +1,7 @@
-import { Component, EnvironmentInjector, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
+import { DetectLocaleChangeService } from '../../../../utils/translation/detectLocaleChange.service';
 
 @Component({
     selector: 'app-loging-page-layout',
@@ -10,6 +11,7 @@ import { useTranslation } from '../../../../utils/translation/useTranslation';
 
 })
 export class RegisterPageLayout {
-    injector = inject(EnvironmentInjector);
-    translation = useTranslation("register", this.injector);
+    private localeService = inject(DetectLocaleChangeService);
+
+    translation = useTranslation("register", this.localeService.languageString);
 }
