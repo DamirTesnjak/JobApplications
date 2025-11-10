@@ -11,10 +11,14 @@ export async function updateCandidate(req: any, res: any) {
         if (typeof window === "undefined") {
             const mongoose = await import('mongoose');
             type Model<T = any> = typeof mongoose.Model<T>;
-            const locale = req.body.locale
-            const translation = useTranslation('serverAction', locale);
-            const formData = req.body.formData;
+
+            const formData = req.body;
+
+            const translation = useTranslation('serverAction', formData.locale);
             const formDataObject = getFormDataObject(formData);
+
+            const profilePicture = req.files?.find((f: any) => f.fieldname === "profilePicture");
+            const file = req.files?.find((f: any) => f.fieldname === "file");
 
             // Return early if the form data is invalid
             const { errorFieldValidation, error, prevStateFormData } =
@@ -23,7 +27,7 @@ export async function updateCandidate(req: any, res: any) {
                     formDataObject,
                     errorMessage: 'ERROR_UPDATE_CANDIDATE: inputField validation error',
                     skipFileUploadValidation: true,
-                    locale
+                    locale: formData.locale
                 });
 
             if (error) {
@@ -50,11 +54,11 @@ export async function updateCandidate(req: any, res: any) {
             const candidate = await Model.findById(formDataObject['id']);
             if (candidate) {
                 const uploadedProfilePictureFile = await uploadFile(
-                    formData,
+                    profilePicture,
                     FILE_TYPE.image,
                 );
                 const uploadedCurriculumVitaeFile = await uploadFile(
-                    formData,
+                    file,
                     FILE_TYPE.file,
                 );
 

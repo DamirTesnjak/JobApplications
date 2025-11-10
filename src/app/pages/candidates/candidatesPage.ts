@@ -6,7 +6,13 @@ import { candidatesColumnDef } from './customerTableDataProps';
 import { useTranslation } from '../../../utils/translation/useTranslation';
 import { ITableData } from '../../../components/message-display/type';
 import { DetectLocaleChangeService } from '../../../utils/translation/detectLocaleChange.service';
+import { ICandidateSchema } from '../../../utils/dbConfig/models/candidateModel';
 
+type IResponse = {
+    candidates: ICandidateSchema[];
+    success: boolean;
+    successMessage: string;
+}
 @Component({
     selector: 'app-create-candidate-page',
     imports: [MessageDisplay, TableComponent],
@@ -36,10 +42,9 @@ export class CandidatesPage {
         'button5',
     ];
 
-    signal = signal({});
-    results = this.signal() as {
-        [x: string]: ITableData[];
-    };
+    candidates: ICandidateSchema[] | [] = [];
+    results = signal<any>({});
+
     tableColumnsDef = candidatesColumnDef;
 
     ngOnInit() {
@@ -48,12 +53,12 @@ export class CandidatesPage {
             locale: locale()
         }).subscribe({
             next: (res) => {
-                console.log("getCandidates", res);
-                this.signal.set(res);
+                const response = res as IResponse;
+                this.results.set(response);
 
             },
             error: (error) => {
-                this.signal.set(error);
+                this.results.set(error);
             },
         });
     }

@@ -10,9 +10,10 @@ export async function updateEmailTemplate(req: any, res: any) {
         if (typeof window === "undefined") {
             const mongoose = await import('mongoose');
             type Model<T = any> = typeof mongoose.Model<T>;
-            const locale = req.body.locale
-            const translation = useTranslation('serverAction', locale);
-            const formData = req.body.formData;
+
+            const formData = req.body;
+
+            const translation = useTranslation('serverAction', formData.locale);
             const formDataObject = getFormDataObject(formData);
 
             // Return early if the form data is invalid
@@ -20,7 +21,7 @@ export async function updateEmailTemplate(req: any, res: any) {
                 formData,
                 formDataObject,
                 errorMessage: 'ERROR_CHECK_EMAIL_TEMPLATE: inputField validation error',
-                locale
+                locale: formData.locale
             })
 
             if (error) {

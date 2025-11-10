@@ -120,10 +120,13 @@ export const createHrUser = async (req: any, res: any) => {
         if (typeof window === "undefined") {
             const mongoose = await import('mongoose');
             type Model<T = any> = typeof mongoose.Model<T>;
-            const locale = req.body.locale
-            const translation = useTranslation('serverAction', locale);
-            const formData = req.body.formData;
+
+            const formData = req.body;
+
+            const translation = useTranslation('serverAction', formData.locale);
             const formDataObject = getFormDataObject(formData);
+
+            const profilePicture = req.files?.find((f: any) => f.fieldname === "profilePicture");
 
             // Return early if the form data is invalid
             const { errorFieldValidation, error, prevStateFormData } =
@@ -132,7 +135,7 @@ export const createHrUser = async (req: any, res: any) => {
                     formDataObject,
                     errorMessage: 'ERROR_CREATE_HR_USER: inputField validation error',
                     skipFileUploadValidation: false,
-                    locale
+                    locale: formData.locale
                 });
 
             if (error) {
@@ -165,10 +168,7 @@ export const createHrUser = async (req: any, res: any) => {
             // hash password
             const salt = await bcryptjs.genSalt(10);
             const hashedPassword = await bcryptjs.hash(formDataObject['password']!, salt);
-            const uploadedProfilePictureFile = await uploadFile(
-                formData,
-                FILE_TYPE.image,
-            );
+            const uploadedProfilePictureFile = await uploadFile(profilePicture, FILE_TYPE.image);
 
             if (!uploadedProfilePictureFile) {
                 return {
@@ -207,7 +207,7 @@ export const createHrUser = async (req: any, res: any) => {
                 email: formDataObject['email'] as IHrUserSchema['email'],
                 emailType: EMAIL_TYPE.verify,
                 userId: savedUser._id,
-                locale,
+                locale: formData.locale
             });
 
             if (!messageId) {

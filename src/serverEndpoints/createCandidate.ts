@@ -15,17 +15,20 @@ export async function createCandidate(req: any, res: any) {
             const mongoose = await import('mongoose');
             type Model<T = any> = typeof mongoose.Model<T>;
 
-            const locale = req.body.locale
-            const translation = useTranslation('serverAction', locale);
-            const formData = req.body.formData;
+            const formData = req.body;
+
+            const translation = useTranslation('serverAction', formData.locale);
             const formDataObject = getFormDataObject(formData);
+
+            const profilePicture = req.files?.find((f: any) => f.fieldname === "profilePicture");
+            const file = req.files?.find((f: any) => f.fieldname === "file");
 
             const { errorFieldValidation, error, prevStateFormData } =
                 await checkFormValidation({
                     formData,
                     formDataObject,
                     errorMessage: 'ERROR_CREATE_CANDIDATE: inputField validation error',
-                    locale
+                    locale: formDataObject["locale"]
                 });
 
             if (error) {
@@ -60,15 +63,8 @@ export async function createCandidate(req: any, res: any) {
                 });
             }
 
-            const uploadedProfilePictureFile = await uploadFile(
-                formData,
-                FILE_TYPE.image,
-            );
-
-            const uploadedCurriculumVitaeFile = await uploadFile(
-                formData,
-                FILE_TYPE.file,
-            );
+            const uploadedProfilePictureFile = await uploadFile(profilePicture, FILE_TYPE.image);
+            const uploadedCurriculumVitaeFile = await uploadFile(file, FILE_TYPE.file);
 
             const newCandidate = new Model({
                 profilePicture: uploadedProfilePictureFile!,

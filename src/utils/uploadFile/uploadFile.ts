@@ -1,20 +1,16 @@
 export const uploadFile = async (
-    formData: FormData,
-    inputFieldName: string,
+    file: Express.Multer.File | undefined | null,
+    type: string,
 ) => {
-    const file = formData.get(inputFieldName) as File;
+    if (!file) return null;
 
-    if (file && file.name !== 'undefined') {
-        const arrayBuffer = await file.arrayBuffer();
-        const buffer = Buffer.from(arrayBuffer);
-
-        return {
-            file: {
-                name: file.name,
-                data: buffer.toString('base64'),
-                contentType: file.type,
-            },
-        };
-    }
-    return null;
+    return {
+        file: {
+            name: file.originalname,
+            data: file.buffer.toString("base64"),
+            contentType: file.mimetype,
+            size: file.size,
+            type,
+        },
+    };
 };

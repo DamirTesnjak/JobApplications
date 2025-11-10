@@ -21,6 +21,10 @@ export class TableComponent {
 
     displayedColumns = this.columnsToDisplay ? Object.keys(this.columnsToDisplay) : [];
 
+    ngOnInit() {
+        console.log("dataSource222", this.dataSource);
+    }
+
     getCellComponent(column: any, row: any) {
         if (column.cellButton) return Button;
         if (column.cellImage) return ImageComponent;

@@ -5,6 +5,7 @@ import {
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 import express from 'express';
+import multer from "multer";
 import cookieParser from 'cookie-parser';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -33,6 +34,7 @@ const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
 
 const app = express();
+const upload = multer();
 const angularApp = new AngularNodeAppEngine();
 
 /**
@@ -55,7 +57,7 @@ app.post('/api/email_template/delete', async (req: any, res: any) => {
   deleteEmailTemplate(req, res);
 });
 
-app.post('/api/createCandidate', async (req: any, res: any) => {
+app.post('/api/createCandidate', upload.any(), async (req: any, res: any) => {
   createCandidate(req, res);
 });
 
@@ -63,11 +65,11 @@ app.post('/api/createCompanyEmailConfiguration', async (req: any, res: any) => {
   createCompanyEmailConfiguration(req, res);
 });
 
-app.post('/api/createEmailTemplate', async (req: any, res: any) => {
+app.post('/api/createEmailTemplate', upload.any(), async (req: any, res: any) => {
   createEmailTemplate(req, res);
 });
 
-app.post('/api/createHrUser', async (req: any, res: any) => {
+app.post('/api/createHrUser', upload.any(), async (req: any, res: any) => {
   createHrUser(req, res);
 });
 
@@ -107,7 +109,7 @@ app.post('/api/mapEmailTemplates', async (req: any, res: any) => {
   mapEmailTemplates(req, res);
 });
 
-app.post('/api/updateCandidate', async (req: any, res: any) => {
+app.post('/api/updateCandidate', upload.any(), async (req: any, res: any) => {
   updateCandidate(req, res);
 });
 
@@ -115,7 +117,7 @@ app.post('/api/updateEmailTemplate', async (req: any, res: any) => {
   updateEmailTemplate(req, res);
 });
 
-app.post('/api/updateHrUser', async (req: any, res: any) => {
+app.post('/api/updateHrUser', upload.any(), async (req: any, res: any) => {
   updateHrUser(req, res);
 });
 

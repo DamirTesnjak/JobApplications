@@ -8,6 +8,7 @@ import { stateSelector } from '../../utils/stateSelector/stateSelector';
 import { Store } from '@ngrx/store';
 import { ITutorialData } from '../../app/state/tutorialData/tutorialData.state';
 import { DetectLocaleChangeService } from '../../utils/translation/detectLocaleChange.service';
+import { ICandidateSchema } from '../../utils/dbConfig/models/candidateModel';
 
 @Component({
     selector: 'app-message-display',

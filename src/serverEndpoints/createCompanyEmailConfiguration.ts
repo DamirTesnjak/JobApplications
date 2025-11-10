@@ -10,9 +10,10 @@ export async function createCompanyEmailConfiguration(req: any, res: any) {
         if (typeof window === "undefined") {
             const mongoose = await import('mongoose');
             type Model<T = any> = typeof mongoose.Model<T>;
-            const locale = req.body.locale
-            const translation = useTranslation('serverAction', locale);
-            const formData = req.body.formData;
+
+            const formData = req.body;
+
+            const translation = useTranslation('serverAction', formData.locale);
             const formDataObject = getFormDataObject(formData);
 
             // Return early if the form data is invalid
@@ -21,7 +22,7 @@ export async function createCompanyEmailConfiguration(req: any, res: any) {
                     formData,
                     formDataObject,
                     errorMessage: 'ERROR_CREATE_COMPANY_EMAIL_CONFIGURATION: inputField validation error',
-                    locale
+                    locale: formData.locale
                 });
 
             if (error) {

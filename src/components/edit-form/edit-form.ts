@@ -1,4 +1,4 @@
-import { Component, effect, EventEmitter, inject, Input, Output, signal, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, signal, SimpleChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Button } from '../button/button.component';
 import { initialStateCompanyEmailConfigs } from '../../app/state/companyEmailConfigs/companyEmailConfigs.reducers';
@@ -83,15 +83,18 @@ export class EditForm {
 
         const formData = new FormData(form);
 
-        if (this.selectedFile) {
+        if (this.selectedFile?.type === 'application/pdf') {
             formData.append("file", this.selectedFile);
         }
-
-        const bodyReq = {
-            formData: formData,
+        if (this.selectedFile?.type.includes("image")) {
+            formData.append("profilePicture", this.selectedFile);
         }
 
-        this.http.post(`api/${this.serverActionName}`, bodyReq).subscribe({
+        formData.append("locale", this.localeService.getLocale()());
+
+        console.log('formData', formData);
+
+        this.http.post(`api/${this.serverActionName}`, formData).subscribe({
             next: (res) => {
                 console.log(`${this.serverActionName}`, res);
                 this.actionResponse.set(res);

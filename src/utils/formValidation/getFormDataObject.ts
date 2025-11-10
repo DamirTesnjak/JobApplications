@@ -3,11 +3,13 @@ export type IFormDataObject = {
     [x: string]: any;
 };
 
-export function getFormDataObject(formData: FormData) {
+export function getFormDataObject(formData: any) {
     const formDataObject: IFormDataObject = {};
 
-    for (const [key, value] of formData) {
-        formDataObject[key] = value;
+    console.log("formData22222222", formData);
+
+    for (const key in formData) {
+        formDataObject[key] = formData[key];
     }
     return formDataObject;
 }
