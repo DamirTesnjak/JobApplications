@@ -1,0 +1,214 @@
+{
+  "home": {
+    "welcome": "Dobrodošli",
+    "welcomeText": "<article>\n      Dobrodošli v aplikaciji JobApplicants app. Aplikacija vam omogoča urejanje seznama zaposlenih v vašem podjetju.\n      <br/>\n      Omogoča vam tudi urejanje seznama kandidatov prijavljenih na vaša razpisna delovna mesta.\n      <br/>\n      Aplikacija vam omogoča tudi ustvarjanje predlogov e-poštnih sporočil, in vam poenostavi pošiljanje e-pošte s klikom na gumb.\n      <br/>\n      Za dodatne informacije obiščite sekcijo POMOČ.\n      <br/>\n      <br/>\n      Za pričetek uporabe aplikacije se prijavite z vašo akredetacijo podjetja. Za ogled VADNICE morate biti prijavljeni!\n    </article>",
+    "profileActionsRegister": "Registracija",
+    "profileActionsLogin": "Prijava"
+  },
+  "candidatesProfile": {
+    "candidateProfile": "Profil kandidata",
+    "editProfile": "Uredi profil"
+  },
+  "candidates": {
+    "candidates": "Kandidati",
+    "name": "Ime",
+    "phoneNumber": "Telefonska številka",
+    "archived": "Arhiviran",
+    "employed": "Zaposlen",
+    "hired": "Zaposlen",
+    "rejected": "Zavrnjen",
+    "fired": "Odpuščen",
+    "archive": "Pošlji v arhiv",
+    "hire": "Zaposli",
+    "reject": "Zavrni",
+    "fire": "Odpusti",
+    "profileLink": "Link profila",
+    "addNewCandidate": "Dodaj novega kandidata",
+    "noCandidatesFound": "Ni kandidatov!",
+    "cannotFindAnyCandidates": "Ni mogoče najti nobenega kandidata!"
+  },
+  "hrUserProfile": {
+    "couldNotFindProfileData": "Ni bilo mogoče najti podatkov o profilu!",
+    "profile": "Profil",
+    "editProfile": "Uredi profil"
+  },
+  "editHrUserProfile": {},
+  "login": {
+    "login": "Prijava",
+    "username": "Uporabniško ime",
+    "password": "Geslo",
+    "profileActionsLogin": "Prijava"
+  },
+  "register": {
+    "register": "Registracija",
+    "name": "Ime",
+    "surname": "Priimek",
+    "company": "Ime podjetja",
+    "phoneNumber": "Telefonska številka",
+    "email": "E-pošta",
+    "username": "Uporabniško ime",
+    "password": "Geslo",
+    "profilePicture": "Naloži sliko profila",
+    "saveChanges": "Shrani spremembe"
+  },
+  "settings": {
+    "companyEmailConfiguration": "Konfiguracija e-pošte podjetja",
+    "setupEmailTemplateMessages": "Nastavi e-poštna predloga sporočil",
+    "overviewEmailTemplateMessages": "Pregled sporočil e-poštnih predlog",
+    "settings": "Nastavitve",
+    "mapEmailTemplateMessages": "Preslikaj sporočila poštnih predlog",
+    "settingsText": "Tukaj lahko nastavite nove konfiguracije nastavitev. Kliknite na zavihke!"
+  },
+  "companyEmailConfiguration": {
+    "companyEmailConfiguration": "Konfiguracija e-pošte podjetja"
+  },
+  "emailType": {
+    "editEmailMessageTemplate": "Uredi predlogo e-poštnega sporočila"
+  },
+  "mapTemplateMessages": {
+    "archive": "Pošlji v arhiv",
+    "hire": "Zaposli",
+    "reject": "Zavrni",
+    "fire": "Odpusti",
+    "mapEmailTemplateMessages": "Preslikaj sporočila poštnih predlog",
+    "selectEmailTemplate": "Izberite e-poštno predlogo",
+    "saveChanges": "Shrani spremembe"
+  },
+  "emailTemplatePage": {
+    "emailTemplates": "E-poštne predloge",
+    "emailType": "Vrsta e-pošte",
+    "noEmailTemplatesFound": "Ni e-poštnih predlog!",
+    "cannotFindAnyEmailTemplates": "Napaka! Ni mogoče najti nobene e-poštne predloge!"
+  },
+  "setupEmailTemplateMessages": {
+    "configureTemplateMessage": "Konfiguriraj sporočilo predloge",
+    "editEmailMessageTemplate": "Uredi predlogo e-poštnega sporočila"
+  },
+  "deleteEmailTemplateButton": {
+    "doYouWantToDeleteThisEmailTemplate": "Ali želite izbrisati to e-poštno predlogo?",
+    "yesDeleteEmailTemplate": "Da izbriši e-poštno predlogo",
+    "cancel": "Prekliči",
+    "delete": "Izbriši"
+  },
+  "deleteProfile": {
+    "yesDeleteProfile": "Da! Izbriši profil!",
+    "cancel": "Prekliči",
+    "delete": "Izbriši",
+    "doYouWantToDeleteThisProfile": "Ali želite izbrisati ta profil? Dejanja ni mogoče razveljaviti!"
+  },
+  "editForm": {
+    "name": "Ime",
+    "surname": "Priimek",
+    "address": "Naslov",
+    "city": "Mesto",
+    "zipCode": "Poštna številka",
+    "country": "Država",
+    "phoneNumber": "Telefonska številka",
+    "linkedIn": "Linkedin",
+    "archived": "Arhivirano",
+    "employed": "Zaposlen",
+    "rejected": "Zavrnjen",
+    "fired": "Odpuščen",
+    "emailHost": "Gostitelj elektronske pošte (Host)",
+    "port": "Vrata (port)",
+    "email": "E-pošta",
+    "username": "Uporabniško ime",
+    "companyName": "Ime podjetja",
+    "password": "Geslo",
+    "profilePicture": "Naloži sliko profila",
+    "cvFile": "Naloži življenjepis",
+    "saveChanges": "Shrani spremembe"
+  },
+  "header": {
+    "job": "Job",
+    "applicants": "Applicants",
+    "profileActionsRegister": "Registracija",
+    "profileActionsLogin": "Prijava"
+  },
+  "logoutButton": {
+    "logout": "Odjava"
+  },
+  "modal": {
+    "ok": "V redu!",
+    "success": "Uspešno zaključeno",
+    "warning": "Opozorilo!",
+    "error": "Napaka!"
+  },
+  "textEditor": {
+    "emailTemplateName": "Ime",
+    "selectEmailTemplate": "Izberite e-poštno predlogo",
+    "companyLogo": "Naloži logotip podjetja",
+    "saveChange": "Shrani spremembe",
+    "candidateName": "Ime kandidata",
+    "yourName": "Vaše ime",
+    "companyName": "Ime podjetja",
+    "hire": "Zaposli",
+    "reject": "Zavrni",
+    "fire": "Odpusti",
+    "emailTemplate": "E-poštna predloga"
+  },
+  "serverAction": {
+    "somethingWentWrong": "Nekaj je šlo narobe, poskusite znova ali kontaktirajte podporo.",
+    "cannotSaveChanges": "Nekaj je šlo narobe, ni mogoče shraniti sprememb, poskusite znova ali kontaktirajte podporo.",
+    "candidateNotFound": "Kandidata ni mogoče najti!",
+    "candidateFound": "Kandidat najden!",
+    "noCandidatesFound": "Ni kandidatov!",
+    "cannotFindAnyCandidates": "Ni mogoče najti nobenega kandidata!",
+    "emailTemplateNotFound": "E-poštna predloga ni bila najdena!",
+    "cannotFindAnyEmailTemplates": "Ne najdem nobene e-poštne predloge!",
+    "noEmailTemplatesFound": "Ni e-poštnih predlog!",
+    "userNotFound": "Uporabnika ni mogoče najti!",
+    "usernameDoesNotExist": "Uporabniško ime ne obstaja! Najprej se registrirajte.",
+    "passwordDoesNotMatch": "Geslo se ne ujema! Poskusite znova ali kontaktirajte podporo.",
+    "newMappedEmailSettingsCreatedSuccessfully": "Uspešno ustvarjene nove preslikane e-poštne nastavitve",
+    "companyEmailConfigurationNotFound": "Konfiguracije e-pošte podjetja ni bilo mogoče najti! E-pošte ni mogoče poslati!",
+    "emailSentToTheCandidate": "E-poštno sporočilo je bilo poslano!",
+    "savedChanges": "Shranjene spremembe",
+    "candidateAlreadyExists": "Kandidat že obstaja",
+    "userAlreadyExists": "Uporabnik že obstaja",
+    "cannotCreateUser": "Uporabnika ni mogoče ustvariti! Poskusite znova ali kontaktirajte podporo!",
+    "userCreated": "Uporabnik je bil uspešno ustvarjen",
+    "cannotSendAnEmailToYou": "Ne morem vam poslati e-pošte! Registracija ni uspela! Poskusite znova ali se obrnite na podporo.",
+    "jobStatus": "Prijava na delovno mesto/status zaposlenega",
+    "emailDeleted": "E-poštna predloga je bila uspešno izbrisana!"
+  },
+  "localeSwitcher": {
+    "changeLanguage": "Spremenite jezik",
+    "locale": "{en: English, hr: Hrvatski, sl: Sloveščina, other: Ostalo}"
+  },
+  "sidebar": {
+    "candidates": "Kandidati",
+    "settings": "Nastavitve",
+    "help": "Pomoč"
+  },
+  "help": {
+    "help": "Pomoč"
+  },
+  "tutorial": {
+    "candidates": "Preden začnete uporabljati to aplikacijo vam moramo pokazati kako nastaviti pomembne nastavitve! Brez tega nekatere funkcije te aplikacije ne bodo delovale pravilno. Obiščimo razdelek 'NASTAVITEV' v aplikaciji! To vadnico lahko kadar koli preskočite.",
+    "settings": "Smo v 'NASTAVITVAH'. Kot lahko vidite, imamo zavihke za različne razdelke nastavitev. Obiščimo prvega!",
+    "companyEmailConfiguration": "Ta obrazec je zelo pomemben! Omogoča vam nastavitev e-poštne konfiguracije. Vnesite vse zahtevane informacije vašega e-poštnega ponudnika. Če želite spremeniti konfiguracijo, preprosto znova obiščite ta razdelek in izpolnite obrazec ter shranite spremembe. Nova konfiguracija začne veljati takoj!",
+    "companyEmailConfiguration2": "Obiščimo naslednji razdelek nastavitev!",
+    "setupEmailTemplateMessages": "Tukaj lahko konfiguriramo e-poštne predloge! Zakaj bi znova pisali isto e-pošto, ko pa lahko preprosto pošljete predlogo, napolnjeno z ustreznimi informacijami. Za začetek v polju 'IME' dodelite ime predloge. Nato lahko izberete že obstoječo ali ustvarite novo. Prav tako lahko naložite logotip podjetja, ki bo pozneje vključen v poslano e-pošto. Spremembe lahko shranite s klikom na gumb 'SHRANI SPREMEMBE' so shranjene nove predloge!",
+    "setupEmailTemplateMessages2": "Orodna vrstica za pomoč pri vstavljanju potrebnih oznak HTML v urejevalnik. Imenovani gumbi vstavljajo določene konstante v urejevalnik, npr. [COMPANY_NAME]. Pozneje bodo zamenjani z ustreznimi informacijami, ko pošljete e-pošto!",
+    "setupEmailTemplateMessages3": "Tukaj napišite poljubno e-poštno predlogo kot oznako HTML. Uporabite orodno vrstico za preprosto vstavljanje oznak HTML.",
+    "setupEmailTemplateMessages4": "Oglejte si pisno predlogo, kot bo prikazana v poslanem e-poštnem sporočilu!",
+    "setupEmailTemplateMessages5": "Obiščimo naslednji razdelek nastavitev!",
+    "overviewEmailTemplateMessages": "Na tej strani si lahko ogledate shranjene e-poštne predloge kot podatke v tabeli. Ikone dejanj v vrsticah tabele vam omogočajo urejanje obstoječih e-poštnih predlog ali njihovo brisanje!",
+    "overviewEmailTemplateMessages2": "Naj obiščemo naslednji razdelek nastavitev!",
+    "mapTemplateMessages": "Tukaj dodelite e-poštne predloge pravim 'DEJANJEM: arhiviraj, zaposli, zavrni'. Nove nastavitve začnejo veljati takoj!",
+    "mapTemplateMessages2": "Oglejmo si razdelek KANDIDATI v aplikaciji",
+    "candidates2": "Tabela vam omogoča ogled podatkov o kandidatih. S klikom na gumbe, kot so »ARHIV«, »ZAPOSLI«, »ZAVRNI«, se bo sprožilo pošiljanje e-poštnega sporočila, ki temelji na preslikani e-pošti s predlogo za določeno dejanje, definirano v »NASTAVITVE/PRESLIKAJ SPOROČILA POŠTNIH PREDLOG«. Če kliknete ikono oblaka CV, lahko prenesete življenjepis kandidata. Če kliknete ikono Linkedin, lahko obiščete njegovo stran Linkedin. TO JE KONEC VADNICE",
+    "back": "Nazaj",
+    "close": "Zapri",
+    "last": "Konec",
+    "next": "Naprej",
+    "open": "Odpri",
+    "skip": "Preskoči"
+  },
+  "formValidation": {
+    "fieldRequired": "Polje je obvezno",
+    "mustBe10orMoreCharactersLong": "Mora biti več kot 10 znakov dolgo",
+    "invalidEmailAddress": "Neveljaven e-pošni naslov"
+  }
+}
