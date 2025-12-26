@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, Signal, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { MessageDisplay } from '../../../components/message-display/message-display';
 import { TableComponent } from "../../../components/table/table";
 import { candidatesColumnDef } from './customerTableDataProps';
-import { useTranslation } from '../../../utils/translation/useTranslation';
-import { ITableData } from '../../../components/message-display/type';
 import { DetectLocaleChangeService } from '../../../utils/translation/detectLocaleChange.service';
 import { ICandidateSchema } from '../../../utils/dbConfig/models/candidateModel';
+import { ENV } from '../../../environments/env.generated';
+import { MatTableDataSource } from '@angular/material/table';
 
 type IResponse = {
     candidates: ICandidateSchema[];
@@ -16,14 +16,14 @@ type IResponse = {
 @Component({
     selector: 'app-create-candidate-page',
     imports: [MessageDisplay, TableComponent],
-    templateUrl: './CandidatesPage.html',
+    templateUrl: './candidatesPage.html',
     styleUrl: '../../../styles/global/globals.module.scss'
 })
 export class CandidatesPage {
     private http = inject(HttpClient);
     private localeService = inject(DetectLocaleChangeService);
 
-    translation = useTranslation("candidates", this.localeService.getLocale());
+    private _dataSource: MatTableDataSource<ICandidateSchema> = new MatTableDataSource<ICandidateSchema>([]);
 
     columnsToDisplay = [
         'profilePicture',
@@ -42,24 +42,32 @@ export class CandidatesPage {
         'button5',
     ];
 
-    candidates: ICandidateSchema[] | [] = [];
-    results = signal<any>({});
-
+    results = signal<ICandidateSchema[]>([]);
+    
     tableColumnsDef = candidatesColumnDef;
 
     ngOnInit() {
         const locale = this.localeService.getLocale()
-        this.http.post("api/getCandidates", {
+        this.http.post(`${ENV.APP_SERVER}/api/getCandidates`, {
             locale: locale()
         }).subscribe({
             next: (res) => {
                 const response = res as IResponse;
-                this.results.set(response);
-
+                console.log('Get Candidates Response:', response.candidates);
+                this.results.set(response.candidates);
             },
             error: (error) => {
                 this.results.set(error);
             },
         });
     }
+
+    dataSource = computed(() => {
+    this._dataSource.data = this.results();
+        return this._dataSource;
+    });
+
+    data = computed(() => {
+        return this.results();
+    });
 }

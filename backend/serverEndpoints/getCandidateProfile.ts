@@ -22,15 +22,16 @@ export async function getCandidateProfile(req: any, res: any) {
                 });
             }
 
-            const candidate = await Model?.findById(req.id);
+            const candidate = await Model?.findById(req.body.id);
+            console.log('CANDIDATE_PROFILE:', candidate);
             if (!candidate) {
                 return res.status(500).json({
-                    errorMessage: translation("candidateFound"),
+                    errorMessage: translation("candidateNotFound"),
                     error: true,
                 });
             }
             return res.status(200).json({
-                successMessage: 'Candidate found',
+                successMessage: translation("candidateFound"),
                 data: {
                     id: candidate._id,
                     profilePicture: candidate.profilePicture,

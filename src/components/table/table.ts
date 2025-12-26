@@ -1,47 +1,65 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input, SimpleChanges } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { Button } from '../button/button.component';
 import { ImageComponent } from '../image-component/image-component';
 import { IconComponent } from '../icon-component/icon-component';
 import { LinkButtonComponent } from '../link-button-component/link-button-component';
-import { CommonModule } from '@angular/common';
+import { NgComponentOutlet } from '@angular/common';
 import { RowButton } from '../rowButton/rowButton';
-import { DeleteEmailTemplateButton } from '../delete-email-template-button/delete-email-template-button.component';
+import { useTranslation } from '../../utils/translation/useTranslation';
+import { DetectLocaleChangeService } from '../../utils/translation/detectLocaleChange.service';
+import { TableCell } from '../table-cell/table-cell';
 
 @Component({
     selector: 'app-table',
-    imports: [MatTableModule, CommonModule],
+    standalone: true,
+    imports: [
+        MatTableModule,
+        NgComponentOutlet,
+        TableCell,
+        Button,
+        ImageComponent,
+        IconComponent,
+        LinkButtonComponent,
+        RowButton,
+    ],
     templateUrl: './table.html',
 })
 
 export class TableComponent {
+    private localeService = inject(DetectLocaleChangeService);
+
     @Input() tableColumnsDef!: any;
     @Input() dataSource!: any;
     @Input() columnsToDisplay!: any;
 
-    displayedColumns = this.columnsToDisplay ? Object.keys(this.columnsToDisplay) : [];
+    displayedColumns: string[] = [];
 
-    ngOnInit() {
-        console.log("dataSource222", this.dataSource);
+    translation = useTranslation("candidates", this.localeService.getLocale());
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['columnsToDisplay'] && this.columnsToDisplay) {
+            this.displayedColumns = [...this.columnsToDisplay];
+        }
     }
 
-    getCellComponent(column: any, row: any) {
+    getCellComponent(column: any) {
         if (column.cellButton) return Button;
         if (column.cellImage) return ImageComponent;
         if (column.cellIcon) return IconComponent;
         if (column.cellLinkButton) return LinkButtonComponent;
         if (column.cellRowButton) return RowButton;
-        if (column.cell) return DeleteEmailTemplateButton;
-
-        return column.cell;
+        return TableCell;
     }
 
-    setCellComponentsInputs(column: any, row: any) {
-        if (column.cellButton) return column.cellButton;
-        if (column.cellImage) return column.cellImage;
-        if (column.cellIcon) return column.cellIcon;
-        if (column.cellLinkButton) return column.cellLinkButton;
-        if (column.cellRowButton) return column.cellRowButton;
-        return;
+    setCellComponentsInputs(column: any) {
+        return {
+        ...column.cellButton,
+        ...column.cellImage,
+        ...column.cellIcon,
+        ...column.cellLinkButton,
+        ...column.cellRowButton,
+        ...column.cell,
+        };
     }
 }

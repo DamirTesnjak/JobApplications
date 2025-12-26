@@ -1,9 +1,12 @@
 <table mat-table [dataSource]="dataSource">
     @for(column of displayedColumns; track column) {
         <ng-container [matColumnDef]="column">
-            <th mat-header-cell *matHeaderCellDef> {{ tableColumnsDef[column].title }} </th>
+            <th mat-header-cell *matHeaderCellDef> {{ tableColumnsDef(null, translation)[column].title }} </th>
             <td mat-cell *matCellDef="let row">
-                <ng-container *ngComponentOutlet="getCellComponent(tableColumnsDef[column], row); ngComponentOutletInputs: setCellComponentsInputs(tableColumnsDef[column])"></ng-container>
+                <ng-container
+                    [ngComponentOutlet]="getCellComponent(tableColumnsDef(row, translation)[column])"
+                    [ngComponentOutletInputs]="setCellComponentsInputs(tableColumnsDef(row, translation)[column])">
+                </ng-container>
             </td>
         </ng-container>
     }

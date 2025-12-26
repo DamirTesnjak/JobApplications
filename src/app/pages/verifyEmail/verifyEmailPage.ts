@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ENV } from '../../../environments/env.generated';
 
 @Component({
     selector: 'app-verify-email-page',
@@ -22,7 +23,7 @@ export class VerifyEmailPage {
             token: decodeURIComponent(urlToken),
         }
 
-        this.http.post("api/verifyEmail", bodyReq).subscribe({
+        this.http.post(`${ENV.APP_SERVER}/api/verifyEmail`, bodyReq).subscribe({
             next: (res) => {
                 console.log("verifyEmail", res);
                 this.verifyEmailSignal.set(res);

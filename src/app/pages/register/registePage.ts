@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { SnackBarService } from '../../../components/snackBar.service';
 import { snackbarProps } from '../../../components/globalConstant';
 import { DetectLocaleChangeService } from '../../../utils/translation/detectLocaleChange.service';
+import { ENV } from '../../../environments/env.generated';
 
 @Component({
     selector: 'app-register-page',
@@ -61,7 +62,7 @@ export class RegisterPage {
             locale: locale()
         }
 
-        this.http.post("api/createHrUser", bodyReq).subscribe({
+        this.http.post(`${ENV.APP_SERVER}/api/createHrUser`, bodyReq).subscribe({
             next: (res) => {
                 console.log("createHrUser", res);
                 this.signal.set(res);

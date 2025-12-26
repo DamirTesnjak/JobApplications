@@ -10,6 +10,7 @@ import { SnackBarService } from '../../../../components/snackBar.service';
 import { snackbarProps } from '../../../../components/globalConstant';
 import { IEmailTemplateSchema } from '../../../../utils/dbConfig/models/emailTemplateModel';
 import { DetectLocaleChangeService } from '../../../../utils/translation/detectLocaleChange.service';
+import { ENV } from '../../../../environments/env.generated';
 
 interface IResponseEmailTemplates {
     successMessage: string;
@@ -65,7 +66,7 @@ export class MapTemplateMessagesPage {
     ngOnInit() {
         const locale = this.localeService.getLocale()
 
-        this.http.post("api/getEmailTemplates", {
+        this.http.post(`${ENV.APP_SERVER}/api/getEmailTemplates`, {
             locale: locale()
         }, { observe: 'response' }).subscribe({
             next: (res) => {

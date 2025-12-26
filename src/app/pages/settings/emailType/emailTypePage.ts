@@ -4,6 +4,7 @@ import { TextEditor } from '../../../../components/text-editor/text-editor';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { DetectLocaleChangeService } from '../../../../utils/translation/detectLocaleChange.service';
+import { ENV } from '../../../../environments/env.generated';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class EmailTypePage {
             locale: locale()
         }
 
-        this.http.post("api/getEmailTemplate", bodyReq).subscribe({
+        this.http.post(`${ENV.APP_SERVER}/api/getEmailTemplate`, bodyReq).subscribe({
             next: (res) => {
                 console.log("getEmailTemplate", res);
                 this.actionResponse.set(res);

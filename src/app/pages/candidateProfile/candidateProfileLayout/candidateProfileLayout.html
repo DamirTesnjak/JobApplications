@@ -1,4 +1,4 @@
-@if(!data){
+@if(!profileData()){
     <div class="container">Could not found profile data</div>
 }
 @else {
@@ -6,11 +6,11 @@
       <div class="candidateProfilePage">
         <h3
           className="pageTitle"
-        >{{`${translation("candidateProfile")}: ${data.name} ${data.surname}`}}</h3>
+        >{{`${translation("candidateProfile")}: ${profileData().name} ${profileData().surname}`}}</h3>
         <div className="profilePicture">
           <div id="profilePicture">
             <img
-              [src]="getPicture(data.profilePicture.file)!"
+              [src]="getPicture(profileData()?.profilePicture?.file)!"
               alt="Profile image"
               width="200"
               height="200"

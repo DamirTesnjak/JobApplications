@@ -18,6 +18,17 @@ export class Button {
 
   @Output() onClick = new EventEmitter();
 
+  ngOnINit() {
+    console.log("Button component loaded with props:", {
+     id: this.id,
+     className: this.className,
+       iconName: this.iconName,
+       type: this.type,
+      text: this.text,
+       component: this.component,
+     });  
+  }
+
   handleClick(): void {
     if (this.type !== 'submit') {
       this.onClick.emit();

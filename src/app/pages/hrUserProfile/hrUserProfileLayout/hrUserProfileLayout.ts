@@ -12,6 +12,7 @@ import { updateHrUser } from '../../../state/hrUser/hrUser.actions';
 import { IInitialStateHrUser } from '../../../state/hrUser/hrUser.state';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
 import { DetectLocaleChangeService } from '../../../../utils/translation/detectLocaleChange.service';
+import { ENV } from '../../../../environments/env.generated';
 
 interface IResponse {
     successMessage: string;
@@ -48,7 +49,7 @@ export class HrUserProfileLayout {
             locale: locale()
         }
 
-        this.http.post("api/getHrUserProfile", bodyReq, { observe: 'response' }).subscribe({
+        this.http.post(`${ENV.APP_SERVER}/api/getHrUserProfile`, bodyReq, { observe: 'response' }).subscribe({
             next: (res) => {
                 console.log("getHrUserProfile", res);
                 const response = res.body as IResponse;

@@ -8,6 +8,7 @@ import { updateHrUser } from '../../state/hrUser/hrUser.actions';
 import { Router } from '@angular/router';
 import { IHrUserSchema } from '../../../utils/dbConfig/models/hrUserModel';
 import { DetectLocaleChangeService } from '../../../utils/translation/detectLocaleChange.service';
+import { ENV } from '../../../environments/env.generated';
 
 interface IResponse {
     successMessage?: string;
@@ -51,7 +52,7 @@ export class LoginPage {
     getHrUserProfileData() {
         let result: IResponse = {};
         const locale = this.localeService.getLocale()
-        this.http.post("api/getHrUserProfile", {
+        this.http.post(`${ENV.APP_SERVER}/api/getHrUserProfile`, {
             locale: locale()
         }).subscribe({
             next: (res) => {
@@ -80,7 +81,7 @@ export class LoginPage {
             locale: this.localeService.getLocale()
         }
 
-        this.http.post("api/loginHrUser", bodyReq).subscribe({
+        this.http.post(`${ENV.APP_SERVER}/api/loginHrUser`, bodyReq).subscribe({
             next: (res) => {
                 console.log("loginHrUser", res);
                 this.signal.set(res);

@@ -1,8 +1,8 @@
+import { text } from "stream/consumers";
 import { ICandidateSchema } from "../../../utils/dbConfig/models/candidateModel";
 import { getFile } from "../../../utils/getFile/getFile";
 
 export interface ICandidatesTableDataRowProps {
-  original: {
     id: ICandidateSchema['id'];
     name: string;
     surname: string;
@@ -10,7 +10,6 @@ export interface ICandidatesTableDataRowProps {
     status: ICandidateSchema['status'];
     profilePicture: ICandidateSchema['profilePicture'];
     curriculumVitae: ICandidateSchema['curriculumVitae'];
-  };
 }
 
 export const candidatesColumnDef = (
@@ -38,9 +37,9 @@ export const candidatesColumnDef = (
       size: 50,
       cellImage: row ? {
         src: getFile({
-          name: row.original.profilePicture.file.name,
-          data: row.original.profilePicture.file.data,
-          contentType: row.original.profilePicture.file.contentType,
+          name: row.profilePicture.file.name,
+          data: row.profilePicture.file.data,
+          contentType: row.profilePicture.file.contentType,
         }),
         alt: "Profile image",
         width: "40",
@@ -54,8 +53,9 @@ export const candidatesColumnDef = (
     name: {
       title: translation("name"),
       size: 100,
-      cell: `${row?.original.name}
-            ${row?.original.surname}`,
+      cell: row ? {
+        text: `${row?.name} ${row?.surname}`,
+      } : null,
       enableColumnActions: false,
       enableColumnDragging: false,
     },
@@ -67,10 +67,10 @@ export const candidatesColumnDef = (
         text: "CV",
         iconName: "cloudDownloadIcon",
         type: "button",
-        onClick: getFile({
-          name: row.original.curriculumVitae.file.name,
-          data: row.original.curriculumVitae.file.data,
-          contentType: row.original.curriculumVitae.file.contentType,
+        onClick: () => getFile({
+          name: row.curriculumVitae.file.name,
+          data: row.curriculumVitae.file.data,
+          contentType: row.curriculumVitae.file.contentType,
         })
       } : null,
       enableColumnActions: false,
@@ -81,7 +81,9 @@ export const candidatesColumnDef = (
     phoneNumber: {
       title: translation("phoneNumber") as unknown as string,
       size: 150,
-      cell: row?.original.contact.phoneNumber,
+      cell: row ? {
+        text: row.contact.phoneNumber
+      } : null,
       enableColumnActions: false,
       enableColumnDragging: false,
       enableSorting: false,
@@ -91,7 +93,7 @@ export const candidatesColumnDef = (
       size: 100,
       cellLinkButton: row ?
         {
-          href: row.original.contact.linkedIn,
+          href: row.contact.linkedIn,
           target: "_blank",
           className: "textButton",
           type: "button",
@@ -105,7 +107,7 @@ export const candidatesColumnDef = (
     archived: {
       title: translation("archived"),
       size: 100,
-      cellIcon: row?.original.status.fired ? { fontIcon: "circleIcon", color: "blue" } : { fontIcon: "circleIcon", color: "lightgray" },
+      cellIcon: row?.status.fired ? { fontIcon: "circleIcon", color: "blue" } : { fontIcon: "circleIcon", color: "lightgray" },
       enableColumnActions: false,
       enableColumnFilter: false,
       enableColumnDragging: false,
@@ -114,7 +116,7 @@ export const candidatesColumnDef = (
     hired: {
       title: translation("hired"),
       size: 100,
-      cellIcon: row?.original.status.fired ? { fontIcon: "circleIcon", color: "green" } : { fontIcon: "circleIcon", color: "lightgray" },
+      cellIcon: row?.status.fired ? { fontIcon: "circleIcon", color: "green" } : { fontIcon: "circleIcon", color: "lightgray" },
       enableColumnActions: false,
       enableColumnFilter: false,
       enableColumnDragging: false,
@@ -123,7 +125,7 @@ export const candidatesColumnDef = (
     rejected: {
       title: translation("rejected"),
       size: 100,
-      cellIcon: row?.original.status.fired ? { fontIcon: "circleIcon", color: "orange" } : { fontIcon: "circleIcon", color: "lightgray" },
+      cellIcon: row?.status.fired ? { fontIcon: "circleIcon", color: "orange" } : { fontIcon: "circleIcon", color: "lightgray" },
       enableColumnActions: false,
       enableColumnFilter: false,
       enableColumnDragging: false,
@@ -132,7 +134,7 @@ export const candidatesColumnDef = (
     fired: {
       title: translation("fired"),
       size: 100,
-      cellIcon: row?.original.status.fired ? { fontIcon: "circleIcon", color: "red" } : { fontIcon: "circleIcon", color: "lightgray" },
+      cellIcon: row?.status.fired ? { fontIcon: "circleIcon", color: "red" } : { fontIcon: "circleIcon", color: "lightgray" },
       enableColumnActions: false,
       enableColumnFilter: false,
       enableColumnDragging: false,
@@ -143,7 +145,7 @@ export const candidatesColumnDef = (
       size: 100,
       cellRowButton: row ?
         {
-          clientId: row.original.id,
+          clientId: row.id,
           name: "emailTemplateType",
           text: translation("archive"),
           value: "archive",
@@ -159,7 +161,7 @@ export const candidatesColumnDef = (
       size: 100,
       cellRowButton: row ?
         {
-          clientId: row.original.id,
+          clientId: row.id,
           name: "emailTemplateType",
           text: translation("hire"),
           value: "hire",
@@ -175,7 +177,7 @@ export const candidatesColumnDef = (
       size: 100,
       cellRowButton: row ?
         {
-          clientId: row.original.id,
+          clientId: row.id,
           name: "emailTemplateType",
           text: translation("reject"),
           value: "reject",
@@ -191,7 +193,7 @@ export const candidatesColumnDef = (
       size: 100,
       cellRowButton: row ?
         {
-          clientId: row.original.id,
+          clientId: row.id,
           name: "emailTemplateType",
           text: translation("fire"),
           value: "fire",
@@ -207,7 +209,7 @@ export const candidatesColumnDef = (
       size: 150,
       cellLinkButton: row ?
         {
-          href: `/candidateProfile/${row.original.id}`,
+          href: `/candidateProfile/${row.id}`,
           className: "textButton",
           type: "button",
           iconName: "launchIcon"

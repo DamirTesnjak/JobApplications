@@ -13,6 +13,7 @@ import { stateSelector } from '../../utils/stateSelector/stateSelector';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DetectLocaleChangeService } from '../../utils/translation/detectLocaleChange.service';
+import { ENV } from '../../environments/env.generated';
 @Component({
     selector: 'app-edit-form',
     imports: [Button, InputComponent, StatusDisplay, CommonModule, FormsModule],
@@ -50,6 +51,8 @@ export class EditForm {
         if (changes['stateModel'] || changes['storeSlice']) {
             this.stateModelKeyAndValues = stateSelector(this.storeSlice, this.store);
 
+            console.log("STATE MODEL KEY AND VALUES", this.stateModelKeyAndValues());
+
             this.stateModelKeys = Object.keys(flattenObject(this.stateModel));
             this.fieldsToDisplayKeys = this.stateModelKeys.filter(
                 (stateModelKey) =>
@@ -72,11 +75,10 @@ export class EditForm {
         if (this.actionResponse() && this.actionResponse().prevState) {
             return this.actionResponse().prevState[field];
         }
-        return "";
+        return this.stateModelKeyAndValues()[field];
     };
 
     handleFormAction(event: Event): void {
-        console.log("HANDLE FORM ACTION FIRED ✅");
         event.preventDefault();
 
         const form = event.target as HTMLFormElement;
@@ -94,7 +96,7 @@ export class EditForm {
 
         console.log('formData', formData);
 
-        this.http.post(`api/${this.serverActionName}`, formData).subscribe({
+        this.http.post(`${ENV.APP_SERVER}/api/${this.serverActionName}`, formData).subscribe({
             next: (res) => {
                 console.log(`${this.serverActionName}`, res);
                 this.actionResponse.set(res);

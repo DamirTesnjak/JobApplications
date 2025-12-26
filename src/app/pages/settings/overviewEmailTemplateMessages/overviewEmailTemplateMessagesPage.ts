@@ -5,6 +5,7 @@ import { TableComponent } from '../../../../components/table/table';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
 import { emailTemplatesColumnDef } from './emailTemplatesTableDataProps';
 import { DetectLocaleChangeService } from '../../../../utils/translation/detectLocaleChange.service';
+import { ENV } from '../../../../environments/env.generated';
 
 @Component({
     selector: 'app-create-candidate-page',
@@ -29,7 +30,7 @@ export class OverviewEmailTemplateMessagesPage {
     ngOnInit() {
         const locale = this.localeService.getLocale()
 
-        this.http.post("api/getEmailTemplates", {
+        this.http.post(`${ENV.APP_SERVER}/api/getEmailTemplates`, {
             locale: locale()
         }).subscribe({
             next: (res) => {

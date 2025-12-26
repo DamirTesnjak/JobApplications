@@ -7,11 +7,11 @@ import { useTranslation } from '../../utils/translation/useTranslation';
 import { DetectLocaleChangeService } from '../../utils/translation/detectLocaleChange.service';
 
 interface IButtonIcons {
-    [x: string]: "ArchiveIcon" | "WorkIcon" | "CancelIcon" | "LogoutIcon";
-    archive: "ArchiveIcon",
-    hire: "WorkIcon",
-    reject: "CancelIcon",
-    fire: "LogoutIcon"
+    [x: string]: "archive" | "work" | "cancel" | "logout";
+    archive: "archive",
+    hire: "work",
+    reject: "cancel",
+    fire: "logout"
 }
 
 @Component({
@@ -35,10 +35,10 @@ export class RowButton {
     snackbarProps = snackbarProps;
 
     buttonIcons: IButtonIcons = {
-        archive: "ArchiveIcon",
-        hire: "WorkIcon",
-        reject: "CancelIcon",
-        fire: "LogoutIcon"
+        archive: "archive",
+        hire: "work",
+        reject: "cancel",
+        fire: "logout"
     };
 
     handleFormAction(event: Event): void {

@@ -1,5 +1,3 @@
-import mongoose from 'mongoose';
-
 export interface ICandidateSchema {
     _id?: string;
     id?: string;
@@ -35,42 +33,3 @@ export interface ICandidateSchema {
         fired?: boolean;
     };
 }
-
-const { Schema } = mongoose;
-
-const candidateSchema = new Schema<ICandidateSchema>({
-    id: String,
-    profilePicture: {
-        file: {
-            name: String,
-            data: String,
-            contentType: String,
-        },
-    },
-    name: String,
-    surname: String,
-    contact: {
-        address: String,
-        city: String,
-        zipCode: String,
-        country: String,
-        email: String,
-        phoneNumber: String,
-        linkedIn: String,
-    },
-    curriculumVitae: {
-        file: {
-            name: String,
-            data: String,
-            contentType: String,
-        },
-    },
-    status: {
-        archived: Boolean,
-        employed: Boolean,
-        rejected: Boolean,
-        fired: Boolean,
-    },
-});
-
-export default candidateSchema;

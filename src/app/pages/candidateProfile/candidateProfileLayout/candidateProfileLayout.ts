@@ -11,6 +11,8 @@ import { Store } from '@ngrx/store';
 import { IIinitialStateCandidate } from '../../../state/candidate/candidate.state';
 import { useTranslation } from '../../../../utils/translation/useTranslation';
 import { DetectLocaleChangeService } from '../../../../utils/translation/detectLocaleChange.service';
+import { ENV } from '../../../../environments/env.generated';
+
 
 interface IResponse {
     successMessage: string;
@@ -33,8 +35,7 @@ export class CandidateProfileLayout {
 
     translation = useTranslation(PAGES.candidatesProfile, this.localeService.getLocale());
 
-    actionResponse = signal<any>({});
-    data = this.actionResponse().data;
+    profileData = signal<any>({});
     id!: string;
     DATABASES = DATABASES;
 
@@ -47,21 +48,23 @@ export class CandidateProfileLayout {
             locale: locale()
         }
 
-        this.http.post("api/getCandidateProfile", bodyReq, { observe: 'response' }).subscribe({
+        this.http.post(`${ENV.APP_SERVER}/api/getCandidateProfile`, bodyReq, { observe: 'response' }).subscribe({
             next: (res) => {
-                console.log("getCandidateProfile", res);
                 const response = res.body as IResponse;
-                this.actionResponse.set(response);
-                this.store.dispatch(updateCandidate({ candidate: response.data }))
-
+                this.profileData.set(response.data);
+                console.log("PROFILE DATA", this.profileData());
+                this.store.dispatch(updateCandidate({ candidate: response.data }));
             },
             error: (error) => {
-                this.actionResponse.set(error);
+                this.profileData.set(error);
             },
         });
     }
 
     getPicture(file: IFile) {
+        if (!file) {
+            return '';
+        }
         return getFile(file);
     }
 }

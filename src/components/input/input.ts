@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { InputProps } from './type';
-
 @Component({
     selector: 'app-input',
     imports: [MatIconModule],
@@ -16,7 +15,7 @@ export class InputComponent {
     @Input() role: InputProps["role"] | null = null;
     @Input() type: InputProps["type"] = "text";
     @Input() value: InputProps["value"] | null = null;
-    @Input() defaultValue: InputProps["defaultValue"] | null = null;
+    @Input() defaultValue: InputProps["defaultValue"] | null = "";
     @Input() readOnly: InputProps["readOnly"] = false;
     @Input() required: InputProps["required"] = false;
     @Input() checked: InputProps["checked"] = false;
@@ -34,4 +33,8 @@ export class InputComponent {
         checkbox: 'checkbox',
         label: 'label',
     }
+
+    ngOnInit() {
+        console.log("Input component initialized with value:", this.value);
+    }   
 }

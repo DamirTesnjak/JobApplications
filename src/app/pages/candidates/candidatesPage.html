@@ -1,12 +1,12 @@
 <div>
     <app-table
-        [dataSource]="results()"
+        [dataSource]="dataSource()"
         [columnsToDisplay]="columnsToDisplay"
         [tableColumnsDef]="tableColumnsDef"
       />
     <app-message-display
         pageData="candidates"
         page="candidates"
-        [results]="results()"
+        [results]="data()"
       />
 </div>
